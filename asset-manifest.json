@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.cba36fda.css",
+    "main.css": "/static/css/main.f26177d0.css",
     "main.js": "/static/js/main.c829dc6b.js",
     "static/js/453.ace21015.chunk.js": "/static/js/453.ace21015.chunk.js",
     "static/media/Boston_University.png": "/static/media/Boston_University.4c1098a1e1a28eaa07ff.png",
     "static/media/self-portrait.jpg": "/static/media/self-portrait.0bf47a1cc1c204bc99e3.jpg",
     "static/media/me.png": "/static/media/me.84100affcb23940449f2.png",
     "index.html": "/index.html",
-    "main.cba36fda.css.map": "/static/css/main.cba36fda.css.map",
+    "main.f26177d0.css.map": "/static/css/main.f26177d0.css.map",
     "main.c829dc6b.js.map": "/static/js/main.c829dc6b.js.map",
     "453.ace21015.chunk.js.map": "/static/js/453.ace21015.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cba36fda.css",
+    "static/css/main.f26177d0.css",
     "static/js/main.c829dc6b.js"
   ]
 }
