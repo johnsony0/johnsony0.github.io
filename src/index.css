@@ -12,45 +12,45 @@ code {
     monospace;
 }
 
-.container-lg{
+.container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: calc(100vh - 64px);
+  overflow: hidden;
 }
 
-.background-image-lg {
+.background-image {
   margin-right: 5vh;
   width: 65vw;
   object-fit: cover;
 }
 
-.text-overlay-lg {
+.text-overlay {
   width: 500px;
   position: absolute;
   left: 10%;
   top: 30%;
 }
 
-.container-md-sm{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 64px);
-}
+@media (max-width: 960px) {
+  .container {
+    justify-content: center;
+    align-items: center;
+  }
 
-.background-image-md-sm {
-  width: auto;
-  height: calc(100vh - 64px);
-  object-fit: cover;
-  margin: auto;
-}
+  .background-image {
+    width: auto;
+    height: calc(100vh - 64px);
+    object-fit: cover;
+    margin: auto;
+  }
 
-.text-overlay-md-sm {
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  .text-overlay {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
-
