@@ -32,7 +32,7 @@ function NavBar(){
   const navLinks = [
     { label: 'home', path: '/' },
     { label: 'about', path: '/about' },
-    { label: 'experience', path: '/experience' },
+    //{ label: 'experience', path: '/experience' },
     { label: 'projects', path: '/projects' },
     { label: 'resume', path: '/resume' },
   ];

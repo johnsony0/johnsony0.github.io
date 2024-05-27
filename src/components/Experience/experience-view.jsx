@@ -1,11 +1,11 @@
-import React from 'react';
+import { Container } from '@mui/material';
+import JobBox from './jobbox.jsx';
 
 function Experience() {
   return (
-    <div>
-      <h1>Experience Page</h1>
-      <p>Welcome to the Expereince Page.</p>
-    </div>
+    <Container sx={{ marginTop: 4 }}>
+      <JobBox />
+    </Container>
   );
 }
 
