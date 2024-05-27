@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.42efb049.css",
-    "main.js": "/static/js/main.c829dc6b.js",
+    "main.css": "/static/css/main.08d88c11.css",
+    "main.js": "/static/js/main.91719ab7.js",
     "static/js/453.ace21015.chunk.js": "/static/js/453.ace21015.chunk.js",
     "static/media/Boston_University.png": "/static/media/Boston_University.4c1098a1e1a28eaa07ff.png",
     "static/media/self-portrait.jpg": "/static/media/self-portrait.0bf47a1cc1c204bc99e3.jpg",
     "static/media/me.png": "/static/media/me.84100affcb23940449f2.png",
     "index.html": "/index.html",
-    "main.42efb049.css.map": "/static/css/main.42efb049.css.map",
-    "main.c829dc6b.js.map": "/static/js/main.c829dc6b.js.map",
+    "main.08d88c11.css.map": "/static/css/main.08d88c11.css.map",
+    "main.91719ab7.js.map": "/static/js/main.91719ab7.js.map",
     "453.ace21015.chunk.js.map": "/static/js/453.ace21015.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.42efb049.css",
-    "static/js/main.c829dc6b.js"
+    "static/css/main.08d88c11.css",
+    "static/js/main.91719ab7.js"
   ]
 }
