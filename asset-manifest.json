@@ -1,18 +1,29 @@
 {
   "files": {
     "main.css": "/static/css/main.08d88c11.css",
-    "main.js": "/static/js/main.91719ab7.js",
+    "main.js": "/static/js/main.399d1e40.js",
     "static/js/453.ace21015.chunk.js": "/static/js/453.ace21015.chunk.js",
+    "static/media/Timer_Project.png": "/static/media/Timer_Project.84d04b3162d35c66d3a7.png",
     "static/media/Boston_University.png": "/static/media/Boston_University.4c1098a1e1a28eaa07ff.png",
+    "static/media/Portfolio.png": "/static/media/Portfolio.229cb1fe0b6caf211691.png",
     "static/media/self-portrait.jpg": "/static/media/self-portrait.0bf47a1cc1c204bc99e3.jpg",
     "static/media/me.png": "/static/media/me.84100affcb23940449f2.png",
+    "static/media/Resume.pdf": "/static/media/Resume.8b1cfb3cb348084745ff.pdf",
+    "static/media/Temp_Sensor.png": "/static/media/Temp_Sensor.0564c4bbe9389eb335cb.png",
+    "static/media/Wheelchair_Lights.png": "/static/media/Wheelchair_Lights.d0c08c126812a7a26d81.png",
+    "static/media/Evolution_Kubernetes.png": "/static/media/Evolution_Kubernetes.48419f2f9c5043efdbcd.png",
+    "static/media/PokerProPlus.png": "/static/media/PokerProPlus.c1a0d4c4ba8ac9f32126.png",
+    "static/media/Langolio.png": "/static/media/Langolio.79ac282210c10f4de3d3.png",
+    "static/media/Calculator_App.png": "/static/media/Calculator_App.d8344fc3b5a054f740ac.png",
+    "static/media/Chat_App.png": "/static/media/Chat_App.4ba075c2cf078505b8f7.png",
+    "static/media/Boston_Crime_Data.png": "/static/media/Boston_Crime_Data.8d5f441bc4b3bec1f6ac.png",
     "index.html": "/index.html",
     "main.08d88c11.css.map": "/static/css/main.08d88c11.css.map",
-    "main.91719ab7.js.map": "/static/js/main.91719ab7.js.map",
+    "main.399d1e40.js.map": "/static/js/main.399d1e40.js.map",
     "453.ace21015.chunk.js.map": "/static/js/453.ace21015.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.08d88c11.css",
-    "static/js/main.91719ab7.js"
+    "static/js/main.399d1e40.js"
   ]
 }
