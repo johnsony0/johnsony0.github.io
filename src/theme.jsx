@@ -39,6 +39,24 @@ export const themeOptions = {
         },
       },
     },
+    MuiDialogTitle: {
+      styleOverrides:{
+        root: {
+          fontFamily: 'Segoe UI',
+          fontSize: '16pt',
+          fontWeight: 'bold',
+        },
+      },
+      MuiDialogContent: {
+        styleOverrides: {
+          root: {
+            fontFamily: 'Segoe UI',
+            fontSize: '10pt',
+            color: '#707070',
+          },
+        },
+      },
+    },
   },
 };
 

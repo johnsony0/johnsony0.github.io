@@ -1,5 +1,5 @@
 import { Container } from '@mui/material';
-import JobBox from './jobbox.jsx';
+import JobBox from './JobBox.jsx';
 
 function Experience() {
   return (

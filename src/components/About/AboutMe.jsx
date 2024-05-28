@@ -9,7 +9,6 @@ function AboutMe(){
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  console.log(isMobile)
   return (
     <Container sx={{ textAlign: 'center' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: { sm:'row', xs:'column' }, }}>
@@ -37,7 +36,7 @@ function AboutMe(){
         and I am looking forward to creating my mark on the industry. 
         </Typography>
       </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', flexDirection: { sm:'row', xs:'column' } }}>
+      <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', flexDirection: { sm:'row', xs:'column' }, marginBottom: '20px' }}>
         <Box
           component="img"
           src={bu}

@@ -26,7 +26,7 @@ const Typewriter = ({ text, delay, theme }) => {
 
   return (
     <Typography variant="h4" sx={{ color: theme.palette.text.secondary }}>
-      {currentText}
+      <b>{currentText}</b>
     </Typography>
   );
 };

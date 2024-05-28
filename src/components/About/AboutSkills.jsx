@@ -3,7 +3,6 @@ import { Container, ImageList, ImageListItem, Box, Typography, useMediaQuery } f
 import { useTheme } from '@mui/material/styles';
 import { FaReact, FaPython, FaHtml5, FaCss3Alt, FaJsSquare } from 'react-icons/fa';
 import { SiCplusplus, SiC } from 'react-icons/si';
-import pytorch from '../../assets/pytorch.png'
 
 const itemData = [
     {
@@ -55,11 +54,14 @@ function AboutTools() {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                flexDirection: 'column'
+                flexDirection: 'column',
             }}
         >
-            <Typography variant='h1' sx={{ color: theme.palette.text.secondary}}>
-                Tools
+            <Typography variant='h3' sx={{ color: theme.palette.text.secondary,
+              marginBottom: '10%',
+              marginTop: '10%'
+            }}>
+                Skillset
             </Typography>
             <ImageList 
                 sx={{ width: '100%'}} cols={getColumns()} rowHeight={164} gap={50}
