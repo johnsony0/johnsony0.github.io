@@ -1,23 +1,21 @@
 import React from 'react';
 import resume from '../../assets/Resume.pdf'
+import { Box } from '@mui/material';
 
 function Resume() {
   return (
-    <div>
-      <iframe class="pdf" 
+    <Box sx={{ position: 'relative',  height: 'calc(100vh - 64px - 32px)' }}>
+      <iframe 
+        className="pdf" 
         title="Resume"
         src={resume}
         style={{
-          position: 'absolute',
-          top: '64px',
-          left: 0,
           width: '100%',
-          height: 'calc(100% - 64px)', 
+          height: '100%',
           border: 'none',
         }}
-        frameborder="0"
       ></iframe>
-    </div>
+    </Box>
   );
 }
 
