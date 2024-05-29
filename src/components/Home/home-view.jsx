@@ -32,7 +32,7 @@ const Typewriter = ({ text, delay, theme }) => {
 };
 
 function Home() {
-  const wordList = ['Software Designer', 'R&B Listener', 'Avid Gamer', 'Computer Engineer'];
+  const wordList = ['Software Designer', 'R&B Listener', 'Computer Engineer', 'Avid Gamer','ML GOAT'];
   const helloList = ['Hi', '你好', 'مرحبا', 'Hello', 'Bonjour', 'Привет', 'Hola'];
   const [wordIndex, setWordIndex] = useState(0);
   const [helloIndex, setHelloIndex] = useState(0);

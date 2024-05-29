@@ -35,6 +35,7 @@ function NavBar(){
     //{ label: 'experience', path: '/experience' },
     { label: 'projects', path: '/projects' },
     { label: 'resume', path: '/resume' },
+    { label: 'contact', path: '/contact'}
   ];
 
   return (
@@ -104,7 +105,11 @@ function NavBar(){
                 component={Link}
                 to={link.path}
                 sx={{
+                  color: theme.palette.text.primary,
                   textTransform: location.pathname === link.path ? 'uppercase' : 'none',
+                  '&:hover': {
+                    color: theme.palette.text.secondary,
+                },
                 }}
               >
                 {link.label}

@@ -7,6 +7,7 @@ import About from './components/About/about-view';
 //import Experience from './components/Experience/experience-view';
 import Projects from './components/Projects/projects-view';
 import Resume from './components/Resume/resume-view';
+import Contact from './components/Contact/contact-view'
 //https://www.reddit.com/r/webdev/comments/112r7m5/whats_the_best_portfolio_website_youve_ever_seen/?rdt=58318
 
 
@@ -21,6 +22,7 @@ function App() {
         {/*<Route path="/experience" element={<Experience />} />*/}
         <Route path="/projects" element={<Projects />} />
         <Route path="/resume" element={<Resume />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </Router>

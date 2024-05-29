@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, ImageList, ImageListItem, Box, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { FaReact, FaPython, FaHtml5, FaCss3Alt, FaJsSquare } from 'react-icons/fa';
-import { SiCplusplus, SiC } from 'react-icons/si';
+import { SiCplusplus, SiC, SiPytorch, SiNeo4J, SiMongodb } from 'react-icons/si';
 
 const itemData = [
     {
@@ -30,8 +30,20 @@ const itemData = [
       title: 'JavaScript',
     },
     {
-        icon: FaPython,
-        title: 'Python',
+      icon: FaPython,
+      title: 'Python',
+    },
+    {
+      icon: SiPytorch,
+      title: 'Pytorch',
+    },
+    {
+      icon: SiNeo4J,
+      title: 'Neo4J',
+    },
+    {
+      icon: SiMongodb,
+      title: 'Mongodb'
     }
   ];
 
@@ -55,6 +67,7 @@ function AboutTools() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 flexDirection: 'column',
+                marginBottom: '2%'
             }}
         >
             <Typography variant='h3' sx={{ color: theme.palette.text.secondary,
