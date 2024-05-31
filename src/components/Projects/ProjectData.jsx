@@ -8,7 +8,7 @@ import Portfolio from '../../assets/project_images/Portfolio.png'
 import TempSens from '../../assets/project_images/Temp_Sensor.png'
 import Timer from '../../assets/project_images/Timer_Project.png'
 import Wheelchair from '../../assets/project_images/Wheelchair_Lights.png'
-
+import PySuperTuxKart from '../../assets/project_images/PySuperTuxKart.jpg'
 
 
 export const projectData = [
@@ -65,6 +65,20 @@ export const projectData = [
       docs: '',
       video: 'https://drive.google.com/file/d/1hH2lV2tA4Uf3NrLAzUNJ_YGq4g82V3Hz/view',
       github: 'https://github.com/EC528-Fall-2023/Evolution-of-Kubernetes-',
+    },
+    {
+      img: PySuperTuxKart,
+      title: 'PySuperTuxKart AI Driving',
+      date: '2023',
+      description: `Utilizing convolutional neural networks to process images,
+      we created an AI that could drive a virtual go-kart. This was done with
+      PySuperTuxKart, a python based open source racing simulator, which provides
+      the environment to build our machine learning model. The models themselves
+      were built with PyTorch.`,
+      tools: ['Python','Pytorch'],
+      video: 'https://drive.google.com/file/d/1gWOKUeMbzmnqTt2KvVUvZ67w_sVCvyyz/view?usp=drive_link',
+      docs: 'https://docs.google.com/document/d/11NEOAoYCXI65kQU4BjrwDksafux0aqERX_DKtLtgzbg/edit#heading=h.99o1sym247aq',
+      github: '',
     },
     {
       img: ChatApp,
