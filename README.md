@@ -1,3 +1,4 @@
 # Next Steps
 - Transition between light and dark modes
-- Easter Eggs 
+- Easter Eggs
+- Image transitions and multiple images
