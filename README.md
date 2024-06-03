@@ -5,3 +5,4 @@
 
 # Bug Fixes
 - When clicking on email icon on the bottom, cannot make the tooltip go away
+- Words drop after the words refresh
