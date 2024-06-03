@@ -16,7 +16,11 @@ function Footer(){
       };
     
       const handleTooltipOpen = () => {
-        setOpen(true);
+        if(open){
+            setOpen(false);
+        } else {
+            setOpen(true);
+        }
       };
 
     return(

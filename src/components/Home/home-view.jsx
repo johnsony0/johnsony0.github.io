@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, useMediaQuery } from '@mui/material';
-import portrait from '../../assets/self-portrait.jpg';
+import { Typography, useMediaQuery, Box } from '@mui/material';
+import portrait from '../../assets/me-with-fish.jpg';
 import { useTheme } from '@mui/material/styles';
 
-const Typewriter = ({ text, delay, theme }) => {
+const Typewriter = ({ text, delay, theme, isMd }) => {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    setCurrentText('');
-    setCurrentIndex(0);
+    setCurrentText(text[0]);
+    setCurrentIndex(1);
   }, [text]);
 
   useEffect(() => {
@@ -25,9 +25,11 @@ const Typewriter = ({ text, delay, theme }) => {
   }, [currentIndex, delay, text]);
 
   return (
-    <Typography variant="h4" sx={{ color: theme.palette.text.secondary }}>
-      <b>{currentText}</b>
-    </Typography>
+    <Box sx={{backdropFilter: isMd ? 'none' : 'blur(1px)',display: 'inline-block'}}>
+      <Typography variant="h4" sx={{ color: isMd ? 'white' : theme.palette.text.secondary }}>
+        <b>{currentText}</b>
+      </Typography>
+    </Box>
   );
 };
 
@@ -52,15 +54,17 @@ function Home() {
 
   return (
     <div className='container'>
-      <img src={portrait} alt="Background" className='background-image' />
+      <img src={isMd ? portrait : portrait} alt="Background" className='background-image' />
       <div className='text-overlay'>
-        <Typography variant="h4" sx={{ color: theme.palette.text.secondary }}>
-          <b>{helloList[helloIndex]}</b>
-        </Typography>
-        <Typography variant="h4" sx={{ color: theme.palette.text.secondary, marginBottom: textOverlayBottom }}>
-          I'm <b>Johnson</b>
-        </Typography>
-        <Typewriter text={wordList[wordIndex]} delay={100} theme={theme} />
+        <Box sx={{marginBottom: textOverlayBottom }}>
+          <Typography variant="h4" sx={{ color: isMd ? 'white' : theme.palette.text.secondary }}>
+            <b>{helloList[helloIndex]}</b>
+          </Typography>
+          <Typography variant="h4" sx={{ color: isMd ? 'white' : theme.palette.text.secondary }}>
+            I'm <b>Johnson</b>
+          </Typography>
+        </Box>
+        <Typewriter text={wordList[wordIndex]} delay={100} theme={theme} isMd={isMd} />
       </div>
     </div>
   );
