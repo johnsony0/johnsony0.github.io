@@ -35,7 +35,7 @@ export const projectData = [
       a DQN. This was all with a poker environment provided at 
       https://github.com/dickreuter/neuron_poker`,
       tools: ['Python','PyTorch','KerasRL'],
-      docs: 'https://docs.google.com/document/d/1lB2v-oVOLgsdV9RHJIZiZ0Wj-a0necM_gbGB3E6Zy_w/edit',
+      docs: 'https://docs.google.com/document/d/1rHJUzCxcWc7JC6oq2X0Xh9PIBilleGCNsLzkkOqdrT8/edit?usp=sharing',
       video: '',
       github: 'https://github.com/ASasamori/PokerProPlus',
     },
@@ -49,7 +49,7 @@ export const projectData = [
       Also features secure authentication and seamless classroom creation
       amongst others.`,
       tools: ['React','Python','MongoDB'],
-      docs: 'https://docs.google.com/document/d/1ccU59FPeZFUcK6-HvYzW15L03Q9a5w52/edit',
+      docs: 'https://docs.google.com/document/d/1pnWa_NMAa_05x_sYG8P9QU01FiB6tPDp/edit?usp=sharing',
       video: '',
       github: '',
     },
@@ -63,7 +63,7 @@ export const projectData = [
       All of our observed data can also be viewed in a timeline UI.`,
       tools: ['Python','SBOM','Neo4J'],
       docs: '',
-      video: 'https://drive.google.com/file/d/1hH2lV2tA4Uf3NrLAzUNJ_YGq4g82V3Hz/view',
+      video: 'https://drive.google.com/file/d/11iz5aTGtU2Mmv-lno0Jbp0xCZwPQC6nW/view?usp=sharing',
       github: 'https://github.com/EC528-Fall-2023/Evolution-of-Kubernetes-',
     },
     {
@@ -76,8 +76,8 @@ export const projectData = [
       the environment to build our machine learning model. The models themselves
       were built with PyTorch.`,
       tools: ['Python','Pytorch'],
-      video: 'https://drive.google.com/file/d/1gWOKUeMbzmnqTt2KvVUvZ67w_sVCvyyz/view?usp=drive_link',
-      docs: 'https://docs.google.com/document/d/11NEOAoYCXI65kQU4BjrwDksafux0aqERX_DKtLtgzbg/edit#heading=h.99o1sym247aq',
+      video: 'https://drive.google.com/file/d/17JVAmMsRl_nK6yxXb9xZXnHe-3OQ1phV/view?usp=sharing',
+      docs: 'https://docs.google.com/document/d/1mr3jFxP_G28AQD85rXNlD-YNCPSOLbSOUbxiTQapAnA/edit?usp=sharing',
       github: '',
     },
     {
@@ -104,7 +104,7 @@ export const projectData = [
       (ex: how will we attach them, what watts of lights do we need, 
         how would we power the device). Then we built our device.`,
       tools: ['Arduino', 'Circuits'],
-      docs: 'https://docs.google.com/document/d/1B6WKOhBShQ9XDBVTBBp-FwpLUoEKYktzDcleE8b4uOQ/edit',
+      docs: 'https://docs.google.com/document/d/1yXN3RWq54MDJTQ3Jv2crrmLNf3bGofxo/edit?usp=sharing',
       video: '',
       github: '',
     },
@@ -131,7 +131,7 @@ export const projectData = [
       line of best fit. Also is inclusive with a calculator function and 
       matrix calculations.`,
       tools: ['C++'],
-      docs: 'https://docs.google.com/document/d/13JnEA8aHwHwct4uS0nDyhAWpBS99l5RhdX3RyBTQ17c/edit?usp=sharing',
+      docs: 'https://drive.google.com/file/d/1QntxDl2yZbvCZDSFy-JvzT923SsWyEVu/view?usp=sharing',
       video: 'https://youtu.be/0Puglg-wOxA',
       github: 'https://github.com/rithvik-doshi/EC327_Final_Project',
     },
@@ -144,7 +144,7 @@ export const projectData = [
       Then using an arduino and some circuitry, we created a thermometer 
       which displays the temperature near the device onto an LCD screen.`,
       tools: ['CAD','Arduino','Circuits'],
-      docs: 'https://docs.google.com/document/d/1Ioeh_AXAcAIBAA9AuHauAnR_eUGf-e6XeBGSdUn9kus/edit',
+      docs: 'https://docs.google.com/document/d/17a1qMYRX2qH9R-ognVP8tZv5m4GqRDwG-vVnStYgCfY/edit?usp=sharing',
       video: '',
       github: '',
     },
@@ -158,7 +158,7 @@ export const projectData = [
       Boston, predict the crime rate in the future, and establish the 
       most common types of crime.`,
       tools: ['MatLab'],
-      docs: 'https://drive.google.com/file/d/1R9EaoF-GucTQNo4k6WmYZorZFAOohVBI/view',
+      docs: 'https://drive.google.com/file/d/1_1GN4hiNq9V4vckAvkfT2BvvZQsitsnY/view?usp=sharing',
       video: '',
       github: '',
     }
