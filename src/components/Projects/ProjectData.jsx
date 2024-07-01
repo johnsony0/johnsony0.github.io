@@ -9,9 +9,22 @@ import TempSens from '../../assets/project_images/Temp_Sensor.png'
 import Timer from '../../assets/project_images/Timer_Project.png'
 import Wheelchair from '../../assets/project_images/Wheelchair_Lights.png'
 import PySuperTuxKart from '../../assets/project_images/PySuperTuxKart.jpg'
-
+import StockPredictor from '../../assets/project_images/Stock_Predictor.png'
 
 export const projectData = [
+    {
+      img: StockPredictor,
+      title: 'PyTorch Stock Predictor',
+      date: '2024',
+      description: `A stock predictor built with pytorch. Uses NumPy and
+      pandas for data processing, and MatPlotLib for data visualizations. 
+      Stock data is obtained from Alpaca API. Accurately predicts stock data
+      within 5% of the actual value. More information can be found in the GitHub ReadME.`,
+      tools: ['Python','PyTorch','NumPy','Pandas','MatPlotLib'],
+      docs: 'https://colab.research.google.com/drive/1jrzIKp2qZm_Y8hFpEN6gugbwWTTyA_NI?usp=sharing',
+      video: '',
+      github: 'https://github.com/johnsony0/PyTorch-Stock-Predictor',
+    },
     {
       img: Portfolio,
       title: 'Portfolio Website',
