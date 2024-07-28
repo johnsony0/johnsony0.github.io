@@ -10,8 +10,25 @@ import Timer from '../../assets/project_images/Timer_Project.png'
 import Wheelchair from '../../assets/project_images/Wheelchair_Lights.png'
 import PySuperTuxKart from '../../assets/project_images/PySuperTuxKart.jpg'
 import StockPredictor from '../../assets/project_images/Stock_Predictor.png'
+import DraftPredictor from '../../assets/project_images/Draft_Predictor.png'
 
 export const projectData = [
+    {
+      img: DraftPredictor,
+      title: 'League of Legends Draft Predictor',
+      date: '2024',
+      description: `A machine learning project designed to predict the winning team 
+      in a League of Legends match based on the selected champions. This project 
+      utilizes PyTorch to construct a convolutional neural network and incorporates 
+      scikit-learn's linear support vector machine classification and naive Gaussian 
+      Bayes classification algorithms. The final prediction is achieved through an 
+      ensemble voting mechanism, delivering a verdict of either a blue team or red team 
+      victory.`,
+      tools: ['Python','PyTorch','NumPy','ONNX'],
+      docs: '/projects/draftpredictor',
+      video: '',
+      github: 'https://github.com/johnsony0/Draft-Analysis',
+    },
     {
       img: StockPredictor,
       title: 'PyTorch Stock Predictor',

@@ -32,7 +32,6 @@ function NavBar(){
   const navLinks = [
     { label: 'home', path: '/' },
     { label: 'about', path: '/about' },
-    //{ label: 'experience', path: '/experience' },
     { label: 'projects', path: '/projects' },
     { label: 'resume', path: '/resume' },
     { label: 'contact', path: '/contact'}
@@ -68,15 +67,14 @@ function NavBar(){
               >
                 <List>
                   {navLinks.map((link) => (
-                    <ListItem disablePadding>
+                    <ListItem key={link.path} disablePadding>
                       <ListItemButton
-                        key={link.path}
                         color="inherit"
                         component={Link}
                         to={link.path}
                         sx={{
                           padding: '20px',
-                          textTransform: location.pathname === link.path ? 'uppercase' : 'none',
+                          textTransform: location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(`${link.path}/`)) ? 'uppercase' : 'none',
                         }}
                       >
                         {link.label}
@@ -106,7 +104,7 @@ function NavBar(){
                 to={link.path}
                 sx={{
                   color: theme.palette.text.primary,
-                  textTransform: location.pathname === link.path ? 'uppercase' : 'none',
+                  textTransform: location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(`${link.path}/`)) ? 'uppercase' : 'none',
                   '&:hover': {
                     color: theme.palette.text.secondary,
                 },
