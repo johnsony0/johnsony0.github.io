@@ -2,32 +2,46 @@ import * as ort from 'onnxruntime-web';
 import { usePapaParse } from 'react-papaparse';
 import { champions } from './DraftData';
 
-export const FindSimilarGame = (formData) => {
-    const { readRemoteFile } = usePapaParse();
-    const file_path = `${process.env.PUBLIC_URL}/database.csv`
-    console.log(formData)
+export const FindSimilarGame = async(formData) => {
+  const { readRemoteFile } = usePapaParse();
+  const file_path = `${process.env.PUBLIC_URL}/database.csv`
+  let dict = {
+    'count': 0
+  };
+
+  return new Promise((resolve, reject) => {
     readRemoteFile(file_path, {
-        step: (row) => {
-            const matchRegion = formData.region === 'ANY' || formData.region === row.data[2];
-            const matchGameMode = formData.game_mode === 'ANY' || formData.game_mode === row.data[3];
-            const matchElo = formData.elo.includes('ANY') || formData.elo.includes(row.data[4].split(' ')[0])
-            //const matchVersion = formData.version === 'ANY' || formData.version === row.data[5];
-            if (matchRegion && matchGameMode && matchElo){
-                const blue_matches = formData.blue_team.filter(item => row.data.slice(6,11).includes(item)).length
-                const red_matches = formData.red_team.filter(item => row.data.slice(11,16).includes(item)).length
-                
-                if(blue_matches + red_matches >= formData.threshold){
-                    let [region, matchId] = row.data[1].split('_');
-                    if(region === 'NA1'){
-                        region = 'na'
-                    }
-                    console.log(`https://www.leagueofgraphs.com/match/${region}/${matchId}`)
-                    console.log(row.data)
-                }
-                }
+      step: (row) => {
+        const match_region = formData.region === 'ANY' || formData.region === row.data[2];
+        const match_gameMode = formData.game_mode === 'ANY' || formData.game_mode === row.data[3];
+        const match_elo = formData.elo.includes('ANY') || formData.elo.includes(row.data[4].split(' ')[0]);
+        const match_version = formData.version === 'ANY' || formData.version === row.data[5].split('.').slice(0, 2).join('.');
+        if (match_region && match_gameMode && match_elo && match_version) {
+          dict.count++;
+          const blue_matches = formData.blue_team.filter(item => row.data.slice(6, 11).includes(item)).length;
+          const red_matches = formData.red_team.filter(item => row.data.slice(11, 16).includes(item)).length;
+          const total_matches = blue_matches + red_matches;
+          if (total_matches >= formData.threshold) {
+            let [region, matchId] = row.data[1].split('_');
+            if (region === 'NA1') {
+              region = 'na';
+            }
+            if (!dict[total_matches]) {
+              dict[total_matches] = [];
+            }
+            dict[total_matches].push(`https://www.leagueofgraphs.com/match/${region}/${matchId}`);
+          }
         }
-    })
-}
+      },
+      complete: () => {
+        resolve(dict);
+      },
+      error: (error) => {
+        reject(error);
+      }
+    });
+  });
+};
 
 export const runModel = async (e, formData) => {
   ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
