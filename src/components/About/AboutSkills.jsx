@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, ImageList, ImageListItem, Box, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { FaReact, FaPython, FaHtml5, FaCss3Alt, FaJsSquare } from 'react-icons/fa';
-import { SiCplusplus, SiC, SiPytorch, SiNeo4J, SiMongodb } from 'react-icons/si';
+import { FaReact, FaPython} from 'react-icons/fa';
+import { SiCplusplus, SiPytorch} from 'react-icons/si';
 
 const itemData = [
     {

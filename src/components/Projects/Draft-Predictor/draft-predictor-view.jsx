@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import * as yup from 'yup';
 import { Autocomplete, TextField, Grid, Button, Box } from '@mui/material';
-import { labelToValueMap, FindSimilarGame, runModel} from './DraftUtils'
+import { labelToValueMap, arrayToValueMap, FindSimilarGame, runModel} from './DraftUtils'
 import {champions, regions, elos, game_modes, versions} from './DraftData';
 
 //add region, elo, gamemode, patch, threshold
@@ -24,7 +24,7 @@ function DraftPredictior(){
 
   const [formData, setFormData] = useState({
     blue_team: ['Garen', 'Xin Zhao', 'Lux', 'Jinx', 'Milio'],
-    red_team: ['Amumu', 'Anivia', 'Annie', 'Aphelios', 'Ashe'],
+    red_team:  ['Urgot', 'FiddleSticks', 'Vladimir', 'Caitlyn', 'Brand'],
     region: regions[0].label,
     game_mode: game_modes[0].label,
     elo: elos[0].label,
@@ -47,12 +47,18 @@ function DraftPredictior(){
   };
 
   const onSubmit = async (e) => {
-
-    
     schema.validate(formData)
-    console.log(formData)
-    FindSimilarGame(formData)
-    const response = await runModel(e,formData)
+    const mapped_data = {
+      blue_team : arrayToValueMap(champions,formData.blue_team),
+      red_team : arrayToValueMap(champions,formData.red_team),
+      region : labelToValueMap(regions,formData.region),
+      game_mode : labelToValueMap(game_modes,formData.game_mode),
+      elo : labelToValueMap(elos,formData.elo),
+      version : labelToValueMap(versions,formData.version),
+      threshold: formData.threshold
+    }
+    FindSimilarGame(mapped_data)
+    const response = await runModel(e,mapped_data)
     console.log(response)
   }
 
