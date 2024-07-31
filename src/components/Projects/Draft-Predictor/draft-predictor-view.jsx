@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
-import * as ort from 'onnxruntime-web';
 import * as yup from 'yup';
 import { Autocomplete, TextField, Grid, Button, Box } from '@mui/material';
-import { champions, regions, elos, game_modes, versions, encodeTeam } from './DraftData';
+import { labelToValueMap, FindSimilarGame, runModel} from './DraftUtils'
+import {champions, regions, elos, game_modes, versions} from './DraftData';
 
 //add region, elo, gamemode, patch, threshold
 function DraftPredictior(){
-  ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
-
   const schema = yup.object().shape({
     blue_team: yup.array()
       .of(yup.string().required('Champion is required'))
@@ -21,15 +19,17 @@ function DraftPredictior(){
     game_mode: yup.string().required('Game mode is required'),
     elo: yup.string().required('Elo is required'),
     version: yup.string().required('Version is required'),
+    threshold: yup.number().min(1).max(10).required('Threshold is required')
   });
 
   const [formData, setFormData] = useState({
-    blue_team: ['Aatrox', 'Ahri', 'Akali', 'Akshan', 'Alistar'],
-    red_team: ['Aatrox', 'Ahri', 'Akali', 'Akshan', 'Alistar'],
+    blue_team: ['Garen', 'Xin Zhao', 'Lux', 'Jinx', 'Milio'],
+    red_team: ['Amumu', 'Anivia', 'Annie', 'Aphelios', 'Ashe'],
     region: regions[0].label,
     game_mode: game_modes[0].label,
     elo: elos[0].label,
-    version: versions[0].label
+    version: versions[0].label,
+    threshold: 5
   });
 
   const handleParameterChange = (parameter,newValue) => {
@@ -46,31 +46,21 @@ function DraftPredictior(){
     }));
   };
 
-  const runModel = async (e) => {
-    e.preventDefault()
+  const onSubmit = async (e) => {
+
+    
+    schema.validate(formData)
     console.log(formData)
-
-    const errors = await schema.validate(formData)
-    console.log(errors)
-
-    const blue_team = encodeTeam(formData.blue_team)
-    const red_team = encodeTeam(formData.red_team)
-
-    const model_path = `${process.env.PUBLIC_URL}/models/NA1_ARAM_ANY_14-13_nn_model.onnx`
-    const session = await ort.InferenceSession.create(model_path);
-
-    const data = Float32Array.from([...blue_team,...red_team])
-    const tensor_data = new ort.Tensor('float32',data,[1,2,168])
-    const feeds = {input: tensor_data}
-
-    const results = await session.run(feeds)
-    console.log(results.output.data)
+    FindSimilarGame(formData)
+    const response = await runModel(e,formData)
+    console.log(response)
   }
 
   const createAutocomplete = (label,value,options,index) => {
     return(
-      <Grid item xs={3}>
+      <Grid item xs={12/5}>
         <Autocomplete
+          disableClearable
           value={value}
           onChange={(event, newValue) => handleParameterChange(index, newValue)}
           options={options.map(option => option.label)}
@@ -80,9 +70,6 @@ function DraftPredictior(){
               label={label}
               variant="outlined"
               placeholder={`Select ${label}`}
-              sx={{ marginTop: 2 }}
-              error={value === null}
-              helperText={value === null ? 'This field must be filled' : ''}
             />
           )}
         />
@@ -92,20 +79,32 @@ function DraftPredictior(){
 
   return (
     <Box>
-        <Grid container spacing={2} sx={{marginBottom: 2, px:2}}>
+        <Grid container spacing={2} sx={{marginBottom: 2, px:2, marginTop: 1}}>
           {createAutocomplete('Region', formData.region, regions, 'region')}
           {createAutocomplete('Game Modes', formData.game_mode, game_modes, 'game_mode')}
           {createAutocomplete('Rank', formData.elo, elos, 'elo')}
           {createAutocomplete('Version', formData.version, versions, 'version')}
+          <Grid item xs={12/5}>
+            <TextField
+              label="Threshold"
+              variant="outlined"
+              type="number"
+              value={formData.threshold}
+              onChange={(event) => handleParameterChange('threshold',event.target.value)}
+              InputProps={{ inputProps: { min: 1, max: 10 } }}
+              error={formData.threshold > 10 || formData.threshold < 1}
+              helperText={(formData.threshold > 10 || formData.threshold < 1) ? 'Num btwn 1-10' : ''}
+            />
+          </Grid>
           <Grid item xs={6}>
             {formData.blue_team.map((value, index) => (
               <Autocomplete
-                fullWidth
-                required
+                disableClearable
                 key={`blue_team_${index + 1}`}
                 value={value}
                 onChange={(event, newValue) => handleTeamChange('blue_team', index, newValue)}
                 options={champions.map(champion => champion.label)}
+                getOptionDisabled={(option) => formData.blue_team.includes(option)}
                 groupBy={(option) => option[0]}
                 isOptionEqualToValue={(option, value) => (value === '' || option === value)}
                 renderInput={(params) => (
@@ -122,11 +121,12 @@ function DraftPredictior(){
           <Grid item xs={6}>
             {formData.red_team.map((value, index) => (
               <Autocomplete
-                fullWidth
+                disableClearable
                 key={`red_team_${index + 1}`}
                 value={value}
                 onChange={(event, newValue) => handleTeamChange('red_team', index, newValue)}
                 options={champions.map(champion => champion.label)}
+                getOptionDisabled={(option) => formData.red_team.includes(option)}
                 groupBy={(option) => option[0]}
                 isOptionEqualToValue={(option, value) => (value === '' || option === value)}
                 renderInput={(params) => (
@@ -141,9 +141,7 @@ function DraftPredictior(){
             ))}
           </Grid>
           <Grid item xs={12}>
-            <Button type="submit" variant="contained" color="primary" onClick={runModel} fullWidth
-            
-            >
+            <Button type="submit" variant="contained" color="primary" onClick={onSubmit} fullWidth>
                 Submit
             </Button>
           </Grid>

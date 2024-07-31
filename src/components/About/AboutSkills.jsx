@@ -6,10 +6,6 @@ import { SiCplusplus, SiC, SiPytorch, SiNeo4J, SiMongodb } from 'react-icons/si'
 
 const itemData = [
     {
-      icon: SiC,
-      title: 'C',
-    },
-    {
       icon: SiCplusplus,
       title: 'C++',
     },
@@ -18,32 +14,12 @@ const itemData = [
       title: 'React',
     },
     {
-      icon: FaHtml5,
-      title: 'HTML5',
-    },
-    {
-      icon: FaCss3Alt,
-      title: 'CSS3',
-    },
-    {
-      icon: FaJsSquare,
-      title: 'JavaScript',
-    },
-    {
       icon: FaPython,
       title: 'Python',
     },
     {
       icon: SiPytorch,
       title: 'Pytorch',
-    },
-    {
-      icon: SiNeo4J,
-      title: 'Neo4J',
-    },
-    {
-      icon: SiMongodb,
-      title: 'Mongodb'
     }
   ];
 
@@ -55,7 +31,8 @@ function AboutTools() {
 
     const getColumns = () => {
         if (isXs) return 1;
-        if (isSm || isMd) return 2;
+        if (isSm) return 2;
+        if (isMd) return 3;
         return 4;
     };
 

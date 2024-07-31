@@ -1,14 +1,25 @@
-export const encodeTeam = (team) => {
-  const encodedTeam = new Array(champions.length).fill(0);
-  team.forEach(champ => {
-    const champIndex = champions.findIndex(champion => champion.label === champ);
-    if (champIndex === -1) {
-      throw new Error(`Champion '${champ}' not found in list.`);
-    }
-    encodedTeam[champIndex] = 1;
-  });
-  return encodedTeam;
-};
+export const regions = [
+  { label: 'Global', value: 'ANY'},
+  { label: 'NA' , value: 'NA1'}
+]
+
+export const game_modes = [
+  { label: 'Any', value: 'ANY'},
+  { label: 'ARAM', value: 'ARAM'},
+  { label: 'SR', value: 'CLASSIC'}
+]
+
+export const elos = [
+  { label: 'All', value: 'ANY'},
+  { label: 'Low', value: 'IRON,BRONZE,SILVER'},
+  { label: 'Mid', value: 'GOLD, EMERALD, DIAMOND'},
+  { label: 'High', value: 'MASTER, GRANDMASTER, CHALLENGER'},
+]
+
+export const versions = [
+  { label: '14.13', value: '14.13'},
+  { label: '14.12', value: '14.12'},
+]
 
 export const champions = [
   { label: 'Aatrox', value: 'Aatrox' },
@@ -179,34 +190,4 @@ export const champions = [
   { label: 'Zilean', value: 'Zilean' },
   { label: 'Zoe', value: 'Zoe' },
   { label: 'Zyra', value: 'Zyra' }
-]
-  
-export const regions = [
-  { label: 'Global', value: 'ANY'},
-  { label: 'NA' , value: 'NA1'}
-]
-
-export const game_modes = [
-  { label: 'Any', value: 'ANY'},
-  { label: 'ARAM', value: 'ARAM'},
-  { label: 'SR', value: 'CLASSIC'}
-]
-
-export const elos = [
-  { label: 'All', value: 'ANY'},
-  { label: 'Unranked', value: 'UNRANKED'},
-  { label: 'Iron', value: 'IRON'},
-  { label: 'Bronze', value: 'BRONZE'},
-  { label: 'Silver', value: 'SILVER'},
-  { label: 'Gold', value: 'GOLD'},
-  { label: 'Emerald', value: 'EMERALD'},
-  { label: 'Diamond', value: 'DIAMOND'},
-  { label: 'Master', value: 'MASTER'},
-  { label: 'Grandmaster', value: 'GRANDMASTER'},
-  { label: 'Challenger', value: 'CHALLENGER'},
-]
-
-export const versions = [
-  { label: '14.13', value: '14.13'},
-  { label: '14.12', value: '14.12'},
 ]
