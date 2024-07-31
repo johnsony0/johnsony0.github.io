@@ -24,7 +24,7 @@ function DraftPredictior(){
 
   const [formData, setFormData] = useState({
     blue_team: ['Garen', 'Xin Zhao', 'Lux', 'Jinx', 'Milio'],
-    red_team:  ['Urgot', 'FiddleSticks', 'Vladimir', 'Caitlyn', 'Brand'],
+    red_team:  ['Urgot', 'FiddleSticks', 'Vladimir', 'Caitlyn', 'Bard'],
     region: regions[0].label,
     game_mode: game_modes[0].label,
     elo: elos[0].label,
