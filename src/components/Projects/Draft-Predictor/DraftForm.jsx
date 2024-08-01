@@ -33,6 +33,7 @@ function DraftForm({ formData, handleParameterChange, handleTeamChange, onSubmit
           {createAutocomplete('Version', formData.version, versions, 'version')}
           <Grid item xs={12/5}>
             <TextField
+              fullWidth
               label="Threshold"
               variant="outlined"
               type="number"

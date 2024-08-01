@@ -29,7 +29,10 @@ export const FindSimilarGame = async(formData) => {
             if (!dict[total_matches]) {
               dict[total_matches] = [];
             }
-            dict[total_matches].push(`https://www.leagueofgraphs.com/match/${region}/${matchId}`);
+            dict[total_matches].push({
+              url: `https://www.leagueofgraphs.com/match/${region}/${matchId}`,
+              winner: row.data[16]
+            });
           }
         }
       },

@@ -26,8 +26,8 @@ function DraftPredictior() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogContent, setDialogContent] = useState({ winner: '', matches: {} });
   const [formData, setFormData] = useState({
-    blue_team: ['Garen', 'Xin Zhao', 'Lux', 'Jinx', 'Milio'],
-    red_team: ['Urgot', 'FiddleSticks', 'Vladimir', 'Caitlyn', 'Bard'],
+    blue_team: ['Ekko', 'Olaf', 'Viktor', 'Ezreal', 'Zyra'],
+    red_team: ['Rumble', 'Lee Sin', 'Karma', 'Ashe', 'Miss Fortune'],
     region: regions[0].label,
     game_mode: game_modes[0].label,
     elo: elos[0].label,
@@ -73,15 +73,10 @@ function DraftPredictior() {
       const parsed_match_data = await FindSimilarGame(mapped_data)
       const response = await runModel(e, mapped_data)
 
-      const index = response[0] > response[1] ? 0 : 1;
-      const confidence = (response[index] * 100).toFixed(2);
-      const winner = index === 0
-        ? `Blue team predicted to win with ${confidence}% confidence`
-        : `Red team predicted to win with ${confidence}% confidence`;
-
+      const winner = response[0] > response[1] ? 0 : 1;
+      const confidence = (response[winner] * 100).toFixed(2);
       const { count, ...matches } = parsed_match_data;
-
-      setDialogContent({ winner, matches, count });
+      setDialogContent({ winner, confidence, matches, count });
       handleClickOpen();
     } catch (error) {
       console.error("Validation or API call failed:", error);
@@ -104,6 +99,8 @@ function DraftPredictior() {
         data={dialogContent.matches}
         count={dialogContent.count}
         winner={dialogContent.winner}
+        confidence={dialogContent.confidence}
+        formData={formData}
       />
     </>
   );

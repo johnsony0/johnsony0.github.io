@@ -54,7 +54,7 @@ export const champions = [
   { label: 'Elise', value: 'Elise' },
   { label: 'Evelynn', value: 'Evelynn' },
   { label: 'Ezreal', value: 'Ezreal' },
-  { label: 'FiddleSticks', value: 'FiddleSticks' },
+  { label: 'Fiddlesticks', value: 'FiddleSticks' },
   { label: 'Fiora', value: 'Fiora' },
   { label: 'Fizz', value: 'Fizz' },
   { label: 'Galio', value: 'Galio' },
