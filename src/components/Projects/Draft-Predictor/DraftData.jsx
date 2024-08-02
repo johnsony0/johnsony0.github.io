@@ -1,3 +1,8 @@
+export const teams = [
+  { label: 'Blue'},
+  { label: 'Red'}
+]
+
 export const regions = [
   { label: 'Global', value: 'ANY'},
   { label: 'NA' , value: 'NA1'}

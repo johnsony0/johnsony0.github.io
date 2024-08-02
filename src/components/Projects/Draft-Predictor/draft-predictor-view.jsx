@@ -19,9 +19,12 @@ function DraftPredictior() {
     game_mode: yup.string().required('Game mode is required'),
     elo: yup.string().required('Elo is required'),
     version: yup.string().required('Version is required'),
+    champion: yup.string().nullable().optional(),
+    team: yup.string().nullable().optional(),
     threshold: yup.number().min(1).max(10).required('Threshold is required')
   });
 
+  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogContent, setDialogContent] = useState({ winner: '', matches: {} });
@@ -32,8 +35,18 @@ function DraftPredictior() {
     game_mode: game_modes[0].label,
     elo: elos[0].label,
     version: versions[0].label,
+    champion: null,
+    team: null,
     threshold: 5
   });
+
+  const swapTeams = () => {
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      blue_team: prevFormData.red_team,
+      red_team: prevFormData.blue_team
+    }));
+  }
 
   const handleParameterChange = (parameter, newValue) => {
     setFormData(prevFormData => ({
@@ -68,6 +81,8 @@ function DraftPredictior() {
         game_mode: labelToValueMap(game_modes, formData.game_mode),
         elo: labelToValueMap(elos, formData.elo),
         version: labelToValueMap(versions, formData.version),
+        champion: labelToValueMap(champions,formData.champion),
+        team: formData.team,
         threshold: formData.threshold
       }
       const parsed_match_data = await FindSimilarGame(mapped_data)
@@ -88,10 +103,12 @@ function DraftPredictior() {
     <>
       <DraftForm
         formData={formData}
+        swapTeams={swapTeams}
         handleParameterChange={handleParameterChange}
         handleTeamChange={handleTeamChange}
         onSubmit={onSubmit}
         loading={loading}
+        error={error}
       />
       <DraftDialog
         open={dialogOpen}

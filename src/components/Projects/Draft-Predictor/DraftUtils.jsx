@@ -8,7 +8,6 @@ export const FindSimilarGame = async(formData) => {
   let dict = {
     'count': 0
   };
-
   return new Promise((resolve, reject) => {
     readRemoteFile(file_path, {
       step: (row) => {
@@ -18,21 +17,31 @@ export const FindSimilarGame = async(formData) => {
         const match_version = formData.version === 'ANY' || formData.version === row.data[5].split('.').slice(0, 2).join('.');
         if (match_region && match_gameMode && match_elo && match_version) {
           dict.count++;
-          const blue_matches = formData.blue_team.filter(item => row.data.slice(6, 11).includes(item)).length;
-          const red_matches = formData.red_team.filter(item => row.data.slice(11, 16).includes(item)).length;
-          const total_matches = blue_matches + red_matches;
-          if (total_matches >= formData.threshold) {
-            let [region, matchId] = row.data[1].split('_');
-            if (region === 'NA1') {
-              region = 'na';
+          const blue_matches = formData.blue_team.filter(item => row.data.slice(6, 11).includes(item));
+          const red_matches = formData.red_team.filter(item => row.data.slice(11, 16).includes(item));
+          const total_matches = blue_matches.length + red_matches.length;
+          if (total_matches >= formData.threshold ) {
+            let push_data = true
+            if(formData.team === "Blue"){
+              if (!blue_matches.includes(formData.champion)) push_data = false
+            }else if(formData.team === "Red"){
+              if (!red_matches.includes(formData.champion)) push_data = false
+            }else if(formData.champion){
+              if(!blue_matches.includes(formData.champion) && !red_matches.includes(formData.champion))push_data = false
             }
-            if (!dict[total_matches]) {
-              dict[total_matches] = [];
+            if(push_data){
+              let [region, matchId] = row.data[1].split('_');
+              if (region === 'NA1') {
+                region = 'na';
+              }
+              if (!dict[total_matches]) {
+                dict[total_matches] = [];
+              }
+              dict[total_matches].push({
+                url: `https://www.leagueofgraphs.com/match/${region}/${matchId}`,
+                winner: row.data[16]
+              });
             }
-            dict[total_matches].push({
-              url: `https://www.leagueofgraphs.com/match/${region}/${matchId}`,
-              winner: row.data[16]
-            });
           }
         }
       },
