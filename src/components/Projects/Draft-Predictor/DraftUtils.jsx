@@ -22,14 +22,10 @@ export const FindSimilarGame = async(formData) => {
           const total_matches = blue_matches.length + red_matches.length;
           if (total_matches >= formData.threshold ) {
             let push_data = true
-            if(formData.team === "Blue"){
-              if (!blue_matches.includes(formData.champion)) push_data = false
-            }else if(formData.team === "Red"){
-              if (!red_matches.includes(formData.champion)) push_data = false
-            }else if(formData.champion){
-              if(!blue_matches.includes(formData.champion) && !red_matches.includes(formData.champion))push_data = false
+            if(formData.champion){
+              if(!blue_matches.includes(formData.champion) && !red_matches.includes(formData.champion)) push_data = false
             }
-            if(push_data){
+              if(push_data){
               let [region, matchId] = row.data[1].split('_');
               if (region === 'NA1') {
                 region = 'na';

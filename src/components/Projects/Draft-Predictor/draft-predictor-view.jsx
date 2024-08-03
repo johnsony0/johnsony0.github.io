@@ -20,11 +20,9 @@ function DraftPredictior() {
     elo: yup.string().required('Elo is required'),
     version: yup.string().required('Version is required'),
     champion: yup.string().nullable().optional(),
-    team: yup.string().nullable().optional(),
     threshold: yup.number().min(1).max(10).required('Threshold is required')
   });
 
-  const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogContent, setDialogContent] = useState({ winner: '', matches: {} });
@@ -36,7 +34,6 @@ function DraftPredictior() {
     elo: elos[0].label,
     version: versions[0].label,
     champion: null,
-    team: null,
     threshold: 5
   });
 
@@ -82,7 +79,6 @@ function DraftPredictior() {
         elo: labelToValueMap(elos, formData.elo),
         version: labelToValueMap(versions, formData.version),
         champion: labelToValueMap(champions,formData.champion),
-        team: formData.team,
         threshold: formData.threshold
       }
       const parsed_match_data = await FindSimilarGame(mapped_data)
@@ -108,7 +104,6 @@ function DraftPredictior() {
         handleTeamChange={handleTeamChange}
         onSubmit={onSubmit}
         loading={loading}
-        error={error}
       />
       <DraftDialog
         open={dialogOpen}
