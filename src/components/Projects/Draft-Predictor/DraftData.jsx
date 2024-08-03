@@ -5,7 +5,8 @@ export const teams = [
 
 export const regions = [
   { label: 'Global', value: 'ANY'},
-  { label: 'NA' , value: 'NA1'}
+  { label: 'NA' , value: 'NA1'},
+  { label: 'EUW', value: 'EUW1'}
 ]
 
 export const game_modes = [
@@ -22,8 +23,8 @@ export const elos = [
 ]
 
 export const versions = [
-  { label: '14.13', value: '14.13'},
-  { label: '14.12', value: '14.12'},
+  { label: '14.14', value: '14-14'},
+  { label: '14.13', value: '14-13'},
 ]
 
 export const champions = [

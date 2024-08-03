@@ -1,6 +1,6 @@
 import * as ort from 'onnxruntime-web';
 import { usePapaParse } from 'react-papaparse';
-import { champions } from './DraftData';
+import { versions,champions } from './DraftData';
 
 export const FindSimilarGame = async(formData) => {
   const { readRemoteFile } = usePapaParse();
@@ -59,7 +59,10 @@ export const runModel = async (e, formData) => {
   const blue_team = encodeTeam(formData.blue_team)
   const red_team = encodeTeam(formData.red_team)
 
-  const model_path = `${process.env.PUBLIC_URL}/models/NA1_ARAM_ANY_14-14_nn_model.onnx`
+  const version = labelToValueMap(versions,formData.version)
+
+  const model_path = `${process.env.PUBLIC_URL}/models/${formData.region}_${formData.game_mode}_${formData.elo}_${version}_nn_model.onnx`
+  console.log(model_path)
   const session = await ort.InferenceSession.create(model_path);
 
   const data = Float32Array.from([...blue_team,...red_team])

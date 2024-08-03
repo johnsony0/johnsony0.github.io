@@ -5,6 +5,13 @@ import DraftDialog from './DraftDialog';
 import {labelToValueMap, arrayToValueMap, FindSimilarGame, runModel} from './DraftUtils'
 import {champions, regions, elos, game_modes, versions} from './DraftData';
 
+/*steps to update (once every other week pref)
+1. run main() in database_setup to get new data
+2. delete data of older versions (only keep data of 2 most recent versions)
+3. run get_all_models in model_setup
+4. run get_csv in data_extraction
+5. move new csv and all models into respective folders, rename csv to database.csv delete last line of csv
+*/
 function DraftPredictior() {
   const schema = yup.object().shape({
     blue_team: yup.array()
@@ -77,7 +84,7 @@ function DraftPredictior() {
         region: labelToValueMap(regions, formData.region),
         game_mode: labelToValueMap(game_modes, formData.game_mode),
         elo: labelToValueMap(elos, formData.elo),
-        version: labelToValueMap(versions, formData.version),
+        version: formData.version,
         champion: labelToValueMap(champions,formData.champion),
         threshold: formData.threshold
       }
