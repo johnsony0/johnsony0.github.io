@@ -18,7 +18,7 @@ export const game_modes = [
 export const elos = [
   { label: 'All', value: ['ANY']},
   { label: 'Low', value: ['IRON','BRONZE','SILVER']},
-  { label: 'Mid', value: ['GOLD', 'EMERALD','DIAMOND']},
+  { label: 'Mid', value: ['GOLD','PLATINUM','EMERALD','DIAMOND']},
   { label: 'High', value: ['MASTER', 'GRANDMASTER', 'CHALLENGER']},
 ]
 

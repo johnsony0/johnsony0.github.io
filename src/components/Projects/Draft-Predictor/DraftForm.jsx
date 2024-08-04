@@ -136,7 +136,9 @@ function DraftForm({ formData, swapTeams, handleParameterChange, handleTeamChang
           {createTooltip(
             `Tool to predict a winner given a draft and find similar games (same champion on same team). 
             If similar games are found, they are color coded respective of which
-            team won. Hit tab to move fowards in the form and shift+tab to move back.`, "bottom",
+            team won. Hit tab to move fowards in the form and shift+tab to move back.
+            Only data of past two versions are kept, to save storage and have less neural
+            networks to train.`, "bottom",
             <Grid container spacing={2} sx={{marginBottom: 2, px:2, marginTop: 1}}>
                 {createTooltip('Select region','top',createAutocomplete('Region', formData.region, regions, 'region', true))}
                 {createTooltip('Select game mode','top',createAutocomplete('Game Modes', formData.game_mode, game_modes, 'game_mode', true))}
