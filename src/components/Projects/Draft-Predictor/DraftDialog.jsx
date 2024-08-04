@@ -69,15 +69,19 @@ function DraftDialog({ open, handleClose, data, count, winner, confidence, formD
             <DialogTitle>{"Predictions & Similar Matches"}</DialogTitle>
             <DialogContent>
                 <DialogContentText sx={{ mb: 2 }}>
-                    {winner === 0? (
-                        <>
-                            <b>Blue team</b> predicted to win with <b>{confidence}%</b> confidence
-                        </>
-                    ):(
-                        <>
-                            <b>Red</b> team predicted to win with <b>{confidence}%</b> confidence
-                        </>
-                    )}
+                {
+                winner === 0 ? (
+                    <>
+                    <b>Blue team</b> predicted to win with <b>{confidence}%</b> confidence
+                    </>
+                ) : winner === 1 ? (
+                    <>
+                    <b>Red team</b> predicted to win with <b>{confidence}%</b> confidence
+                    </>
+                ) : (
+                    <b>Not Enough Data For Prediction</b>
+                )
+}
                 </DialogContentText>
                 <DialogContentText sx={{ mb: 2 }}>
                     <b>{count} matches</b> found with parameters

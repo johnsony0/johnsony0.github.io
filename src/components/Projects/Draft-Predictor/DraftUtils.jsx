@@ -54,23 +54,26 @@ export const FindSimilarGame = async(formData) => {
 export const runModel = async (e, formData) => {
   ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
 
-  e.preventDefault()
+  e.preventDefault();
 
-  const blue_team = encodeTeam(formData.blue_team)
-  const red_team = encodeTeam(formData.red_team)
+  const blue_team = encodeTeam(formData.blue_team);
+  const red_team = encodeTeam(formData.red_team);
+  const version = labelToValueMap(versions, formData.version);
+  const model_path = `${process.env.PUBLIC_URL}/models/${formData.region}_${formData.game_mode}_${formData.elo}_${version}_nn_model.onnx`;
 
-  const version = labelToValueMap(versions,formData.version)
+  try {
+    const session = await ort.InferenceSession.create(model_path);
 
-  const model_path = `${process.env.PUBLIC_URL}/models/${formData.region}_${formData.game_mode}_${formData.elo}_${version}_nn_model.onnx`
-  console.log(model_path)
-  const session = await ort.InferenceSession.create(model_path);
+    const data = Float32Array.from([...blue_team, ...red_team]);
+    const tensor_data = new ort.Tensor('float32', data, [1, 2, 168]);
+    const feeds = { input: tensor_data };
 
-  const data = Float32Array.from([...blue_team,...red_team])
-  const tensor_data = new ort.Tensor('float32',data,[1,2,168])
-  const feeds = {input: tensor_data}
-
-  const results = await session.run(feeds)
-  return results.output.data
+    const results = await session.run(feeds);
+    return results.output.data;
+  } catch (error) {
+    console.error('Error creating inference session or running the model:', error);
+    return "Not Enough Data";
+  }
 }
 
 export const encodeTeam = (team) => {

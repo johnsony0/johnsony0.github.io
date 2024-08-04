@@ -91,7 +91,7 @@ function DraftPredictior() {
       const parsed_match_data = await FindSimilarGame(mapped_data)
       const response = await runModel(e, mapped_data)
 
-      const winner = response[0] > response[1] ? 0 : 1;
+      const winner = typeof response === 'string' ? 2 : (response[0] > response[1] ? 0 : 1);
       const confidence = (response[winner] * 100).toFixed(2);
       const { count, ...matches } = parsed_match_data;
       setDialogContent({ winner, confidence, matches, count });
