@@ -29,6 +29,8 @@ export const FindSimilarGame = async(formData) => {
               let [region, matchId] = row.data[1].split('_');
               if (region === 'NA1') {
                 region = 'na';
+              } else if (region === 'EUW1') {
+                region = 'euw'
               }
               if (!dict[total_matches]) {
                 dict[total_matches] = [];
