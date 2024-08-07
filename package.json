@@ -23,6 +23,7 @@
     "react-papaparse": "^4.4.0",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
+    "react-spring": "^9.7.4",
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
   },

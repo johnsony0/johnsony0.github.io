@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getStoryById } from "./StardewData"; 
 import { Box, Typography } from '@mui/material'
-import { List, ListItem, ListItemButton } from '@mui/material';
+import { List, ListItem, Button } from '@mui/material';
+import { Grid } from '@mui/material'
 
 function StardewQuiz(){
   const defaultUserData = {
@@ -23,8 +24,8 @@ function StardewQuiz(){
   const currentStory = getStoryById(currentStoryId);
 
   useEffect(() => {
-    console.log(userData)
-  }, [userData])
+    console.log(userData);
+  }, [userData]);
 
   const handleOptionClick = (info) => {
     //gets next day and stores trait info
@@ -42,45 +43,101 @@ function StardewQuiz(){
     setCurrentStoryId(info.next_day);
   };
 
-   return (
+  return (
     <Box
     sx={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      flexDirection: 'column',
       textAlign: 'center',
-      height: 'calc(100vh - 64px - 32px)',
+      height: '100vh',
+      backgroundImage: `url(${process.env.PUBLIC_URL}/stardew_quiz/background.gif)`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
     }}
     >
       <Box
       sx={{
+        display: 'flex',
+        alignItems: 'center',
         maxWidth: '1000px',
         boxShadow: 4,
-        borderRadius: 1,
-        py: 1,
-        my: 1,
-        mx: 1,
+        borderRadius: 2,
+        backgroundColor: 'rgba(213, 184, 149, 0.9)',
+        mx: 2,
       }}
       >
-        <Typography>{currentStory.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}</Typography>
-        <Typography>{currentStory.story}</Typography>
-        <List>
-          {Object.entries(currentStory.options).map(([option,info], index) => (
-            <ListItem key={index}>
-              <ListItemButton 
-              variant='contained' 
-              onClick={() => handleOptionClick(info)} 
+        <Grid container spacing={0}>
+          <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', mx: 2}}>
+            <Typography
+            sx={{
+              fontSize: '30px',
+              fontFamily: 'StardewValley, sans-serif',
+              color: '#491500',
+            }}
+            >
+              {currentStory.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true})}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Typography
+            width='80%'
+            sx={{
+              fontSize: '30px',
+              fontFamily: 'StardewValley, sans-serif',
+              color: '#491500',
+            }}
+            >
+              {currentStory.story}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Box
+              component='img'
+              src={currentStory.img}
+              sx={{
+                width: '70%',
+                height: '40vh',
+                objectFit: 'cover'
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <List>
+              <Grid container spacing={1}
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center',
-                }}>
-              {option}
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+              }}
+              >
+                {Object.entries(currentStory.options).map(([option,info], index) => (
+                  <Grid item xs={6}>
+                    <ListItem key={index}>
+                      <Button 
+                      key={index}
+                      fullWidth
+                      variant='contained' 
+                      color='inherit'
+                      onClick={() => handleOptionClick(info)} 
+                      sx={{
+                        fontFamily: 'StardewValley, sans-serif',
+                        fontSize: '20px',
+                        color: '#491500',
+                        backgroundColor: '#DDA059',
+                        '&:hover': {
+                          backgroundColor: '#FFDDA2',
+                        }
+                      }}
+                      >
+                      {option}
+                      </Button>
+                    </ListItem>
+                  </Grid>
+                ))}
+              </Grid>
+            </List>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

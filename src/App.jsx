@@ -16,7 +16,7 @@ import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
 function App() {
   return (
     <Router>
-      <NavBar />
+      {window.location.pathname !== '/projects/stardewquiz' && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -28,7 +28,7 @@ function App() {
         <Route path="/resume" element={<Resume />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <Footer />
+      {window.location.pathname !== '/projects/stardewquiz' &&  <Footer />}
     </Router>
   );
 }

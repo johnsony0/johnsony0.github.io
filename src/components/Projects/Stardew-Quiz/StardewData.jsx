@@ -1,10 +1,15 @@
+/*give credits to:
+font: https://www.reddit.com/r/StardewValley/comments/4dtgp7/by_popular_request_a_stardew_valley_font_for_your/
+background: https://www.deviantart.com/bratzoid/art/Stardew-Valley-Dynamic-Wallpaper-1021978002
+*/
 export const getStoryById = (id) => Story.find((entry) => entry.id === id);
 
 export const Story = [
   {
     id: 0,
     time: new Date('2016-02-26T17:00:00'),
-    story:`Growing tired of a dull corporate life, have just quit your job at Joja, what do you do now?`,
+    story:`Growing tired of a dull corporate life, you quit your job at Joja. What do you do now?`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/joja.jpg`,
     options: {
       'Move to Stardew Valley' : {
         traits: {
@@ -17,6 +22,7 @@ export const Story = [
     id: 1,
     time: new Date('2016-02-26T09:00:00'),
     story: 'Welcome to Stardew Valley, it is your first day in Pelican Town, how do you spend it?',
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/first_day.jpeg`,
     options: {
       'Greet villagers': {
         traits: {
@@ -34,7 +40,7 @@ export const Story = [
         },
         next_day : 0,
       },
-      'Explore the town': {
+      'Explore the forest': {
         traits: {
           Abigail: 1,
           Sebastian: 1,
