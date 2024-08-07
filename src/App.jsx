@@ -10,6 +10,7 @@ import Resume from './components/Resume/resume-view';
 import Contact from './components/Contact/contact-view'
 
 import DraftPredictior from './components/Projects/Draft-Predictor/draft-predictor-view';
+import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         {/*<Route path="/experience" element={<Experience />} />*/}
         <Route path="/projects" element={<Projects />} />
           <Route path="/projects/draftpredictor" element={<DraftPredictior />} />
+          <Route path="/projects/stardewquiz" element={<StardewQuiz />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

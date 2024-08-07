@@ -119,7 +119,7 @@ function DraftForm({ formData, swapTeams, handleParameterChange, handleTeamChang
     <Box
       sx={{
         display: 'flex',
-        justifyContent: 'center', // Centers horizontally
+        justifyContent: 'center',
       }}
     >
       <FocusTrap open={false}>
