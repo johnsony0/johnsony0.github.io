@@ -21,13 +21,23 @@ function StardewQuiz(){
   }
   const [currentStoryId, setCurrentStoryId] = useState(0);
   const [userData, setUserData] = useState(defaultUserData);
+  const [prevTime, setPrevTime] = useState(new Date('2016-02-26T17:00:00'));
   const currentStory = getStoryById(currentStoryId);
 
   useEffect(() => {
     console.log(userData);
   }, [userData]);
 
+  const getTime = () => {
+    const oneDay = 24 * 60 * 60 * 1000;
+    const day = Math.floor((new Date(currentStory.time.toLocaleDateString('en-CA')) - new Date(prevTime.toLocaleDateString('en-CA')))/oneDay)
+    const time = currentStory.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true})
+    return `day ${day} ${time}`
+  }
+
+
   const handleOptionClick = (info) => {
+    setPrevTime(currentStory.time)
     //gets next day and stores trait info
     setUserData((prevUserData) => {
       const updatedData = { ...prevUserData };
@@ -76,7 +86,7 @@ function StardewQuiz(){
               color: '#491500',
             }}
             >
-              {currentStory.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true})}
+              {getTime()}
             </Typography>
           </Grid>
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>

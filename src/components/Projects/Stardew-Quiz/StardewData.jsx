@@ -7,7 +7,8 @@ export const getStoryById = (id) => Story.find((entry) => entry.id === id);
 export const Story = [
   {
     id: 0,
-    time: new Date('2016-02-26T17:00:00'),
+    day: 0,
+    time: '05:00 pm',
     story:`Growing tired of a dull corporate life, you quit your job at Joja. What do you do now?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/joja.jpg`,
     options: {
@@ -20,7 +21,8 @@ export const Story = [
   },
   {
     id: 1,
-    time: new Date('2016-02-26T09:00:00'),
+    day: 1,
+    time: '9:00 am',
     story: 'Welcome to Stardew Valley, it is your first day in Pelican Town, how do you spend it?',
     img: `${process.env.PUBLIC_URL}/stardew_quiz/first_day.jpeg`,
     options: {
