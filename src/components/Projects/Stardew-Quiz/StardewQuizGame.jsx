@@ -3,6 +3,7 @@ import { Box, Typography, List, ListItem, Button, Grid } from '@mui/material';
 import {isMobile} from 'react-device-detect';
 
 function StardewQuizGame({currentStory,handleOptionClick}){
+
   const boxStyles = useMemo(() => ({
     display: 'flex',
     justifyContent: 'center',
@@ -21,22 +22,15 @@ function StardewQuizGame({currentStory,handleOptionClick}){
     boxShadow: 4,
     borderRadius: 2,
     backgroundColor: 'rgba(213, 184, 149, 0.9)',
-    mx: 2,
-    my: 2,
+    margin: 2,
   }), []);
 
-  const imageStyles = useMemo(() => ({
-    width: '80%',
-    maxHeight: '40vh',
-    objectFit: 'contain'
-  }), []);
 
   const headerStyles = useMemo(() => ({
     position: 'absolute',
     display: 'flex', 
-    justifyContent: 'space-between', 
-    width: '100%', 
-    padding: '16px'
+    justifyContent: 'space-between',
+    padding: 2,
   }), []);
 
   const bodyStyles = useMemo(() => ({
@@ -45,14 +39,20 @@ function StardewQuizGame({currentStory,handleOptionClick}){
   }),[])
 
   const textStyles = useMemo(() => ({
-    fontSize: '25px',
+    fontSize: isMobile ? '20px' : '25px',
     fontFamily: 'StardewValley, sans-serif',
     color: '#491500',
   }), []);
 
+  const imageStyles = useMemo(() => ({
+    width: '80%',
+    maxHeight: '40vh',
+    objectFit: 'contain'
+  }), []);
+
   const buttonStyles = useMemo(() => ({
     fontFamily: 'StardewValley, sans-serif',
-    fontSize: '18px',
+    fontSize: isMobile ? '14px' : '18px',
     color: '#491500',
     backgroundColor: '#DDA059',
     '&:hover': {
@@ -68,7 +68,7 @@ function StardewQuizGame({currentStory,handleOptionClick}){
           <Typography sx={textStyles}>{currentStory.time}</Typography>
         </Grid>
         <Box sx={bodyStyles}>
-          <Grid container sx={bodyStyles}spacing={1}>
+          <Grid container spacing={1}>
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
               <Typography width='80%' sx={textStyles}>
                 {currentStory.story}
@@ -85,13 +85,13 @@ function StardewQuizGame({currentStory,handleOptionClick}){
               <List>
                 <Grid container spacing={0.1} sx={{ display: 'flex', justifyContent: 'center' }}>
                   {Object.entries(currentStory.options).map(([option, info], index) => (
-                    <Grid item xs={isMobile ? 12 : 6} key={index} >
+                    <Grid item xs={12} key={index} >
                       <ListItem>
                         <Button
                           fullWidth
                           variant='contained'
                           color='inherit'
-                          onClick={() => handleOptionClick(info)}
+                          onClick={(event) => handleOptionClick(info,event)}
                           sx={buttonStyles}
                         >
                           {option}

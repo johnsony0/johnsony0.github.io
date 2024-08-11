@@ -1747,7 +1747,7 @@ export const Story = [
     story: `aw dang it. You got second, good try though...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/second.jpg`,
     options: {
-      "take your award": {
+      "Take your award": {
         traits: {
         },
         next_day: 58,
