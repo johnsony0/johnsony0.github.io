@@ -1,8 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { Box, Typography, List, ListItem, Button, Grid } from '@mui/material';
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 
-function StardewQuizGame({currentStory,handleOptionClick}){
+function StardewQuizGame({ currentStory, handleOptionClick }) {
+  const buttonRefs = useRef([]); 
+
+  const handleButtonClick = (info, index, event) => {
+    handleOptionClick(info, event);
+    if (buttonRefs.current[index]) {
+      buttonRefs.current[index].blur(); 
+    }
+  };
 
   const boxStyles = useMemo(() => ({
     display: 'flex',
@@ -11,7 +19,7 @@ function StardewQuizGame({currentStory,handleOptionClick}){
     height: '100vh',
     backgroundImage: `url(${process.env.PUBLIC_URL}/stardew_quiz/background.gif)`,
     backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
   }), []);
 
   const innerBoxStyles = useMemo(() => ({
@@ -25,10 +33,9 @@ function StardewQuizGame({currentStory,handleOptionClick}){
     margin: 2,
   }), []);
 
-
   const headerStyles = useMemo(() => ({
     position: 'absolute',
-    display: 'flex', 
+    display: 'flex',
     justifyContent: 'space-between',
     padding: 2,
   }), []);
@@ -36,7 +43,7 @@ function StardewQuizGame({currentStory,handleOptionClick}){
   const bodyStyles = useMemo(() => ({
     display: 'flex',
     alignItems: 'center',
-  }),[])
+  }), []);
 
   const textStyles = useMemo(() => ({
     fontSize: isMobile ? '20px' : '25px',
@@ -47,7 +54,7 @@ function StardewQuizGame({currentStory,handleOptionClick}){
   const imageStyles = useMemo(() => ({
     width: '80%',
     maxHeight: '40vh',
-    objectFit: 'contain'
+    objectFit: 'contain',
   }), []);
 
   const buttonStyles = useMemo(() => ({
@@ -58,14 +65,16 @@ function StardewQuizGame({currentStory,handleOptionClick}){
     backgroundColor: '#DDA059',
     '&:hover': {
       backgroundColor: '#FFDDA2',
-    }
-  }), [])
-  
+    },
+  }), []);
+
   return (
     <Box sx={boxStyles}>
       <Box sx={innerBoxStyles}>
         <Grid container sx={headerStyles}>
-          <Typography sx={textStyles}>{currentStory.day !== undefined && `day ${currentStory.day}`}</Typography>
+          <Typography sx={textStyles}>
+            {currentStory.day !== undefined && `day ${currentStory.day}`}
+          </Typography>
           <Typography sx={textStyles}>{currentStory.time}</Typography>
         </Grid>
         <Box sx={bodyStyles}>
@@ -86,16 +95,16 @@ function StardewQuizGame({currentStory,handleOptionClick}){
               <List>
                 <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>
                   {Object.entries(currentStory.options).map(([option, info], index) => (
-                    <Grid item xs={12} key={index} >
+                    <Grid item xs={12} key={index}>
                       <ListItem sx={{ py: 0.25 }}>
                         <Button
                           disableRipple
-                          tabIndex={-1}
                           fullWidth
                           variant='contained'
                           color='inherit'
-                          onClick={(event) => handleOptionClick(info,event)}
+                          onClick={(event) => handleButtonClick(info, index, event)}
                           sx={buttonStyles}
+                          ref={(el) => (buttonRefs.current[index] = el)} 
                         >
                           {option}
                         </Button>
@@ -113,5 +122,3 @@ function StardewQuizGame({currentStory,handleOptionClick}){
 }
 
 export default StardewQuizGame;
-
-
