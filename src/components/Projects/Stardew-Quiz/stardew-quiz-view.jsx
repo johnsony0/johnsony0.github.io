@@ -36,6 +36,7 @@ function StardewQuiz() {
         }
       }
       console.log(maxKeys[Math.floor(Math.random() * maxKeys.length)])
+      console.log(userData)
     } else {
       setUserData((prevUserData) => {
         const updatedData = { ...prevUserData };
@@ -109,7 +110,7 @@ function StardewQuiz() {
               sx={{
                 width: '70%',
                 height: '40vh',
-                objectFit: 'cover'
+                objectFit: 'contain'
               }}
             />
           </Grid>
