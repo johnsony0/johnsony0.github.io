@@ -3,14 +3,6 @@ import { Box, Typography, List, ListItem, Button, Grid } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 
 function StardewQuizGame({ currentStory, handleOptionClick }) {
-  const buttonRefs = useRef([]); 
-
-  const handleButtonClick = (info, index, event) => {
-    handleOptionClick(info, event);
-    if (buttonRefs.current[index]) {
-      buttonRefs.current[index].blur(); 
-    }
-  };
 
   const boxStyles = useMemo(() => ({
     display: 'flex',
@@ -49,7 +41,7 @@ function StardewQuizGame({ currentStory, handleOptionClick }) {
     fontSize: isMobile ? '20px' : '25px',
     fontFamily: 'StardewValley, sans-serif',
     color: '#491500',
-  }), []);
+  }), [isMobile]);
 
   const imageStyles = useMemo(() => ({
     width: '80%',
@@ -59,14 +51,15 @@ function StardewQuizGame({ currentStory, handleOptionClick }) {
 
   const buttonStyles = useMemo(() => ({
     fontFamily: 'StardewValley, sans-serif',
-    fontSize: isMobile ? '14px' : '20px',
+    fontSize: isMobile ? '15px' : '20px',
     color: '#491500',
     padding: 0,
     backgroundColor: '#DDA059',
+    touchAction: 'manipulation',
     '&:hover': {
       backgroundColor: '#FFDDA2',
     },
-  }), []);
+  }), [isMobile]);
 
   return (
     <Box sx={boxStyles}>
@@ -87,6 +80,7 @@ function StardewQuizGame({ currentStory, handleOptionClick }) {
             <Grid item xs={12}>
               <Box
                 component='img'
+                key={currentStory.id}
                 src={currentStory.img}
                 sx={imageStyles}
               />
@@ -95,16 +89,15 @@ function StardewQuizGame({ currentStory, handleOptionClick }) {
               <List>
                 <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>
                   {Object.entries(currentStory.options).map(([option, info], index) => (
-                    <Grid item xs={12} key={index}>
-                      <ListItem sx={{ py: 0.25 }}>
+                    <Grid item xs={10} sm={5} key={index}>
+                      <ListItem sx={{ padding: isMobile ? 0 : 0.25 }}>
                         <Button
-                          disableRipple
+                          key={option}
                           fullWidth
                           variant='contained'
                           color='inherit'
-                          onClick={(event) => handleButtonClick(info, index, event)}
+                          onClick={() => handleOptionClick(info)}
                           sx={buttonStyles}
-                          ref={(el) => (buttonRefs.current[index] = el)} 
                         >
                           {option}
                         </Button>

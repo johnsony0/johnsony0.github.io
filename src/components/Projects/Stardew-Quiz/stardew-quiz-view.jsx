@@ -22,8 +22,7 @@ function StardewQuiz() {
   const [userData, setUserData] = useState(defaultUserData);
   const currentStory = getStoryById(currentStoryId);
 
-  const handleOptionClick = (info,event) => {
-    event.currentTarget.blur();
+  const handleOptionClick = (info) => {
     if (info.next_day === 1000){
       let maxValue = -Infinity;
       let maxKeys = [];
