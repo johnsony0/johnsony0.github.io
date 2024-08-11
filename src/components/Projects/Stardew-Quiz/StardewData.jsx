@@ -2198,10 +2198,9 @@ export const Story = [
     id: 76,
     day: 28,
     time: '2:00 am',
-    story: `CONGRATULATIONS!!!
-    You have made it to the end of your first month, there are many 
-    more months to go, storylines to unravel, items to collect, and 
-    people to meet.`,
+    story: `CONGRATULATIONS!!! You have made it to the end of your 
+    first month, there are many more months to go, 
+    storylines to unravel, items to collect, and people to meet.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/end.jpg`,
     options: {
       "Enter Summer": {
