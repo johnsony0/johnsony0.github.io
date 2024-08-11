@@ -1,10 +1,23 @@
 /*give credits to:
+start: https://x.com/MagicalPouch/status/1351372585670348802
 font: https://www.reddit.com/r/StardewValley/comments/4dtgp7/by_popular_request_a_stardew_valley_font_for_your/
 background: https://www.deviantart.com/bratzoid/art/Stardew-Valley-Dynamic-Wallpaper-1021978002
 */
 export const getStoryById = (id) => Story.find((entry) => entry.id === id);
 
 export const Story = [
+  {
+    id: -1,
+    story: `Which dateable Stardew character are you :D ?`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/dateable_chars.jpg_large`,
+    options: {
+      'Start' : {
+        traits: {
+        },
+        next_day: 0
+      }
+    }
+  },
   {
     id: 0,
     day: 0,
@@ -23,7 +36,7 @@ export const Story = [
     id: 1,
     day: 1,
     time: '9:00 am',
-    story: 'Welcome to Stardew Valley, it is your first day in Pelican Town, how do you spend it?',
+    story: 'Welcome to Stardew Valley! It is your first day in Pelican Town, how do you spend it?',
     img: `${process.env.PUBLIC_URL}/stardew_quiz/first_day.png`,
     options: {
       'Greet villagers': {
@@ -484,7 +497,7 @@ export const Story = [
     day: 2,
     time: '3:00 pm',
     story: `You chat with Willyt and he tells you about the abundance 
-    of Flounder in the Ocean.`,
+    of flounder in the Ocean.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/willy_dialogue.jpg`,
     options: {
       "Lets go fishing for Sardines!!!": {
@@ -1997,7 +2010,7 @@ export const Story = [
     time: '6:00 pm',
     story: `Your advance is gently declined. As you step back, 
     the dance starts. Someone else steps in, takes their hand 
-    and leads them in the dance. `,
+    and leads them in the dance.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/ask_decline.jpg`,
     options: {
       "Try someone else": {
@@ -2037,8 +2050,8 @@ export const Story = [
     day: 24,
     time: '6:00 pm',
     story: `As pierre hands you your item, you pull out your purse 
-    and realize you are short 500g.`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_short.jpg`,
+    and realize you are 500g short.`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_short_dance.jpg`,
     options: {
       "Buy something else": {
         traits: {
@@ -2061,8 +2074,8 @@ export const Story = [
     day: 24,
     time: '10:00 pm',
     story: `Pierre hands you the decor and you enjoy the rest of 
-    the dance painting the scenery. However once you get back 
-    where do you place your decor`,
+    the dance painting the scenery. Once you get back, 
+    where do you place your decor?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/decor.jpg`,
     options: {
       "inside - next to my bed": {
@@ -2169,7 +2182,7 @@ export const Story = [
     time: '7:00 pm',
     story: `In embarrassment you flee the scene, back into the 
     comfort of your home. You embrace your bed and hope you 
-    don't remember by the morning.`,
+    forget by morning.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/bedge.jpg`,
     options: {
       "continue": {
@@ -2199,8 +2212,7 @@ export const Story = [
     day: 28,
     time: '2:00 am',
     story: `CONGRATULATIONS!!! You have made it to the end of your 
-    first month, there are many more months to go, 
-    storylines to unravel, items to collect, and people to meet.`,
+    first month.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/end.jpg`,
     options: {
       "Enter Summer": {
