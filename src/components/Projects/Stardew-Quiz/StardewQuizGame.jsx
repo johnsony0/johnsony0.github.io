@@ -52,8 +52,9 @@ function StardewQuizGame({currentStory,handleOptionClick}){
 
   const buttonStyles = useMemo(() => ({
     fontFamily: 'StardewValley, sans-serif',
-    fontSize: isMobile ? '14px' : '18px',
+    fontSize: isMobile ? '14px' : '20px',
     color: '#491500',
+    padding: 0,
     backgroundColor: '#DDA059',
     '&:hover': {
       backgroundColor: '#FFDDA2',
@@ -83,11 +84,13 @@ function StardewQuizGame({currentStory,handleOptionClick}){
             </Grid>
             <Grid item xs={12}>
               <List>
-                <Grid container spacing={0.1} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>
                   {Object.entries(currentStory.options).map(([option, info], index) => (
                     <Grid item xs={12} key={index} >
-                      <ListItem>
+                      <ListItem sx={{ py: 0.25 }}>
                         <Button
+                          disableRipple
+                          tabIndex={-1}
                           fullWidth
                           variant='contained'
                           color='inherit'
