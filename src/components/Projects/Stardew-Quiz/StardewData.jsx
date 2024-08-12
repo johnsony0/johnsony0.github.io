@@ -496,7 +496,7 @@ export const Story = [
     id: 17,
     day: 2,
     time: '3:00 pm',
-    story: `You chat with Willyt and he tells you about the abundance 
+    story: `You chat with Willy and he tells you about the abundance 
     of flounder in the Ocean.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/willy_dialogue.jpg`,
     options: {
@@ -1574,7 +1574,7 @@ export const Story = [
     day: 13,
     time: '10:00 am',
     story: `GOOD MORNING!!! Today is the long awaited annual 
-    Egg Festiva! The atmosphere is electric - how do you partake 
+    Egg Festival! The atmosphere is electric - how do you partake 
     in the festivities?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/egg_hunt.jpg`,
     options: {
@@ -2113,7 +2113,7 @@ export const Story = [
     day: 24,
     time: '10:00 pm',
     story: `You try your luck with a different partner, 
-    to your surprise, she agrees. You dance the night away.`,
+    to your surprise, they agree. You dance the night away.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/ask_accept.jpg`,
     options: {
       "continue": {
@@ -2129,7 +2129,7 @@ export const Story = [
     time: '10:00 pm',
     story: `The rejection hits you hard, you sit down, watch the dance. 
     Nothing can rid the embarrassment better than alcohol :D.`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/bedge.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/dance.jpg`,
     options: {
       "continue": {
         traits: {

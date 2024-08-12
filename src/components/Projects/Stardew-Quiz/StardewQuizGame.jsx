@@ -1,8 +1,8 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { Box, Typography, List, ListItem, Button, Grid } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 
-function StardewQuizGame({ currentStory, handleOptionClick }) {
+function StardewQuizGame({ currentStory, currentImage, handleOptionClick }) {
 
   const boxStyles = useMemo(() => ({
     display: 'flex',
@@ -41,7 +41,7 @@ function StardewQuizGame({ currentStory, handleOptionClick }) {
     fontSize: isMobile ? '20px' : '25px',
     fontFamily: 'StardewValley, sans-serif',
     color: '#491500',
-  }), [isMobile]);
+  }), []);
 
   const imageStyles = useMemo(() => ({
     width: '80%',
@@ -55,11 +55,13 @@ function StardewQuizGame({ currentStory, handleOptionClick }) {
     color: '#491500',
     padding: 0,
     backgroundColor: '#DDA059',
-    touchAction: 'manipulation',
     '&:hover': {
       backgroundColor: '#FFDDA2',
     },
-  }), [isMobile]);
+    '&:active': {
+      backgroundColor: '#FFDDA2', 
+    },
+  }), []);
 
   return (
     <Box sx={boxStyles}>
@@ -81,15 +83,16 @@ function StardewQuizGame({ currentStory, handleOptionClick }) {
               <Box
                 component='img'
                 key={currentStory.id}
-                src={currentStory.img}
+                src={currentImage}
                 sx={imageStyles}
+                loading='lazy'
               />
             </Grid>
             <Grid item xs={12}>
               <List>
                 <Grid container spacing={1} sx={{ display: 'flex', justifyContent: 'center' }}>
                   {Object.entries(currentStory.options).map(([option, info], index) => (
-                    <Grid item xs={10} sm={5} key={index}>
+                    <Grid item xs={10} md={5} key={index}>
                       <ListItem sx={{ padding: isMobile ? 0 : 0.25 }}>
                         <Button
                           key={option}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getStoryById } from "./StardewData"; 
 import StardewQuizGame from "./StardewQuizGame";
 
@@ -20,7 +20,24 @@ function StardewQuiz() {
   
   const [currentStoryId, setCurrentStoryId] = useState(-1);
   const [userData, setUserData] = useState(defaultUserData);
-  const currentStory = getStoryById(currentStoryId);
+  const [currentStory, setCurrentStory] = useState(getStoryById(-1))
+  const [currentImage, setCurrentImage] = useState(currentStory.img)
+
+  useEffect(() => {
+    const renderStory = (currentStoryId) => {
+      const img = new Image()
+      const storyData = getStoryById(currentStoryId);
+      img.src = storyData.img
+  
+      img.onload = () => {
+        setCurrentStory(storyData);
+        setCurrentImage(img.src);
+      }
+    }
+    renderStory(currentStoryId)
+  },[currentStoryId])
+
+ 
 
   const handleOptionClick = (info) => {
     if (info.next_day === 1000){
@@ -52,10 +69,12 @@ function StardewQuiz() {
     }
   };
 
+
   return (
     <StardewQuizGame 
-      currentStory = {currentStory}
-      handleOptionClick = {handleOptionClick}
+      currentStory={currentStory}
+      currentImage={currentImage}
+      handleOptionClick={handleOptionClick}
     />
   );
 }
