@@ -157,7 +157,7 @@ export const Story = [
     options: {
       "Chop it with your Axe": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Shane: 1,
         },
         next_day : 12,
@@ -301,7 +301,7 @@ export const Story = [
       },
       "Fishing Time!": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Sebastian: 1,
         },
         next_day: 19,
@@ -340,7 +340,7 @@ export const Story = [
       "Try negotiating":{
         traits: {
           Maru: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 14,
       }
@@ -502,7 +502,7 @@ export const Story = [
     options: {
       "Lets go fishing for Sardines!!!": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Penny: 1,
         },
         next_day: 19,
@@ -546,7 +546,7 @@ export const Story = [
         traits: {
           Abigail: 1,
           Leah: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 24,
       },
@@ -578,7 +578,7 @@ export const Story = [
       "Give an attempt but realize its futile and let the fish go": {
         traits: {
           Leah: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 21,
       },
@@ -661,7 +661,7 @@ export const Story = [
       },
       "Hmm wonder what that was let's check that out": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
         },
         next_day: 28,
@@ -699,7 +699,7 @@ export const Story = [
       },
       "Hmm wonder what that was let's check that out": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
         },
         next_day: 28,
@@ -737,7 +737,7 @@ export const Story = [
       },
       "Hmm wonder what that was let's check that out": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
         },
         next_day: 28,
@@ -789,7 +789,7 @@ export const Story = [
         traits: {
           Leah: 1,
           Sebastian: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 16,
       },
@@ -816,7 +816,7 @@ export const Story = [
         traits: {
           Leah: 1,
           Sebastian: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 16,
       },
@@ -868,7 +868,7 @@ export const Story = [
       "Take some samples to study": {
         traits: {
           Maru: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 16,
       },
@@ -907,7 +907,7 @@ export const Story = [
       "OH SHIT WHERE'S MY SWORD": {
         traits: {
           Sebastian: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 32,
       },
@@ -937,7 +937,7 @@ export const Story = [
     options: {
       "Fish in the lake": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 34,
       },
@@ -982,7 +982,7 @@ export const Story = [
       "OH SHIT WHERE'S MY SWORD": {
         traits: {
           Sebastian: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 32,
       },
@@ -1015,7 +1015,7 @@ export const Story = [
       "Fishing !?!": {
         traits: {
           Sam: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 34,
       },
@@ -1061,7 +1061,7 @@ export const Story = [
       "Fishing !?!": {
         traits: {
           Sam: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 34,
       },
@@ -1097,7 +1097,7 @@ export const Story = [
       },
       "These fish would look great in an aquarium": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
         },
         next_day: 43,
@@ -1127,7 +1127,7 @@ export const Story = [
       },
       "Smelt it": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
         },
         next_day: 43,
@@ -1165,7 +1165,7 @@ export const Story = [
       },
       "The scenery": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Haley: 1,
         },
         next_day: 42,
@@ -1290,7 +1290,7 @@ export const Story = [
       },
       "Hm interesting, I should take a closer look": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
           Maru: 1,
         },
@@ -1352,7 +1352,7 @@ export const Story = [
       },
       "Stylish outfit": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Haley: 1,
         },
         next_day: 46,
@@ -1383,7 +1383,7 @@ export const Story = [
     options: {
       "Approach carefully": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
         },
         next_day: 47,
@@ -1453,7 +1453,7 @@ export const Story = [
       "Excitedly introduce yourself": {
         traits: {
           Emily: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 49,
       },
@@ -1497,7 +1497,7 @@ export const Story = [
       },
       "Strike up conversation": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Emily: 1,
         },
         next_day: 50,
@@ -1595,7 +1595,7 @@ export const Story = [
       },
       "Socialize": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Emily: 1,
         },
         next_day: 54,
@@ -1612,7 +1612,7 @@ export const Story = [
     options: {
       "The River": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Leah: 1,
         },
         next_day: 57,
@@ -1666,7 +1666,7 @@ export const Story = [
       "Plants": {
         traits: {
           Leah: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 59,
       },
@@ -1704,7 +1704,7 @@ export const Story = [
       "Green Bean": {
         traits: {
           Emily: 1,
-          Elliot: 1,
+          Elliott: 1,
         },
         next_day: 60,
       },
@@ -1815,7 +1815,7 @@ export const Story = [
       },
       "Clean up the house and organize the chests": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Harvey: 1,
         },
         next_day: 61,
@@ -1855,7 +1855,7 @@ export const Story = [
       },
       "Sashimi": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Sebastian: 1,
         },
         next_day: 63,
@@ -1925,7 +1925,7 @@ export const Story = [
       },
       "Admire the Scenery": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Harvey: 1,
         },
         next_day: 66,
@@ -1957,7 +1957,7 @@ export const Story = [
       },
       "Hello gorgeous": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Emily: 1,
         },
         next_day: 67,
@@ -1982,7 +1982,7 @@ export const Story = [
     options: {
       "Rarecrow": {
         traits: {
-          Elliot: 1,
+          Elliott: 1,
           Maru: 1,
         },
         next_day: 69,

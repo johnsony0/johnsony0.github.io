@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { getStoryById } from "./StardewData"; 
 import StardewQuizGame from "./StardewQuizGame";
+import StardewQuizResult from "./StardewQuizResult"
 
 function StardewQuiz() {
   const defaultUserData = {
     Alex: 0,
-    Elliot: 0,
+    Elliott: 0,
     Harvey: 0,
     Sam: 0,
     Sebastian: 0,
@@ -22,6 +23,7 @@ function StardewQuiz() {
   const [userData, setUserData] = useState(defaultUserData);
   const [currentStory, setCurrentStory] = useState(getStoryById(-1))
   const [currentImage, setCurrentImage] = useState(currentStory.img)
+  const [result,setResult] = useState(null)
 
   useEffect(() => {
     const renderStory = (currentStoryId) => {
@@ -51,8 +53,7 @@ function StardewQuiz() {
           maxKeys.push(key); 
         }
       }
-      console.log(maxKeys[Math.floor(Math.random() * maxKeys.length)])
-      console.log(userData)
+      setResult(maxKeys[Math.floor(Math.random() * maxKeys.length)])
     } else {
       setUserData((prevUserData) => {
         const updatedData = { ...prevUserData };
@@ -71,11 +72,18 @@ function StardewQuiz() {
 
 
   return (
-    <StardewQuizGame 
-      currentStory={currentStory}
-      currentImage={currentImage}
-      handleOptionClick={handleOptionClick}
-    />
+    result ? (
+      <StardewQuizResult
+        result={result}
+      />
+    ) :
+    (
+      <StardewQuizGame 
+        currentStory={currentStory}
+        currentImage={currentImage}
+        handleOptionClick={handleOptionClick}
+      />
+    )
   );
 }
 
