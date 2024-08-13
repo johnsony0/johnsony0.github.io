@@ -1,6 +1,5 @@
 /*give credits to:
 start: https://x.com/MagicalPouch/status/1351372585670348802
-font: https://www.reddit.com/r/StardewValley/comments/4dtgp7/by_popular_request_a_stardew_valley_font_for_your/
 background: https://www.deviantart.com/bratzoid/art/Stardew-Valley-Dynamic-Wallpaper-1021978002
 */
 export const getStoryById = (id) => Story.find((entry) => entry.id === id);
@@ -538,7 +537,7 @@ export const Story = [
     id: 18,
     day: 2,
     time: '9:00 pm',
-    story: `You explore the beach for a while, and 
+    story: `You explore the beach for hours, and 
     eventually stumble on a clam sticking out of the water`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/clam.jpg`,
     options: {
@@ -634,7 +633,7 @@ export const Story = [
     id: 21,
     day: 3,
     time: '12:00 am',
-    story: `Folllowing the encounter with the fish you are exhausted 
+    story: `Following the encounter with the fish you are exhausted 
     and go to bed. Until a loud explosion could be heard in the night.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/explosion.png`,
     options: {
@@ -683,7 +682,7 @@ export const Story = [
         },
         next_day: 27,
       },
-      "PANIC": {
+      "PANIC": { 
         traits: {
           Penny: 1,
           Haley: 1,
@@ -781,8 +780,8 @@ export const Story = [
     id: 25,
     day: 2,
     time: '12:00 am',
-    story: `The mermaid thanks you for leaving behind the coral. 
-    Then using mermaid magic, sends you home.`,
+    story: `Nature thanks you for leaving the coral in its natural habitat.
+    You are sent home magically :D.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/home.jpg`,
     options: {
       "Reflect on the encounter": {
@@ -977,28 +976,28 @@ export const Story = [
           Abigail: 1,
           Sam: 1,
         },
-        next_day: 32,
+        next_day: 33,
       },
       "OH SHIT WHERE'S MY SWORD": {
         traits: {
           Sebastian: 1,
           Elliott: 1,
         },
-        next_day: 32,
+        next_day: 33,
       },
       "eheh lightwork": {
         traits: {
           Shane: 1,
           Alex: 1,
         },
-        next_day: 32,
+        next_day: 33,
       },
       "uh oh let's run": {
         traits: {
           Penny: 1,
           Harvey: 1,
         },
-        next_day: 32,
+        next_day: 33,
       },
     },
   },
@@ -1007,7 +1006,7 @@ export const Story = [
     day: 5,
     time: '3:00 pm',
     story: `Your encounter with the slime proved fatal, 
-    luckily you are rescued from the mine by Maru. 
+    luckily you are rescued from the mine by Linus. 
     After thanking her you are greeted with the view of a 
     beautiful mountain lake.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/lake.jpg`,
@@ -1254,7 +1253,7 @@ export const Story = [
     time: '6:00 am',
     story: `It has been a good couple days since the mountain lake 
     and mine adventure. Some crops have ripened and been sold. 
-    With this new income let's explore town to see what we can buy. `,
+    With this new income let's explore town to see what we can buy.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/town.jpg`,
     options: {
       "Explore town": {
@@ -1268,9 +1267,9 @@ export const Story = [
     id: 41,
     day: 8,
     time: '11:00 am',
-    story: `While exploring the town, you stumble upon a dilapidated 
+    story: `While exploring the town, you stumble upon an abandoned 
     building. Mayor Lewis unlocks the building and you enter. 
-    You spot mysterious apple like beings, how do you react?`,
+    You spot mysterious apple like creatures, how do you react?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/enter_building.jpg`,
     options: {
       "AHHH GET THEM AWAY": {
@@ -1378,7 +1377,7 @@ export const Story = [
     day: 8,
     time: '1:00 pm',
     story: `You go further into the building and explore. In the 
-    corner of your eye you catch the mysterious being.`,
+    corner of your eye, you see a lil moving apple :O.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/junimos.jpg`,
     options: {
       "Approach carefully": {
@@ -1804,7 +1803,7 @@ export const Story = [
           Sebastian: 1,
           Leah: 1,
         },
-        next_day: 51,
+        next_day: 61,
       },
       "Cook": {
         traits: {
@@ -1937,7 +1936,7 @@ export const Story = [
     day: 24,
     time: '3:00 pm',
     story: `You walk around striking up conversation with the 
-    townsfolk. Eventually, in the corner of your eye you spot 
+    townsfolk. Eventually, in the corner of your eye, you spot 
     someone would like to ask to the dance...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/ask_dance.jpg`,
     options: {

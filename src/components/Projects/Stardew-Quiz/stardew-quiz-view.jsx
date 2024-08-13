@@ -70,11 +70,33 @@ function StardewQuiz() {
     }
   };
 
+  const onRestart = () => {
+    setUserData({
+      Alex: 0,
+      Elliott: 0,
+      Harvey: 0,
+      Sam: 0,
+      Sebastian: 0,
+      Shane: 0,
+      Abigail: 0,
+      Emily: 0,
+      Haley: 0,
+      Leah: 0,
+      Maru: 0,
+      Penny: 0
+    })
+    setCurrentStoryId(-1)
+    setCurrentStory(getStoryById(-1))
+    setCurrentImage(currentStory.img)
+    setResult(null)
+    console.log(userData)
+  }
 
   return (
     result ? (
       <StardewQuizResult
         result={result}
+        onRestart={onRestart}
       />
     ) :
     (

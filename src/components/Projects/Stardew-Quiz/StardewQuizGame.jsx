@@ -1,10 +1,8 @@
-import React, { useMemo } from 'react';
 import { Box, Typography, List, ListItem, Button, Grid } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 
 function StardewQuizGame({ currentStory, currentImage, handleOptionClick }) {
-
-  const boxStyles = useMemo(() => ({
+  const boxStyles = {
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
@@ -12,9 +10,9 @@ function StardewQuizGame({ currentStory, currentImage, handleOptionClick }) {
     backgroundImage: `url(${process.env.PUBLIC_URL}/stardew_quiz/background.gif)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-  }), []);
-
-  const innerBoxStyles = useMemo(() => ({
+  }
+  
+  const innerBoxStyles = {
     position: 'relative',
     display: 'flex',
     justifyContent: 'center',
@@ -22,34 +20,35 @@ function StardewQuizGame({ currentStory, currentImage, handleOptionClick }) {
     boxShadow: 4,
     borderRadius: 2,
     backgroundColor: 'rgba(213, 184, 149, 0.9)',
-    margin: 2,
-  }), []);
-
-  const headerStyles = useMemo(() => ({
+    mx: 5,
+    my: 2
+  }
+  
+  const headerStyles = {
     position: 'absolute',
     display: 'flex',
     justifyContent: 'space-between',
     padding: 2,
-  }), []);
-
-  const bodyStyles = useMemo(() => ({
+  }
+  
+  const bodyStyles = {
     display: 'flex',
     alignItems: 'center',
-  }), []);
-
-  const textStyles = useMemo(() => ({
+  }
+  
+  const textStyles = {
     fontSize: isMobile ? '20px' : '25px',
     fontFamily: 'StardewValley, sans-serif',
     color: '#491500',
-  }), []);
-
-  const imageStyles = useMemo(() => ({
+  }
+  
+  const imageStyles = {
     width: '80%',
     maxHeight: '40vh',
     objectFit: 'contain',
-  }), []);
-
-  const buttonStyles = useMemo(() => ({
+  }
+  
+  const buttonStyles = {
     fontFamily: 'StardewValley, sans-serif',
     fontSize: isMobile ? '15px' : '20px',
     color: '#491500',
@@ -61,7 +60,7 @@ function StardewQuizGame({ currentStory, currentImage, handleOptionClick }) {
     '&:active': {
       backgroundColor: '#FFDDA2', 
     },
-  }), []);
+  }
 
   return (
     <Box sx={boxStyles}>
