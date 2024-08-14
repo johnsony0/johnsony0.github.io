@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { Typography, Box, Button, Grid, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { isMobile } from 'react-device-detect';
 import React, { useState } from 'react';
 
@@ -52,10 +52,6 @@ function StardewQuizResult({result, onRestart}){
     });
   }
 
-  const onSupport = () => {
-    window.open('https://www.buymeacoffee.com/johnsony', '_blank');
-  };
-
   const displayCredits = () => {
     setOpenCredits(true);
   };
@@ -66,7 +62,6 @@ function StardewQuizResult({result, onRestart}){
 
   const buttonData = {
     'Share' : onShare,
-    'Support' : onSupport,
     'Restart' : onRestart,
     'Credits' : displayCredits,
   }
@@ -83,7 +78,7 @@ function StardewQuizResult({result, onRestart}){
           />
         </Grid>
         {Object.entries(buttonData).map(([label, action]) => (
-          <Grid item xs={3} key={label}>
+          <Grid item xs={4} key={label}>
             <Button
               fullWidth
               variant='contained'
@@ -95,16 +90,22 @@ function StardewQuizResult({result, onRestart}){
             </Button>
           </Grid>
         ))}
+        <Grid xs={12}>
+          <Typography variant="body2" align="center" sx={{ mt: 2, color: '#491500' }}>
+            Thank you for playing!!! If you liked the personality quiz please support me by buying me a cup of { }
+            <a href="https://www.buymeacoffee.com/johnsony" target="_blank" rel="noopener noreferrer">
+              coffee
+            </a> (っ˘ڡ˘ς)
+          </Typography>
+        </Grid>
       </Grid>
       <Dialog open={openCredits} onClose={handleCloseCredits}>
         <DialogTitle>Credits</DialogTitle>
         <DialogContent>
-          <div>
             <p>Background image: <a href="https://www.deviantart.com/bratzoid/gallery" target="_blank" rel="noopener noreferrer">https://www.deviantart.com/bratzoid/gallery</a></p>
             <p>Chibi characters: <a href="https://www.deviantart.com/magicalpouchofmagic" target="_blank" rel="noopener noreferrer">https://www.deviantart.com/magicalpouchofmagic</a></p>
             <p>Original idea: <a href="https://sophie006liu.github.io/vegetal/" target="_blank" rel="noopener noreferrer">https://sophie006liu.github.io/vegetal/</a></p>
             <p>Based on game created by: <a href="https://x.com/concernedape" target="_blank" rel="noopener noreferrer">https://x.com/concernedape</a></p>
-          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseCredits} color="primary" >

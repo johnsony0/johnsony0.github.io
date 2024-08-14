@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { getStoryById } from "./StardewData"; 
 import StardewQuizGame from "./StardewQuizGame";
-import StardewQuizResult from "./StardewQuizResult"
+import StardewQuizResult from "./StardewQuizResult";
+import { Helmet } from 'react-helmet';
 
 function StardewQuiz() {
   const defaultUserData = {
@@ -21,25 +22,23 @@ function StardewQuiz() {
   
   const [currentStoryId, setCurrentStoryId] = useState(-1);
   const [userData, setUserData] = useState(defaultUserData);
-  const [currentStory, setCurrentStory] = useState(getStoryById(-1))
-  const [currentImage, setCurrentImage] = useState(currentStory.img)
-  const [result,setResult] = useState(null)
+  const [currentStory, setCurrentStory] = useState(getStoryById(-1));
+  const [currentImage, setCurrentImage] = useState(currentStory.img);
+  const [result, setResult] = useState(null);
 
   useEffect(() => {
     const renderStory = (currentStoryId) => {
-      const img = new Image()
+      const img = new Image();
       const storyData = getStoryById(currentStoryId);
-      img.src = storyData.img
+      img.src = storyData.img;
   
       img.onload = () => {
         setCurrentStory(storyData);
         setCurrentImage(img.src);
-      }
-    }
-    renderStory(currentStoryId)
-  },[currentStoryId])
-
- 
+      };
+    };
+    renderStory(currentStoryId);
+  }, [currentStoryId]);
 
   const handleOptionClick = (info) => {
     if (info.next_day === 1000){
@@ -53,7 +52,7 @@ function StardewQuiz() {
           maxKeys.push(key); 
         }
       }
-      setResult(maxKeys[Math.floor(Math.random() * maxKeys.length)])
+      setResult(maxKeys[Math.floor(Math.random() * maxKeys.length)]);
     } else {
       setUserData((prevUserData) => {
         const updatedData = { ...prevUserData };
@@ -71,41 +70,45 @@ function StardewQuiz() {
   };
 
   const onRestart = () => {
-    setUserData({
-      Alex: 0,
-      Elliott: 0,
-      Harvey: 0,
-      Sam: 0,
-      Sebastian: 0,
-      Shane: 0,
-      Abigail: 0,
-      Emily: 0,
-      Haley: 0,
-      Leah: 0,
-      Maru: 0,
-      Penny: 0
-    })
-    setCurrentStoryId(-1)
-    setCurrentStory(getStoryById(-1))
-    setCurrentImage(currentStory.img)
-    setResult(null)
-    console.log(userData)
-  }
+    setUserData(defaultUserData);
+    setCurrentStoryId(-1);
+    setCurrentStory(getStoryById(-1));
+    setCurrentImage(currentStory.img);
+    setResult(null);
+  };
 
   return (
-    result ? (
-      <StardewQuizResult
-        result={result}
-        onRestart={onRestart}
-      />
-    ) :
-    (
-      <StardewQuizGame 
-        currentStory={currentStory}
-        currentImage={currentImage}
-        handleOptionClick={handleOptionClick}
-      />
-    )
+    <>
+      <Helmet>
+        <title>
+          {result ? "Stardew Personality Quiz - Results" : "Stardew Personality Quiz"}
+        </title>
+        <meta
+          name="description"
+          content={"Discover which Stardew Valley character you match with!"}
+        />
+        <meta
+          property="og:title"
+          content={ "Stardew Personality Quiz"}
+        />
+        <meta
+          property="og:description"
+          content={"Discover which Stardew Valley character you match with!"}
+        />
+      </Helmet>
+      {result ? (
+        <StardewQuizResult
+          result={result}
+          onRestart={onRestart}
+        />
+      ) : (
+        <StardewQuizGame 
+          currentStory={currentStory}
+          currentImage={currentImage}
+          handleOptionClick={handleOptionClick}
+        />
+      )}
+    </>
   );
 }
 

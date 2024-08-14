@@ -36,7 +36,7 @@ export const Story = [
     day: 1,
     time: '9:00 am',
     story: 'Welcome to Stardew Valley! It is your first day in Pelican Town, how do you spend it?',
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/first_day.png`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/first_day.webp`,
     options: {
       'Greet villagers': {
         traits: {
@@ -229,7 +229,7 @@ export const Story = [
     time: '12:00 am',
     story: `You head back to the farm and plant your crops. 
     You are a bit tired but a frog jumps out of the bushes!`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/frog.png`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/frog.webp`,
     options: {
       "CHASE IT": {
         traits: {
@@ -1485,7 +1485,7 @@ export const Story = [
     time: '12:00 am',
     story: `You enjoy the food and games. Dejected after losing 
     on the last level of Journey of the Prairie King, you...`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/angry.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/angry.webp`,
     options: {
       "Order more food": {
         traits: {
@@ -1639,7 +1639,7 @@ export const Story = [
     story: `You speak with all the villagers, and find yourself 
     in front of Pierre's stall. You find some pocket change, 
     what do you buy? `,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_egg_hunt.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_egg_hunt.webp`,
     options: {
       "Strawberry seeds": {
         traits: {
@@ -1798,7 +1798,7 @@ export const Story = [
         },
         next_day: 61,
       },
-      "Collect wood": {
+      "Mine": {
         traits: {
           Sebastian: 1,
           Leah: 1,
@@ -1897,7 +1897,7 @@ export const Story = [
     story: `As the flowers bloom in anticipation of summer, the 
     annual Flower Dance is taking place. The dance doesn't start
     till 6:00pm, what do you do till then?`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/flower_dance.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/flower_dance.webp`,
     options: {
       "Ask someone to Dance": {
         traits: {
@@ -1977,7 +1977,7 @@ export const Story = [
     story: `You prepare to watch the dance from afar, 
     just taking in the breathtaking views. You visit 
     Pierre's stall and buy...`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_dance.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_dance.webp`,
     options: {
       "Rarecrow": {
         traits: {
@@ -2050,7 +2050,7 @@ export const Story = [
     time: '6:00 pm',
     story: `As pierre hands you your item, you pull out your purse 
     and realize you are 500g short.`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_short_dance.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_short_dance.webp`,
     options: {
       "Buy something else": {
         traits: {
@@ -2113,7 +2113,7 @@ export const Story = [
     time: '10:00 pm',
     story: `You try your luck with a different partner, 
     to your surprise, they agree. You dance the night away.`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/ask_accept.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/ask_accept.webp`,
     options: {
       "continue": {
         traits: {
