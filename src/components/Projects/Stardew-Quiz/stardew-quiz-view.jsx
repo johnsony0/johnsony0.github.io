@@ -85,7 +85,7 @@ function StardewQuiz() {
         </title>
         <meta
           name="description"
-          content={"Discover which Stardew Valley character you match with!"}
+          content={"Discover which Stardew Valley character you are similar to!"}
         />
         <meta
           property="og:title"
@@ -93,7 +93,11 @@ function StardewQuiz() {
         />
         <meta
           property="og:description"
-          content={"Discover which Stardew Valley character you match with!"}
+          content={"Discover which Stardew Valley character you are similar to!"}
+        />
+        <meta
+          property="og:image"
+          content={`${process.env.PUBLIC_URL}/favicon.png`}
         />
       </Helmet>
       {result ? (
