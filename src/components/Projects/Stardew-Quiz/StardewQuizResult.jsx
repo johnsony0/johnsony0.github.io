@@ -102,6 +102,7 @@ function StardewQuizResult({result, onRestart}){
       <Dialog open={openCredits} onClose={handleCloseCredits}>
         <DialogTitle>Credits</DialogTitle>
         <DialogContent>
+            <p>Fonts: <a href="//www.reddit.com/r/StardewValley/comments/4dtgp7/by_popular_request_a_stardew_valley_font_for_your/" target="_blank" rel="noopener noreferrer">Stardew Font</a> &emsp; <a href="https://fontstruct.com/fontstructions/show/1543912/svthin" target="_blank" rel="noopener noreferrer">Stardew Font Thin</a></p>
             <p>Background image: <a href="https://www.deviantart.com/bratzoid/gallery" target="_blank" rel="noopener noreferrer">https://www.deviantart.com/bratzoid/gallery</a></p>
             <p>Chibi characters: <a href="https://www.deviantart.com/magicalpouchofmagic" target="_blank" rel="noopener noreferrer">https://www.deviantart.com/magicalpouchofmagic</a></p>
             <p>Original idea: <a href="https://sophie006liu.github.io/vegetal/" target="_blank" rel="noopener noreferrer">https://sophie006liu.github.io/vegetal/</a></p>

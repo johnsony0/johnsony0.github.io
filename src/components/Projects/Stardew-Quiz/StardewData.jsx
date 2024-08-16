@@ -1,7 +1,3 @@
-/*give credits to:
-start: https://x.com/MagicalPouch/status/1351372585670348802
-background: https://www.deviantart.com/bratzoid/art/Stardew-Valley-Dynamic-Wallpaper-1021978002
-*/
 export const getStoryById = (id) => Story.find((entry) => entry.id === id);
 
 export const Story = [
@@ -1084,9 +1080,9 @@ export const Story = [
     id: 34,
     day: 5,
     time: '12:00 am',
-    story: `A successful fishing day, catching a variety of fish 
+    story: `You had a successful day of fishing, catching a variety of fish 
     like carp, bass, and chub.`,
-    img: `${process.env.PUBLIC_URL}/stardew_quiz/fish.jpg`,
+    img: `${process.env.PUBLIC_URL}/stardew_quiz/fish.webp`,
     options: {
       "Sell fish": {
         traits: {
@@ -1114,7 +1110,7 @@ export const Story = [
     id: 35,
     day: 5,
     time: '12:00 am',
-    story: `A successful fishing day of mining, you reach floor 10 
+    story: `The rest of the mining goes well, you reach floor 10 
     before leaving. Gathering enough copper for a few bars.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/copper.jpg`,
     options: {
@@ -1377,7 +1373,7 @@ export const Story = [
     day: 8,
     time: '1:00 pm',
     story: `You go further into the building and explore. In the 
-    corner of your eye, you see a lil moving apple :O.`,
+    corner of your eye, you see a lil moving apple :o.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/junimos.jpg`,
     options: {
       "Approach carefully": {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, IconButton, useTheme } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+//import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
 import {ClickAwayListener, Tooltip,Typography } from '@mui/material';
@@ -39,9 +39,7 @@ function Footer(){
                     placement='top'
                     title={
                         <React.Fragment>
-                            <Typography variant='caption'>johnsony@bu.edu <b>(preferred)</b></Typography>
-                            <br />
-                            <Typography variant='caption'>7184155344</Typography>
+                            <Typography variant='caption'>johnsony@bu.edu</Typography>
                         </React.Fragment>
                     }
                 >
@@ -66,7 +64,7 @@ function Footer(){
             >
                 <GitHubIcon sx={{color: 'text.primary'}} />
             </IconButton>
-            <IconButton color='inherit' href="https://www.linkedin.com/in/johnson-yang-b0303b205/" target="_blank" rel="noopener noreferrer"
+            {/*<IconButton color='inherit' href="https://www.linkedin.com/in/johnson-yang-b0303b205/" target="_blank" rel="noopener noreferrer"
                 sx={{ 
                     '&:hover .MuiSvgIcon-root': {
                         color: theme.palette.text.secondary,
@@ -74,7 +72,7 @@ function Footer(){
                 }}
             >
                 <LinkedInIcon sx={{color: 'text.primary'}} />
-            </IconButton>
+            </IconButton>*/}
             <IconButton color='inherit' href="https://www.instagram.com/johnson.yang/" target="_blank" rel="noopener noreferrer"
                 sx={{ 
                     '&:hover .MuiSvgIcon-root': {
