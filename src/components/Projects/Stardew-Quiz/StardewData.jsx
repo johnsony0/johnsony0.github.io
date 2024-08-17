@@ -37,16 +37,17 @@ export const Story = [
       'Greet villagers': {
         traits: {
           Emily: 1,
-          Penny: 1,
           Haley: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 2,
       },
       'Plant crops': {
         traits: {
           Harvey: 1,
-          Leah: 1,
           Maru: 1,
+          Elliott: 1,
         },
         next_day : 3,
       },
@@ -61,7 +62,7 @@ export const Story = [
       'IM OVERWHELMED': {
         traits: {
           Shane: 1,
-          Sebastian: 1,
+          Penny: 1,
         },
         next_day : 5,
       }
@@ -84,7 +85,7 @@ export const Story = [
         },
         next_day : 6,
       },
-      'Visit Pierre General Store': {
+      "Visit Pierre's General Store": {
         traits: {
           Abigail: 1,
           Penny: 1,
@@ -92,7 +93,7 @@ export const Story = [
         },
         next_day : 7,
       },
-      "I'm tired, time for bed": {
+      "I'm tired...lemme sleep": {
         traits: {
         },
         next_day : 8,
@@ -121,7 +122,7 @@ export const Story = [
         },
         next_day : 7,
       },
-      "Go Foraging the Mountains": {
+      "Go foraging in the mountains": {
         traits: {
           Leah: 1,
           Abigail: 1,
@@ -129,12 +130,12 @@ export const Story = [
         },
         next_day : 10,
       },
-      "I'm tired, time for bed": {
+      "I'm tired...I go sleep": {
         traits: {
         },
         next_day : 8,
       },
-      "Clear Space on the Farm": {
+      "Clear space on the farm": {
         traits: {
           Harvey:1,
         },
@@ -150,7 +151,7 @@ export const Story = [
     approach a massive log blocking your path, what do you do?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/log.jpg`,
     options: {
-      "Chop it with your Axe": {
+      "Chop it >:)": {
         traits: {
           Elliott: 1,
           Shane: 1,
@@ -165,7 +166,7 @@ export const Story = [
         },
         next_day : 10,
       },
-      "Head back to the Farm": {
+      "Head back to the farm": {
         traits: {
           Harvey: 1,
           Maru: 1,
@@ -173,7 +174,7 @@ export const Story = [
         },
         next_day : 6,
       },
-      "I'm tired, time for bed": {
+      "I'm tired... I go sleep": {
         traits: {
         },
         next_day : 8,
@@ -184,20 +185,20 @@ export const Story = [
     id: 5,
     day: 1,
     time: '3:00 pm',
-    story: `After some time,
-    you collect yourself and calm down. You plant some crops you were gifted. 
+    story: `After some time, you collect yourself and calm down. 
+    You plant the seeds you were gifted. 
     How do you spend the rest of your day?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/plants.jpg`,
     options: {
       "Visit Pierre's General Store": {
         traits: {
-          Abigail: 1,
-          Penny: 1,
           Emily: 1,
+          Haley: 1,
+          Alex: 1,
         },
         next_day : 7,
       },
-      "Go Foraging the Mountains": {
+      "Go foraging in the mountains": {
         traits: {
           Leah: 1,
           Abigail: 1,
@@ -205,12 +206,13 @@ export const Story = [
         },
         next_day : 10,
       },
-      "I'm tired, time for bed": {
+      "I'm tired... I go sleep": {
         traits: {
+          Penny: 1,
         },
         next_day : 8,
       },
-      "Clear Space on the Farm": {
+      "Organize & clean the farm": {
         traits: {
           Harvey:1,
           Leah: 1,
@@ -223,14 +225,16 @@ export const Story = [
     id: 6,
     day: 1,
     time: '12:00 am',
-    story: `You head back to the farm and plant your crops. 
-    You are a bit tired but a frog jumps out of the bushes!`,
+    story: `You head back to the farm and plant some seeds. 
+    As you enter your house, ready to clock out, 
+    a frog jumps out of the bushes!`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/frog.webp`,
     options: {
       "CHASE IT": {
         traits: {
           Abigail: 1,
           Sam: 1,
+          Alex: 1,
         },
         next_day: 15,
       },
@@ -241,8 +245,9 @@ export const Story = [
         },
         next_day: 16,
       },
-      "Ignore it, I'm tired I need sleep": {
+      "Ignore it, I wanna sleep": {
         traits: {
+          Penny: 1,
         },
         next_day: 16,
       }
@@ -252,12 +257,14 @@ export const Story = [
     id: 7,
     day: 1,
     time: '12:00 am',
-    story: `You visit Pierre's and buy some crops, 
-    you go back ready to plant them but you are tired.`,
+    story: `You visit Pierre's and buy some seeds. 
+    Do you plant them immediately or wait till tomorrow?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre.jpg`,
     options: {
       "Waiting one more day won't hurt, lets sleep": {
         traits: {
+          Sam: 1,
+          Shane: 1,
         },
         next_day: 8,
       },
@@ -265,6 +272,7 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sam: 1,
+          Maru: 1,
         },
         next_day: 13,
       },
@@ -274,37 +282,39 @@ export const Story = [
     id: 8,
     day: 2,
     time: '12:00 pm',
-    story: `You get out of bed and find that Willy has returned from 
-    his fishing adventures. You meet him and he gives you a bamboo rod. 
-    With a new tool in hand—what will you do next?`,
+    story: `Top of the morning! Willy is back from his fishing trip!!
+    He shares some stories and also gift you his bamboo pole—
+    what will you do next?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/willy.jpg`,
     options: {
       "Chat with Willy": {
         traits: {
-          Penny: 1,
-          Harvey: 1,
           Haley: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 17,
       },
-      "Explore the Beach": {
+      "Explore the beach": {
         traits: {
           Abigail: 1,
           Leah: 1,
         },
         next_day: 18,
       },
-      "Fishing Time!": {
+      "Fishing time!": {
         traits: {
           Elliott: 1,
           Sebastian: 1,
+          Maru: 1,
+          Harvey: 1,
         },
         next_day: 19,
       },
-      "Fishing? What's that? Back to Chopping Trees": {
+      "Meditate": {
         traits: {
-          Shane: 1,
-          Maru: 1,
+          Emily: 1,
+          Penny: 1,
         },
         next_day: 20,
       },
@@ -314,7 +324,7 @@ export const Story = [
     id: 9,
     day: 1,
     time: '12:00 am',
-    story: `You head to Jojamart to gather seeds but is greeted by 
+    story: `You head to Jojamart to shop but is greeted by 
     the manager, Morris, advertising a 5,000g membership.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/jojamart.jpg`,
     options: {
@@ -336,6 +346,7 @@ export const Story = [
         traits: {
           Maru: 1,
           Elliott: 1,
+          Alex: 1,
         },
         next_day: 14,
       }
@@ -345,19 +356,32 @@ export const Story = [
     id: 10,
     day: 1,
     time: '12:00 am',
-    story: `In the mountains you gather some daffodils and horseradishes, you see 
-    another one across the lake, but you are a bit tired.`,
+    story: `In the mountains you forage some daffodils and horseradishes. 
+    You spot another across the lake.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/horseradish.jpg`,
     options: {
-      "Looks for a bridge across to get it": {
+      "Looks for a bridge across": {
         traits: {
-          Abigail: 1,
           Leah: 1,
+          Maru: 1,
+          Haley: 1,
+          Emily: 1,
+        },
+        next_day: 15,
+      },
+      "Swim across":{
+        traits: {
+          Sam: 1,
+          Alex: 1,
+          Abigail: 1,
         },
         next_day: 15,
       },
       "Ill pick it up tomorrow": {
         traits: {
+          Penny: 1,
+          Shane: 1,
+          Sebastian: 1,
         },
         next_day: 8,
       }
@@ -367,19 +391,24 @@ export const Story = [
     id: 11,
     day: 1,
     time: '12:00 am',
-    story: `Feeling drained after felling most trees in the vicinity of 
+    story: `Feeling drained after clearing most debris in the vicinity of 
     your house, there is exactly one tree left.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/one_tree.jpg`,
     options: {
-      "Chop it": {
+      "Clear it": {
         traits: {
           Shane: 1,
           Sebastian: 1,
+          Alex: 1,
+          Maru: 1,
         },
         next_day: 12,
       },
-      "I can chop it tomorrow": {
+      "I'll clear it tomorrow": {
         traits: {
+          Sam: 1,
+          Elliott: 1,
+          Haley: 1,
         },
         next_day: 8,
       },
@@ -389,9 +418,8 @@ export const Story = [
     id: 12,
     day: 1,
     time: '2:00 am',
-    story: `You spend some time chopping it and it won't budge. 
-    Without even realizing, you have expended 
-    all your energy and faint from exhaustion. Linus found you 
+    story: `As you attempt to cut it, your axe handle breaks off
+    and hits you, knocking you unconscious. Linus found you 
     and took you home.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/passout.jpg`,
     options: {
@@ -406,9 +434,9 @@ export const Story = [
     id: 13,
     day: 1,
     time: '2:00 am',
-    story: `In your greed for an earlier harvest, your body fails you 
-    and you collapse from exhaustion. Luckily linus finds you and 
-    take you home, you rest a bit and it is now morning.`,
+    story: `As you start tiling the soil, you collapse 
+    from exhaustion. Luckily linus finds you and 
+    take you home.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/passout.jpg`,
     options: {
       "continue": {
@@ -423,8 +451,7 @@ export const Story = [
     day: 1,
     time: '2:00 am',
     story: `Without the membership the seeds cost slightly more but 
-    you purchase them anyways. As you head back to your farm, your 
-    body is exhausted so you sleep till the next morning.`,
+    you purchase them anyways. It's late so you decide to sleep.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/bedge.jpg`,
     options: {
       "continue": {
@@ -438,8 +465,8 @@ export const Story = [
     id: 15,
     day: 1,
     time: '2:00 am',
-    story: `In the pursuit, your body collapses from overexertion. 
-    Luckily Linus finds you and brings you home. You snooze till morning.`,
+    story: `You trip while chasing the frog, and get a concussion.
+    Luckily Linus finds you and brings you home.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/passout.jpg`,
     options: {
       "continue": {
@@ -453,8 +480,9 @@ export const Story = [
     id: 16,
     day: 5,
     time: '6:00 am',
-    story: `A couple days pass. Joja has cleared the landslide 
-    revealing the mines. Do you dare descend into the unknown`,
+    story: `A couple days have passed since your strange encounter. 
+    Joja has cleared the landslide revealing the mines. 
+    Do you dare descend into the unknown`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/mines.jpg`,
     options: {
       "Enter the Mines": {
@@ -495,7 +523,7 @@ export const Story = [
     of flounder in the Ocean.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/willy_dialogue.jpg`,
     options: {
-      "Lets go fishing for Sardines!!!": {
+      "Lets go fishing for flouder!!!": {
         traits: {
           Elliott: 1,
           Penny: 1,
@@ -510,7 +538,7 @@ export const Story = [
         },
         next_day: 18,
       },
-      " Eh I prefer fishing in town": {
+      "Eh I prefer fishing in town": {
         traits: {
           Harvey: 1,
           Maru: 1,
@@ -534,7 +562,8 @@ export const Story = [
     day: 2,
     time: '9:00 pm',
     story: `You explore the beach for hours, and 
-    eventually stumble on a clam sticking out of the water`,
+    eventually stumble on an extraordinarily beautiful clam 
+    sticking out of the water`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/clam.jpg`,
     options: {
       "Take it": {
@@ -542,6 +571,8 @@ export const Story = [
           Abigail: 1,
           Leah: 1,
           Elliott: 1,
+          Alex: 1,
+          Sebastian: 1,
         },
         next_day: 24,
       },
@@ -550,6 +581,7 @@ export const Story = [
           Harvey: 1,
           Penny: 1,
           Maru: 1,
+          Haley: 1,
         },
         next_day: 25,
       }
@@ -559,7 +591,7 @@ export const Story = [
     id: 19,
     day: 2,
     time: '9:00 pm',
-    story: `After hours of fishing, it was all going well until 
+    story: `You spend a couple hours fishing, until suddenly,
     an incredible force tugs the other side of the rod.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/fishing.jpg`,
     options: {
@@ -567,6 +599,7 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sam: 1,
+          Alex: 1,
         },
         next_day: 21,
       },
@@ -574,6 +607,7 @@ export const Story = [
         traits: {
           Leah: 1,
           Elliott: 1,
+          Shane: 1,
         },
         next_day: 21,
       },
@@ -581,6 +615,7 @@ export const Story = [
         traits: {
           Harvey: 1,
           Maru: 1,
+          Haley: 1,
         },
         next_day: 21,
       }
@@ -590,8 +625,8 @@ export const Story = [
     id: 20,
     day: 2,
     time: '9:00 pm',
-    story: `After felling dozens of trees in Cindersap Forest, 
-    Leah strolls by.`,
+    story: `You meditate for a bit, and remember Robin asked for some wood.
+    While chopping down a tree, Leah strolls by.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/leah.jpg`,
     options: {
       "Set the axe aside and engage in conversation": {
@@ -599,13 +634,15 @@ export const Story = [
           Leah: 1,
           Haley: 1,
           Emily: 1,
+          Sam: 1,
         },
         next_day: 22,
       },
-      "Finish your task first, conversation can wait": {
+      "Finish your task first, then greet her": {
         traits: {
           Haru: 1,
           Harvey: 1,
+          Alex: 1,
         },
         next_day: 22,
       },
@@ -630,13 +667,14 @@ export const Story = [
     day: 3,
     time: '12:00 am',
     story: `Following the encounter with the fish you are exhausted 
-    and go to bed. Until a loud explosion could be heard in the night.`,
+    and go to bed. *KABOOM* A loud explosion wakes you up...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/explosion.png`,
     options: {
       "Probably my imagination": {
         traits: {
           Harvey: 1,
           Maru: 1,
+          Shane: 1,
         },
         next_day: 27,
       },
@@ -647,17 +685,19 @@ export const Story = [
         },
         next_day: 27,
       },
-      "Could be dangerous, grab my sword just in case": {
+      "Could be dangerous, grab a friend just in case": {
         traits: {
-          Abigail: 1,
-          Sebastian: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 28,
       },
-      "Hmm wonder what that was let's check that out": {
+      "Hmm wonder what that was, let's check that out": {
         traits: {
           Elliott: 1,
           Leah: 1,
+          Abigail: 1,
+          Sebastian: 1,
         },
         next_day: 28,
       },
@@ -667,35 +707,38 @@ export const Story = [
     id: 22,
     day: 2,
     time: '12:00 am',
-    story: `You talk with Leah, and hours fly by. Growing eepy 
-    you head to bed. You are awoken by a loud explosion during the night.`,
+    story: `You talk with Leah, and hours fly by. Growing eepy, 
+    you head to bed. *KABOOM* A loud explosion wakes you up...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/explosion.png`,
     options: {
       "Probably my imagination": {
         traits: {
           Harvey: 1,
           Maru: 1,
+          Shane: 1,
         },
         next_day: 27,
       },
-      "PANIC": { 
+      "PANIC": {
         traits: {
           Penny: 1,
           Haley: 1,
         },
         next_day: 27,
       },
-      "Could be dangerous, grab my sword just in case": {
+      "Could be dangerous, grab a friend just in case": {
         traits: {
-          Abigail: 1,
-          Sebastian: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 28,
       },
-      "Hmm wonder what that was let's check that out": {
+      "Hmm wonder what that was, let's check that out": {
         traits: {
           Elliott: 1,
           Leah: 1,
+          Abigail: 1,
+          Sebastian: 1,
         },
         next_day: 28,
       },
@@ -706,13 +749,14 @@ export const Story = [
     day: 3,
     time: '12:00 am',
     story: `Having collected enough wood and getting more eepy 
-    you head to bed. You are awoken by a loud explosion during the night.`,
+    you head to bed. *KABOOM* A loud explosion wakes you up...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/explosion.png`,
     options: {
       "Probably my imagination": {
         traits: {
           Harvey: 1,
           Maru: 1,
+          Shane: 1,
         },
         next_day: 27,
       },
@@ -723,17 +767,19 @@ export const Story = [
         },
         next_day: 27,
       },
-      "Could be dangerous, grab my sword just in case": {
+      "Could be dangerous, grab a friend just in case": {
         traits: {
-          Abigail: 1,
-          Sebastian: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 28,
       },
-      "Hmm wonder what that was let's check that out": {
+      "Hmm wonder what that was, let's check that out": {
         traits: {
           Elliott: 1,
           Leah: 1,
+          Abigail: 1,
+          Sebastian: 1,
         },
         next_day: 28,
       },
@@ -743,9 +789,9 @@ export const Story = [
     id: 24,
     day: 2,
     time: '11:00 am',
-    story: `While attempting to take the coral, a mermaid bursts 
+    story: `While attempting to take the clam, a mermaid bursts 
     from the depths. In anger, she scolds you for disturbing the 
-    ecosystem`,
+    ecosystem.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/mermaid.avif`,
     options: {
       "Apologize": {
@@ -760,6 +806,8 @@ export const Story = [
         traits: {
           Shane: 1,
           Sebastian: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 26,
       },
@@ -793,6 +841,9 @@ export const Story = [
           Abigail: 1,
           Shane: 1,
           Emily: 1,
+          Haley: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 16,
       }
@@ -819,13 +870,15 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sam: 1,
+          Alex: 1,
         },
         next_day: 16,
       },
-      "Wait for help to assist you getting home": {
+      "Wait for help to assist you in getting home": {
         traits: {
           Penny: 1,
           Harvey: 1,
+          Haley: 1,
         },
         next_day: 16,
       }
@@ -835,7 +888,7 @@ export const Story = [
     id: 27,
     day: 2,
     time: '2:00 am',
-    story: `After some pondering, you simply decide to 
+    story: `After some time, you simply decide to 
     catch some sleep, after all, the sleep can't catch itself.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/bedge.jpg`,
     options: {
@@ -857,12 +910,14 @@ export const Story = [
       "Mine it": {
         traits: {
           Sebastian: 1,
+          Sam: 1,
         },
         next_day: 16,
       },
       "Take some samples to study": {
         traits: {
           Maru: 1,
+          Harvey: 1,
           Elliott: 1,
         },
         next_day: 16,
@@ -872,6 +927,7 @@ export const Story = [
           Abigail: 1,
           Shane: 1,
           Emily: 1,
+          Haley: 1,
         },
         next_day: 16,
       },
@@ -896,27 +952,29 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sam: 1,
-        },
-        next_day: 32,
-      },
-      "OH SHIT WHERE'S MY SWORD": {
-        traits: {
-          Sebastian: 1,
-          Elliott: 1,
-        },
-        next_day: 32,
-      },
-      "eheh lightwork": {
-        traits: {
-          Shane: 1,
           Alex: 1,
         },
         next_day: 32,
       },
-      "uh oh let's run": {
+      "OH S**T WHERE'S MY SWORD": {
+        traits: {
+          Shane: 1,
+          Elliott: 1,
+        },
+        next_day: 32,
+      },
+      "Come up with a plan first": {
+        traits: {
+          Sebastian: 1,
+          Maru: 1,
+        },
+        next_day: 32,
+      },
+      "Uh oh let's run": {
         traits: {
           Penny: 1,
           Harvey: 1,
+          Haley: 1,
         },
         next_day: 32,
       },
@@ -971,27 +1029,29 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sam: 1,
-        },
-        next_day: 33,
-      },
-      "OH SHIT WHERE'S MY SWORD": {
-        traits: {
-          Sebastian: 1,
-          Elliott: 1,
-        },
-        next_day: 33,
-      },
-      "eheh lightwork": {
-        traits: {
-          Shane: 1,
           Alex: 1,
         },
         next_day: 33,
       },
-      "uh oh let's run": {
+      "OH S**T WHERE'S MY SWORD": {
+        traits: {
+          Shane: 1,
+          Elliott: 1,
+        },
+        next_day: 33,
+      },
+      "Come up with a plan first": {
+        traits: {
+          Sebastian: 1,
+          Maru: 1,
+        },
+        next_day: 33,
+      },
+      "Uh oh let's run": {
         traits: {
           Penny: 1,
           Harvey: 1,
+          Haley: 1,
         },
         next_day: 33,
       },
@@ -1003,7 +1063,7 @@ export const Story = [
     time: '3:00 pm',
     story: `Your encounter with the slime proved fatal, 
     luckily you are rescued from the mine by Linus. 
-    After thanking her you are greeted with the view of a 
+    After thanking him you are greeted with the view of a 
     beautiful mountain lake.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/lake.jpg`,
     options: {
@@ -1014,7 +1074,7 @@ export const Story = [
         },
         next_day: 34,
       },
-      "Go back into the mines": {
+      "Round two of the mines >:D": {
         traits: {
           Abigail: 1,
           Sebastian: 1,
@@ -1032,6 +1092,7 @@ export const Story = [
         traits: {
           Harvey: 1,
           Penny: 1,
+          Haley: 1,
         },
         next_day: 40,
       },
@@ -1050,6 +1111,7 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sebastian: 1,
+          Alex: 1,
         },
         next_day: 35,
       },
@@ -1080,8 +1142,8 @@ export const Story = [
     id: 34,
     day: 5,
     time: '12:00 am',
-    story: `You had a successful day of fishing, catching a variety of fish 
-    like carp, bass, and chub.`,
+    story: `You had a successful day of fishing, catching a variety of 
+    fish like carp, bass, and chub.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/fish.webp`,
     options: {
       "Sell fish": {
@@ -1097,10 +1159,11 @@ export const Story = [
         },
         next_day: 43,
       },
-      "Save it, maybe someone will want it later": {
+      "Maybe I'll eat it later": {
         traits: {
           Penny: 1,
           Harvey: 1,
+          Emily: 1,
         },
         next_day: 43,
       }
@@ -1114,7 +1177,7 @@ export const Story = [
     before leaving. Gathering enough copper for a few bars.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/copper.jpg`,
     options: {
-      "Sell coppers": {
+      "Sell copper": {
         traits: {
           Shane: 1,
         },
@@ -1127,7 +1190,7 @@ export const Story = [
         },
         next_day: 43,
       },
-      "Save it, maybe someone will want it later": {
+      "Smelt some, sell some": {
         traits: {
           Penny: 1,
           Harvey: 1,
@@ -1144,7 +1207,7 @@ export const Story = [
     what do you think of?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/lake_scenery.jpg`,
     options: {
-      "Your childhood": {
+      "The past": {
         traits: {
           Penny: 1,
           Sebastian: 1,
@@ -1165,7 +1228,7 @@ export const Story = [
         },
         next_day: 42,
       },
-      "Dreams of the future": {
+      "The future": {
         traits: {
           Abigail: 1,
           Emily: 1,
@@ -1179,7 +1242,7 @@ export const Story = [
     day: 5,
     time: '12:00 pm',
     story: `Linus enjoys your company, and invites you to 
-     dumpster dive with him.`,
+    dumpster dive with him.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/linus.jpg`,
     options: {
       "Politely refuse": {
@@ -1214,12 +1277,12 @@ export const Story = [
       },
       "Eat the plants": {
         traits: {
-          Emily :1,
+          Emily: 1,
           Abigail: 1,
         },
         next_day: 43,
       },
-      "Save it, maybe someone will want it later": {
+      "Use the plants for decor": {
         traits: {
           Penny: 1,
           Harvey: 1,
@@ -1247,8 +1310,7 @@ export const Story = [
     id: 40,
     day: 8,
     time: '6:00 am',
-    story: `It has been a good couple days since the mountain lake 
-    and mine adventure. Some crops have ripened and been sold. 
+    story: `A few more days pass. Some crops have ripened and been sold. 
     With this new income let's explore town to see what we can buy.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/town.jpg`,
     options: {
@@ -1264,8 +1326,9 @@ export const Story = [
     day: 8,
     time: '11:00 am',
     story: `While exploring the town, you stumble upon an abandoned 
-    building. Mayor Lewis unlocks the building and you enter. 
-    You spot mysterious apple like creatures, how do you react?`,
+    building. Mayor Lewis unlocks it and you enter. 
+    Out of nowhere a mysterious apple like creatures appears!!!
+    How do you react?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/enter_building.jpg`,
     options: {
       "AHHH GET THEM AWAY": {
@@ -1276,7 +1339,7 @@ export const Story = [
         },
         next_day: 44,
       },
-      "awww cute lil things": {
+      "Awww cute lil things": {
         traits: {
           Emily: 1,
           Penny: 1,
@@ -1305,8 +1368,7 @@ export const Story = [
     day: 5,
     time: '1:00 am',
     story: `After a moment of reflection, you realize just how 
-    exhausted you are -- if you don't get home soon you will collapse. 
-    You rush home to sleep.`,
+    exhausted you are and rush to bed.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/bedge.jpg`,
     options: {
       "continue": {
@@ -1342,6 +1404,7 @@ export const Story = [
         traits: {
           Leah: 1,
           Shane: 1,
+          Harvey: 1,
         },
         next_day: 46,
       },
@@ -1349,6 +1412,7 @@ export const Story = [
         traits: {
           Elliott: 1,
           Haley: 1,
+          Alex: 1,
         },
         next_day: 46,
       },
@@ -1356,6 +1420,7 @@ export const Story = [
         traits: {
           Emily: 1,
           Penny: 1,
+          Maru: 1,
         },
         next_day: 46,
       },
@@ -1363,6 +1428,7 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sebastian: 1,
+          Sam: 1,
         },
         next_day: 46,
       },
@@ -1373,13 +1439,13 @@ export const Story = [
     day: 8,
     time: '1:00 pm',
     story: `You go further into the building and explore. In the 
-    corner of your eye, you see a lil moving apple :o.`,
+    corner of your eye, you see a lil moving apple :0`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/junimos.jpg`,
     options: {
       "Approach carefully": {
         traits: {
-          Elliott: 1,
-          Leah: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 47,
       },
@@ -1387,6 +1453,9 @@ export const Story = [
         traits: {
           Sebastian: 1,
           Penny: 1,
+          Maru: 1,
+          Elliott: 1,
+          Leah: 1,
         },
         next_day: 47,
       },
@@ -1441,14 +1510,16 @@ export const Story = [
     id: 47,
     day: 8,
     time: '6:00 pm',
-    story: `Before you can make a choice, the being envelops you 
+    story: `Before you can decide, the being envelops you 
     in a dream and introduces themselves as the Junimos.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/dream.jpg`,
     options: {
       "Excitedly introduce yourself": {
         traits: {
           Emily: 1,
-          Elliott: 1,
+          Haley: 1,
+          Sam: 1,
+          Alex: 1,
         },
         next_day: 49,
       },
@@ -1494,6 +1565,8 @@ export const Story = [
         traits: {
           Elliott: 1,
           Emily: 1,
+          Alex: 1,
+          Haley: 1,
         },
         next_day: 50,
       },
@@ -1517,12 +1590,14 @@ export const Story = [
     id: 49,
     day: 8,
     time: '12:00 am',
-    story: `The Junimos dream comes to an end, and you leave the run down building
-    after the encounter`,
+    story: `The Junimos dream comes to an end, and you leave the building.
+    After the encounter, you...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/building.jpg`,
     options: {
       "Grab a drink at the Saloon to unwind": {
         traits: {
+          Shane: 1,
+          Sam: 1,
         },
         next_day: 50,
       },
@@ -1554,7 +1629,7 @@ export const Story = [
     day: 8,
     time: '2:00 am',
     story: `You head home and pass out on your bed. 
-    In your dreams you see the green creatures still.`,
+    In your dreams you still see the apple-like creatures.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/bedge.jpg`,
     options: {
       "continue": {
@@ -1577,6 +1652,7 @@ export const Story = [
         traits: {
           AbigaiL: 1,
           Sam: 1,
+          Alex: 1,
         },
         next_day: 53,
       },
@@ -1592,6 +1668,7 @@ export const Story = [
         traits: {
           Elliott: 1,
           Emily: 1,
+          Haley: 1,
         },
         next_day: 54,
       }
@@ -1614,7 +1691,7 @@ export const Story = [
       },
       "The Mountain": {
         traits: {
-          Sebastians: 1,
+          Sebastian: 1,
           Maru: 1,
         },
         next_day: 57,
@@ -1641,6 +1718,7 @@ export const Story = [
         traits: {
           Abigail: 1,
           Harvey: 1,
+          Maru: 1,
         },
         next_day: 59,
       },
@@ -1648,6 +1726,7 @@ export const Story = [
         traits: {
           Emily: 1,
           Shane: 1,
+          Alex: 1,
         },
         next_day: 59,
       },
@@ -1662,6 +1741,7 @@ export const Story = [
         traits: {
           Leah: 1,
           Elliott: 1,
+          Haley: 1,
         },
         next_day: 59,
       },
@@ -1723,6 +1803,7 @@ export const Story = [
         traits: {
           Sebastian: 1,
           Harvey: 1,
+          Haley: 1,
         },
         next_day: 58,
       },
@@ -1730,6 +1811,7 @@ export const Story = [
         traits: {
           Sam: 1,
           Leah: 1,
+          Alex: 1,
         },
         next_day: 58,
       }
@@ -1770,7 +1852,7 @@ export const Story = [
     day: 13,
     time: '10:00 pm',
     story: `You take your purchase and continue socializing, 
-    but eventually the festivities tune down and it is time to go home.`,
+    but eventually the festivities wind down and it is time to go home.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/bedge.jpg`,
     options: {
       "continue": {
@@ -1791,6 +1873,7 @@ export const Story = [
         traits: {
           Haley: 1,
           Penny: 1,
+          Shane: 1,
         },
         next_day: 61,
       },
@@ -1798,6 +1881,8 @@ export const Story = [
         traits: {
           Sebastian: 1,
           Leah: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 61,
       },
@@ -1808,7 +1893,7 @@ export const Story = [
         },
         next_day: 62,
       },
-      "Clean up the house and organize the chests": {
+      "Clean up the house": {
         traits: {
           Elliott: 1,
           Harvey: 1,
@@ -1859,6 +1944,7 @@ export const Story = [
         traits: {
           Sam: 1,
           Maru: 1,
+          Alex: 1,
         },
         next_day: 63,
       },
@@ -1866,6 +1952,7 @@ export const Story = [
         traits: {
           Emily: 1,
           Abigail: 1,
+          Haley: 1,
         },
         next_day: 63,
       },
@@ -1900,6 +1987,7 @@ export const Story = [
           Abigail: 1,
           Emily: 1,
           Haley: 1,
+          Alex: 1,
         },
         next_day: 65,
       },
@@ -1907,6 +1995,7 @@ export const Story = [
         traits: {
           Sebastian: 1,
           Leah: 1,
+          Shane: 1,
         },
         next_day: 66,
       },
@@ -1914,7 +2003,7 @@ export const Story = [
         traits: {
           Penny: 1,
           Maru: 1,
-          Alex: 1,
+          Sam: 1,
         },
         next_day: 65,
       },
@@ -1933,7 +2022,7 @@ export const Story = [
     time: '3:00 pm',
     story: `You walk around striking up conversation with the 
     townsfolk. Eventually, in the corner of your eye, you spot 
-    someone would like to ask to the dance...`,
+    someone you would like to ask to the dance...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/ask_dance.jpg`,
     options: {
       "H-h-hiii": {
@@ -1971,7 +2060,7 @@ export const Story = [
     day: 24,
     time: '3:00 pm',
     story: `You prepare to watch the dance from afar, 
-    just taking in the breathtaking views. You visit 
+    just taking in the breathtaking views. But first you visit 
     Pierre's stall and buy...`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/pierre_dance.webp`,
     options: {
@@ -1979,6 +2068,8 @@ export const Story = [
         traits: {
           Elliott: 1,
           Maru: 1,
+          Alex: 1,
+          Sam: 1,
         },
         next_day: 69,
       },
@@ -2012,6 +2103,8 @@ export const Story = [
         traits: {
           Abigail: 1,
           Sam: 1,
+          Alex: 1,
+          Haley: 1,
         },
         next_day: 71,
       },
@@ -2019,6 +2112,7 @@ export const Story = [
         traits: {
           Sebastian: 1,
           Leah: 1,
+          Shane: 1,
         },
         next_day: 72,
       }
@@ -2107,8 +2201,8 @@ export const Story = [
     id: 71,
     day: 24,
     time: '10:00 pm',
-    story: `You try your luck with a different partner, 
-    to your surprise, they agree. You dance the night away.`,
+    story: `You try your luck with a different partner. 
+    To your surprise, they agree. You dance the night away.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/ask_accept.webp`,
     options: {
       "continue": {
@@ -2122,8 +2216,8 @@ export const Story = [
     id: 72,
     day: 24,
     time: '10:00 pm',
-    story: `The rejection hits you hard, you sit down, watch the dance. 
-    Nothing can rid the embarrassment better than alcohol :D.`,
+    story: `The rejection hits you hard. You sit down, and watch the dance. 
+    Nothing can rid the embarrassment better than alcohol :D`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/dance.jpg`,
     options: {
       "continue": {

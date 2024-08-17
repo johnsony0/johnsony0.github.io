@@ -91,7 +91,7 @@ function StardewQuizResult({result, onRestart}){
           </Grid>
         ))}
         <Grid xs={12}>
-          <Typography variant="body2" align="center" sx={{ mt: 2, color: '#491500' }}>
+          <Typography variant="body2" align="center" sx={{ mt: 2, color: 'black', fontWeight: '900' }}>
             Thank you for playing!!! If you liked the personality quiz please support me by buying me a cup of { }
             <a href="https://www.buymeacoffee.com/johnsony" target="_blank" rel="noopener noreferrer">
               coffee
@@ -109,7 +109,7 @@ function StardewQuizResult({result, onRestart}){
             <p>Based on game created by: <a href="https://x.com/concernedape" target="_blank" rel="noopener noreferrer">https://x.com/concernedape</a></p>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseCredits} color="primary" >
+          <Button onClick={handleCloseCredits} color="inherit" >
             Close
           </Button>
         </DialogActions>
