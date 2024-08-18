@@ -90,7 +90,7 @@ function StardewQuizResult({result, onRestart}){
             </Button>
           </Grid>
         ))}
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Typography variant="body2" align="center" sx={{ mt: 2, color: 'black', fontWeight: '900' }}>
             Thank you for playing!!! If you liked the personality quiz please support me by buying me a cup of { }
             <a href="https://www.buymeacoffee.com/johnsony" target="_blank" rel="noopener noreferrer">

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getStoryById } from "./StardewData"; 
 import StardewQuizGame from "./StardewQuizGame";
 import StardewQuizResult from "./StardewQuizResult";
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function StardewQuiz() {
   const defaultUserData = {
@@ -53,6 +53,7 @@ function StardewQuiz() {
         }
       }
       setResult(maxKeys[Math.floor(Math.random() * maxKeys.length)]);
+      console.log(userData)
     } else {
       setUserData((prevUserData) => {
         const updatedData = { ...prevUserData };
@@ -78,7 +79,7 @@ function StardewQuiz() {
   };
 
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <title>
           {result ? "Stardew Personality Quiz - Results" : "Stardew Personality Quiz"}
@@ -112,7 +113,7 @@ function StardewQuiz() {
           handleOptionClick={handleOptionClick}
         />
       )}
-    </>
+    </HelmetProvider>
   );
 }
 
