@@ -3,7 +3,7 @@ export const getStoryById = (id) => Story.find((entry) => entry.id === id);
 export const Story = [
   {
     id: -1,
-    story: `Which dateable Stardew character are you :D ?`,
+    story: `Which dateable Stardew character are you :) ?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/dateable_chars.jpg_large`,
     options: {
       'Start' : {
@@ -43,7 +43,7 @@ export const Story = [
       },
       'Plant crops': {
         traits: {
-          Maru: 2,
+          Maru: 1,
           Harvey: 1,
         },
         next_day : 3,
@@ -59,6 +59,7 @@ export const Story = [
         traits: {
           Shane: 2,
           Haley: 1,
+          Penny: 1,
         },
         next_day : 5,
       }
@@ -75,15 +76,14 @@ export const Story = [
     options: {
       'Head back to the Farm': {
         traits: {
-          Elliot: 2,
+          Elliott: 1,
           Penny: 1,
         },
         next_day : 6,
       },
       "Visit Pierre's General Store": {
         traits: {
-          Abigail: 1,
-          Maru: 2,
+          Maru: 1,
           Harvey: 1,
         },
         next_day : 7,
@@ -113,7 +113,7 @@ export const Story = [
     options: {
       "Visit Pierre's General Store": {
         traits: {
-          Maru: 2,
+          Maru: 1,
           Harvey: 1,
         },
         next_day : 7,
@@ -121,7 +121,7 @@ export const Story = [
       "Go foraging in the mountains": {
         traits: {
           Abigail: 2,
-          Leah: 2,
+          Leah: 1,
         },
         next_day : 10,
       },
@@ -134,7 +134,7 @@ export const Story = [
       },
       "Organize & clean the farm": {
         traits: {
-          Elliot: 2,
+          Elliott: 1,
         },
         next_day : 11,
       },
@@ -163,7 +163,7 @@ export const Story = [
       },
       "Head back to the farm": {
         traits: {
-          Elliot: 2,
+          Elliott: 1,
           Penny: 1,
         },
         next_day : 6,
@@ -188,7 +188,7 @@ export const Story = [
     options: {
       "Visit Pierre's General Store": {
         traits: {
-          Maru: 2,
+          Maru: 1,
           Harvey: 1,
         },
         next_day : 7,
@@ -196,7 +196,7 @@ export const Story = [
       "Go foraging in the mountains": {
         traits: {
           Abigail: 2,
-          Leah: 2,
+          Leah: 1,
         },
         next_day : 10,
       },
@@ -209,7 +209,7 @@ export const Story = [
       },
       "Organize & clean the farm": {
         traits: {
-          Elliot: 2,
+          Elliott: 1,
         },
         next_day : 11,
       },
@@ -261,16 +261,13 @@ export const Story = [
           Haley: 1,
           Shane: 1,
           Sebastian: 1,
-          Harvey: 1,
         },
         next_day: 8,
       },
-      "I want my harvest ASAP": {
+      "NOW": {
         traits: {
-          Leah: 1,
           Abigail: 1,
           Sam: 1,
-          Maru: 1,
         },
         next_day: 13,
       },
@@ -303,7 +300,6 @@ export const Story = [
       "Fishing time!": {
         traits: {
           Elliott: 1,
-          Sebastian: 1,
           Maru: 1,
         },
         next_day: 19,
@@ -311,7 +307,6 @@ export const Story = [
       "Ignore it all, let's meditate": {
         traits: {
           Emily: 2,
-          Harvey: 1,
         },
         next_day: 20,
       },
@@ -325,24 +320,24 @@ export const Story = [
     the manager, Morris, advertising a 5,000g membership.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/jojamart.jpg`,
     options: {
-      "I can't afford that!": {
+      "THIS IS A SCAM!": {
         traits: {
-          Penny: 2,
-          Harvey: 2,
+          Sam: 1,
+          Alex: 1,
         },
         next_day: 14,
       },
       "Sorry, not today": {
         traits: {
-          Leah: 2,
+          Leah: 1,
           Emily: 1,
+          Penny: 2,
         },
         next_day: 14,
       },
       "Try negotiating":{
         traits: {
           Maru: 2,
-          Alex: 1,
         },
         next_day: 14,
       }
@@ -359,15 +354,14 @@ export const Story = [
       "Looks for a bridge across": {
         traits: {
           Elliott: 1,
-          Maru: 2,
-          Haley: 1,
+          Maru: 1,
           Sebastian: 1,
+          Sam: 1,
         },
         next_day: 15,
       },
       "Swim across":{
         traits: {
-          Sam: 1,
           Alex: 2,
           Abigail: 1,
           Leah: 1,
@@ -395,7 +389,7 @@ export const Story = [
     options: {
       "Clear it": {
         traits: {
-          Maru: 2,
+          Maru: 1,
           Harvey: 2,
           Emily: 1,
           Leah: 1,
@@ -406,7 +400,6 @@ export const Story = [
         traits: {
           Sebastian: 2,
           Shane: 1,
-          Abigail: 1,
         },
         next_day: 8,
       },
@@ -537,7 +530,6 @@ export const Story = [
           Sam: 1,
           Abigail: 1,
           Alex: 1,
-          Sebastian: 1,
         },
         next_day: 18,
       },
@@ -552,7 +544,6 @@ export const Story = [
       "The ambience of the forest is much nicer, lets fish there instead": {
         traits: {
           Leah: 1,
-          Maru: 1,
         },
         next_day: 19,
       },
@@ -609,15 +600,13 @@ export const Story = [
       "Give an attempt but realize its futile and let the fish go": {
         traits: {
           Leah: 1,
-          Elliott: 2,
+          Elliott: 1,
           Shane: 1,
         },
         next_day: 21,
       },
       "Doesn't even bother trying": {
         traits: {
-          Harvey: 1,
-          Maru: 1,
           Haley: 2,
         },
         next_day: 21,
@@ -659,7 +648,6 @@ export const Story = [
       "Give her a wave": {
         traits: {
           Penny: 1,
-          Abigail: 1,
           Leah: 1,
         },
         next_day: 23,
@@ -699,7 +687,6 @@ export const Story = [
       "Hmm wonder what that was, let's check that out": {
         traits: {
           Elliott: 1,
-          Leah: 1,
           Abigail: 1,
           Sebastian: 1,
         },
@@ -740,7 +727,6 @@ export const Story = [
       "Hmm wonder what that was, let's check that out": {
         traits: {
           Elliott: 1,
-          Leah: 1,
           Abigail: 1,
           Sebastian: 1,
         },
@@ -781,7 +767,6 @@ export const Story = [
       "Hmm wonder what that was, let's check that out": {
         traits: {
           Elliott: 1,
-          Leah: 1,
           Abigail: 1,
           Sebastian: 1,
         },
@@ -810,7 +795,6 @@ export const Story = [
       "Ignore her": {
         traits: {
           Shane: 1,
-          Sebastian: 1,
           Alex: 1,
           Sam: 1,
         },
@@ -818,7 +802,7 @@ export const Story = [
       },
       "Make excuses": {
         traits: {
-          Haley: 2,
+          Haley: 1,
           Abigail: 1,
         },
         next_day: 26,
@@ -836,10 +820,8 @@ export const Story = [
       "Reflect on the encounter": {
         traits: {
           Leah: 1,
-          Sebastian: 1,
           Elliott: 1,
           Maru: 1,
-          Harvey: 1,
         },
         next_day: 16,
       },
@@ -868,7 +850,6 @@ export const Story = [
       "Reflect on the encounter": {
         traits: {
           Leah: 1,
-          Sebastian: 1,
           Elliott: 1,
           Maru: 1,
         },
@@ -885,7 +866,6 @@ export const Story = [
       "Wait for help to assist you in getting home": {
         traits: {
           Penny: 1,
-          Harvey: 1,
           Haley: 1,
           Emily: 1,
         },
@@ -976,7 +956,6 @@ export const Story = [
         traits: {
           Sebastian: 2,
           Maru: 2,
-          Leah: 1,
         },
         next_day: 32,
       },
@@ -1007,7 +986,6 @@ export const Story = [
       },
       "Talk to Linus": {
         traits: {
-          Penny: 1,
           Alex: 1,
           Sam: 1,
         },
@@ -1016,14 +994,12 @@ export const Story = [
       "Give Linus a Gift": {
         traits: {
           Emily: 1,
-          Harvey: 1,
+          Penny: 1,
         },
         next_day: 37,
       },
       "Enjoy the scenery": {
         traits: {
-          Abigail: 1,
-          Sebastian: 1,
           Haley: 1,
         },
         next_day: 36,
@@ -1081,12 +1057,12 @@ export const Story = [
     beautiful mountain lake.`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/lake.jpg`,
     options: {
-      "Fishing !?!": {
+      "Play Linus some music as thanks :D": {
         traits: {
-          Sam: 1,
-          Elliott: 1,
+          Sam: 2,
+          Elliott: 2,
         },
-        next_day: 34,
+        next_day: 37,
       },
       "Round two of the mines >:D": {
         traits: {
@@ -1131,7 +1107,7 @@ export const Story = [
         },
         next_day: 35,
       },
-      "Fishing !?!": {
+      "Fishing !?!?": {
         traits: {
           Sam: 1,
           Elliott: 1,
@@ -1166,7 +1142,7 @@ export const Story = [
     options: {
       "Sell fish": {
         traits: {
-          Shane: 1,
+          Penny: 1,
         },
         next_day: 43,
       },
@@ -1177,11 +1153,9 @@ export const Story = [
         },
         next_day: 43,
       },
-      "Maybe I'll eat it later": {
+      "Feed it to your cat!": {
         traits: {
-          Penny: 1,
-          Harvey: 1,
-          Emily: 1,
+          Shane: 2,
         },
         next_day: 43,
       }
@@ -1198,6 +1172,7 @@ export const Story = [
       "Sell copper": {
         traits: {
           Shane: 1,
+          Penny: 1,
         },
         next_day: 43,
       },
@@ -1210,7 +1185,6 @@ export const Story = [
       },
       "Smelt some, sell some": {
         traits: {
-          Penny: 1,
           Harvey: 1,
           Maru: 1,
         },
@@ -1226,10 +1200,9 @@ export const Story = [
     what do you think of?`,
     img: `${process.env.PUBLIC_URL}/stardew_quiz/lake_scenery.jpg`,
     options: {
-      "The past": {
+      "Your Pet": {
         traits: {
-          Penny: 1,
-          Sebastian: 1,
+          Shane: 3,
         },
         next_day: 42,
       },
@@ -1250,8 +1223,8 @@ export const Story = [
       },
       "The future": {
         traits: {
-          Abigail: 1,
           Emily: 1,
+          Penny: 1,
         },
         next_day: 42,
       },
@@ -1292,21 +1265,26 @@ export const Story = [
     options: {
       "Sell the plants": {
         traits: {
-          Shane: 1,
+          Penny: 1,
         },
         next_day: 43,
       },
       "Eat the plants": {
         traits: {
-          Emily: 1,
           Abigail: 1,
         },
         next_day: 43,
       },
       "Use the plants for decor": {
         traits: {
-          Penny: 1,
           Harvey: 1,
+          Emily: 1,
+        },
+        next_day: 43,
+      },
+      "Give it to your pet":{
+        traits: {
+          Shane: 2,
         },
         next_day: 43,
       }
@@ -1355,7 +1333,6 @@ export const Story = [
       "AHHH GET THEM AWAY": {
         traits: {
           Shane: 1,
-          Abigail: 1,
           Haley: 1,
         },
         next_day: 44,
@@ -1378,7 +1355,6 @@ export const Story = [
       "Eh probably just a bug": {
         traits: {
           Harvey: 1,
-          Sebastian: 1,
         },
         next_day: 44,
       },
@@ -1432,7 +1408,7 @@ export const Story = [
       "Stylish outfit": {
         traits: {
           Elliott: 1,
-          Haley: 1,
+          Haley: 2,
           Alex: 1,
         },
         next_day: 46,
@@ -1441,7 +1417,6 @@ export const Story = [
         traits: {
           Emily: 1,
           Penny: 1,
-          Maru: 1,
         },
         next_day: 46,
       },
@@ -1561,7 +1536,6 @@ export const Story = [
       "Just observe": {
         traits: {
           Leah: 1,
-          Abigail: 1,
         },
         next_day: 49,
       },
@@ -1582,12 +1556,13 @@ export const Story = [
         },
         next_day: 50,
       },
-      "Strike up conversation": {
+      "Hangout with friends": {
         traits: {
           Elliott: 1,
           Emily: 1,
           Alex: 1,
           Haley: 1,
+          Sam: 1,
         },
         next_day: 50,
       },
@@ -1677,7 +1652,7 @@ export const Story = [
         },
         next_day: 53,
       },
-      "Too many people, I'd rather stay in the farm ": {
+      "Too many people, I'd rather stay in the farm": {
         traits: {
           Sebastian: 1,
           Harvey: 1,
@@ -1762,7 +1737,6 @@ export const Story = [
         traits: {
           Leah: 1,
           Elliott: 1,
-          Haley: 1,
         },
         next_day: 59,
       },
@@ -1823,8 +1797,6 @@ export const Story = [
       "Hold onto it": {
         traits: {
           Sebastian: 1,
-          Harvey: 1,
-          Haley: 1,
         },
         next_day: 58,
       },
@@ -1900,7 +1872,7 @@ export const Story = [
       },
       "Upgrade equipment": {
         traits: {
-          Sebastian: 2,
+          Sebastian: 1,
           Leah: 1,
           Alex: 1,
           Maru: 2,
@@ -1915,7 +1887,7 @@ export const Story = [
       },
       "Clean up the house": {
         traits: {
-          Elliott: 2,
+          Elliott: 1,
           Harvey: 2,
         },
         next_day: 61,
@@ -2030,7 +2002,6 @@ export const Story = [
       "Admire the Scenery": {
         traits: {
           Elliott: 1,
-          Harvey: 1,
         },
         next_day: 66,
       },
@@ -2063,6 +2034,7 @@ export const Story = [
         traits: {
           Elliott: 1,
           Emily: 1,
+          Haley: 2,
         },
         next_day: 67,
       },
@@ -2095,7 +2067,7 @@ export const Story = [
       },
       "Tub o' Flowers recipe": {
         traits: {
-          Emily: 1,
+          Emily: 2,
           Leah: 1,
         },
         next_day: 69,
