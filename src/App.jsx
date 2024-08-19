@@ -13,24 +13,31 @@ import Contact from './components/Contact/contact-view'
 import DraftPredictior from './components/Projects/Draft-Predictor/draft-predictor-view';
 import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
 
+const show = (Component) => {
+  return(
+    <>
+      <NavBar/>
+      <Component/>
+      <Footer/>
+    </>
+  )
+}
+
 function App() {
-  const hide = !(window.location.pathname.startsWith('/personality-quiz/stardew'))
+
   return (
     <Router>
-      {hide && <NavBar/>}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        {/*<Route path="/experience" element={<Experience />} />*/}
-        <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/draftpredictor" element={<DraftPredictior />} />
+        <Route path="/" element={show(Home)} />
+        <Route path="/home" element={show(Home)} />
+        <Route path="/about" element={show(About)} />
+        <Route path="/projects" element={show(Projects)} />
+          <Route path="/projects/draftpredictor" element={show(DraftPredictior)} />
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
-        <Route path="/resume" element={<Resume />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/resume" element={show(Resume)} />
+        <Route path="/contact" element={show(Contact)} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {hide && <Footer/>}
     </Router>
   );
 }
