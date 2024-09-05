@@ -11,8 +11,24 @@ import Wheelchair from '../../assets/project_images/Wheelchair_Lights.png'
 import PySuperTuxKart from '../../assets/project_images/PySuperTuxKart.jpg'
 import StockPredictor from '../../assets/project_images/Stock_Predictor.png'
 import DraftPredictor from '../../assets/project_images/Draft_Predictor.png'
+import MediaBias from '../../assets/project_images/Media_Bias.png'
 
 export const projectData = [
+    {
+      img: MediaBias,
+      title: 'Media Bias Detection',
+      date: '2024',
+      description: `Created a deep learning model that looks for political bias
+      in social media posts. The data was obtained through scalping Facebook posts
+      by known biased sources such as NYT(left), Fox News(right), and the like.
+      The text obtained were encoded through doc2vec, and put through a neural
+      network consisting of leaky ReLUs and linear layers. The trained model has
+      an accuracy of ~90% on the test dataset.`,
+      tools: ['Python','PyTorch','NumPy','Gensim','Sklearn'],
+      docs: '/projects/mediabias',
+      video: '',
+      github: 'https://github.com/johnsony0/Media-Bias-Detector',
+    },
     {
       img: DraftPredictor,
       title: 'League of Legends Draft Predictor',
@@ -24,7 +40,7 @@ export const projectData = [
       Bayes classification algorithms. The final prediction is achieved through an 
       ensemble voting mechanism, delivering a verdict of either a blue team or red team 
       victory.`,
-      tools: ['Python','PyTorch','NumPy','ONNX'],
+      tools: ['Python','PyTorch','NumPy','ONNX','Sklearn'],
       docs: '/projects/draftpredictor',
       video: '',
       github: 'https://github.com/johnsony0/Draft-Analysis',
