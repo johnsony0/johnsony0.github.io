@@ -1,4 +1,23 @@
+import * as ort from 'onnxruntime-web';
 import seedrandom from "seedrandom";
+
+export const runModel = async(formData,seed) => {
+  ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
+  e.preventDefault();
+  model_path = `${process.env.PUBLIC_URL}/models/classification_model.onnx`
+  const vectorized_text = convertTextToVector(text,seed)
+  try{
+    const sesion = await ort.InferenceSession.create(model_path);
+    const data = Float32Array.from(vectorized_text)
+    const tensor_data = new ort.Tensor('float32',data,[1,100])
+    const feeds = {inputs: tensor_data}
+    const results = await session.run(feeds)
+    return results.output.data
+  } catch (error) {
+    console.error('Error creating inference session or running the model:',error)
+    return null
+  }
+}
 
 export const convertTextToVector = async(text,seed) => {
   const rng = seedrandom(seed)
