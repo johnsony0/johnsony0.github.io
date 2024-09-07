@@ -1,21 +1,42 @@
 import { useEffect, useState } from 'react';
-import { Typography } from "@mui/material";
-import { convertTextToVector } from './BiasUtils.jsx';
+import { FormControl, FormLabel, Box, Typography, Button, TextField } from "@mui/material";
+import { runModel } from './BiasUtils.jsx';
 
 function MediaBias() {
-  const [vector, setVector] = useState([]); 
+  const [loading, setLoading] = useState(false); 
+  const [bias, setBias] = useState([])
   const seed = '42'
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await convertTextToVector("hello world",seed);
-      console.log(result); 
-      setVector(result);
-    };
 
-    fetchData(); 
-  }, []);
+  const onSubmit = () => {
+    setLoading(true)
+    const text = data.get('text')
+    prediction = runModel(text,seed)
+    setLoading(true)
+    setBias(prediction)
+  }
+
   return(
-    <Typography>hello world</Typography>
+    <Box>
+      <FormControl>
+        <FormLabel htmlFor="text">Text</FormLabel>
+        <TextField
+          id="text"
+          type="text"
+          name="text"
+          placeholder="Twitter or Facebook post goes here :D"
+          multiline
+          row={4}
+          variant='filled'
+          fullwidth
+        />
+      </FormControl>
+      <Button type="submit" variant="contained" color="inherit" onClick={onSubmit} disabled={loading} fullWidth>
+          {loading ? 'Loading' : 'Determine Bias'}
+      </Button>
+      <Typography>
+        {bias}
+      </Typography>
+    </Box>
   )
 }
 
