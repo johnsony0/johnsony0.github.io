@@ -5,6 +5,8 @@ import { runModel, checkText } from './BiasUtils.jsx';
 import { PieChart, Pie, Cell, Tooltip as RechartsTooltip} from 'recharts'
 import {Clear} from '@mui/icons-material';
 
+//next steps: adding gibberish detection + political speech detection (if its not really political, it can't be a left or right), then give an option to submit anyways
+
 function MediaBias() {
   const [loading, setLoading] = useState(false)
   const [bias, setBias] = useState([])
@@ -139,8 +141,8 @@ function MediaBias() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseErrorDialog} color="primary" autoFocus>
-            OK
+          <Button onClick={handleCloseErrorDialog} color="inherit" autoFocus>
+            Close
           </Button>
         </DialogActions>
       </Dialog>

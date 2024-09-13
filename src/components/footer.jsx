@@ -39,7 +39,7 @@ function Footer(){
                     placement='top'
                     title={
                         <React.Fragment>
-                            <Typography variant='caption'>johnsony@bu.edu</Typography>
+                            <Typography variant='caption'>johnsonyangwork@bu.edu</Typography>
                         </React.Fragment>
                     }
                 >
