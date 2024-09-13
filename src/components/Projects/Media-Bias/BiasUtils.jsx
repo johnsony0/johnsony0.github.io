@@ -8,7 +8,7 @@ export const checkText = (text) => {
   if (text.trim().length === 0){
     return "Length of text is too short"
   }
-  return 0
+  return null
 }
 
 export const runModel = async(text) => {
