@@ -4,6 +4,13 @@ import { AutoTokenizer,env } from '@xenova/transformers'
 env.allowLocalModels = false;
 env.useBrowserCache = false;
 
+export const checkText = (text) => {
+  if (text.trim().length === 0){
+    return "Length of text is too short"
+  }
+  return 0
+}
+
 export const runModel = async(text) => {
   ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
   const model_path = `${process.env.PUBLIC_URL}/models/classification_model.onnx`

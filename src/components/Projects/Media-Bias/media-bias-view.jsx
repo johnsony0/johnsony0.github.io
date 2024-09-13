@@ -1,32 +1,46 @@
 import { useState } from 'react';
-import { Grid, Box, Button, TextField, IconButton, InputAdornment } from "@mui/material";
-import { runModel } from './BiasUtils.jsx';
-import { PieChart, Pie, Cell, Tooltip} from 'recharts'
-import ClearIcon from '@mui/icons-material/Clear';
+import { Box, Button, TextField, IconButton, InputAdornment } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+import { runModel, checkText } from './BiasUtils.jsx';
+import { PieChart, Pie, Cell, Tooltip as RechartsTooltip} from 'recharts'
+import {Clear} from '@mui/icons-material';
 
 function MediaBias() {
   const [loading, setLoading] = useState(false)
   const [bias, setBias] = useState([])
   const [inputText, setInputText] = useState('')
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
   const COLORS = ['#0088FE', 'grey', 'red'];
 
-  const onSubmit = async() => {
-    setLoading(true)
-    const prediction = await runModel(inputText)
-    const transformedValues = prediction.map(value => Math.round(value * 100));
-    const data = [
-      { name: "left", value: transformedValues[0] },    
-      { name: "center", value: transformedValues[2] },  
-      { name: "right", value: transformedValues[1] },  
-    ];
-    console.log(prediction)
-    setBias(data)
-    setLoading(false)
-  }
+  const handleCloseErrorDialog = () => {
+    setOpenErrorDialog(false);
+  };
 
   const onClear = () => {
     setInputText('')
     setBias('')
+  }
+
+  const onSubmit = async() => {
+    setLoading(true)
+    const error = checkText(inputText)
+    if (error){
+      setErrorMessage(error);
+      setOpenErrorDialog(true);
+    } else {
+      const prediction = await runModel(inputText)
+      const transformedValues = prediction.map(value => Math.round(value * 100));
+      const data = [
+        { name: "left", value: transformedValues[0] },    
+        { name: "center", value: transformedValues[2] },  
+        { name: "right", value: transformedValues[1] },  
+      ];
+      console.log(prediction)
+      setBias(data)
+    }
+    setLoading(false)
   }
 
   return(
@@ -66,9 +80,15 @@ function MediaBias() {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={onClear}>
-                  <ClearIcon />
-                </IconButton>
+                <Box sx={{ display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 3
+                  }}>
+                  <IconButton onClick={onClear}>
+                    <Clear />
+                  </IconButton>
+                </Box>
               </InputAdornment>
             ),
           }}
@@ -103,9 +123,27 @@ function MediaBias() {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
-        <Tooltip />
+        <RechartsTooltip />
       </PieChart>
     }
+    <Dialog
+        open={openErrorDialog}
+        onClose={handleCloseErrorDialog}
+        aria-labelledby="error-dialog-title"
+        aria-describedby="error-dialog-description"
+      >
+        <DialogTitle id="error-dialog-title"><b>Error</b></DialogTitle>
+        <DialogContent>
+          <DialogContentText id="error-dialog-description">
+            {errorMessage}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseErrorDialog} color="primary" autoFocus>
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   )
 }
