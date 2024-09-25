@@ -1,8 +1,9 @@
 import dayjs from 'dayjs';
-import { TextField, Box, Grid, IconButton, MenuItem } from '@mui/material';
+import { TextField, Grid, IconButton, MenuItem } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
@@ -123,32 +124,14 @@ function TaskBoard({
             )}
             {board.frequency === 'weekly' && (
               <Grid item xs={board.frequency === 'weekly' ? 4 : 12}>
-                <TextField
-                  label="Day"
-                  variant="outlined"
-                  select
-                  fullWidth
-                  value={board.day}
-                  onChange={(e) => handleDayChange(boardIndex, e.target.value)}
-                  sx={{ marginBottom: '16px' }}
-                  SelectProps={{
-                    MenuProps: {
-                      PaperProps: {
-                        style: {
-                          maxHeight: 48 * 4.5, 
-                        },
-                      },
-                    }
-                  }}
-                >
-                  <MenuItem value="Sunday">Sunday</MenuItem>
-                  <MenuItem value="Monday">Monday</MenuItem>
-                  <MenuItem value="Tuesday">Tuesday</MenuItem>
-                  <MenuItem value="Wednesday">Wednesday</MenuItem>
-                  <MenuItem value="Thursday">Thursday</MenuItem>
-                  <MenuItem value="Friday">Friday</MenuItem>
-                  <MenuItem value="Saturday">Saturday</MenuItem>
-                </TextField>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DatePicker 
+                    label="Start Date"
+                    value={board.day ? dayjs(board.day) : null}
+                    onChange={(newDay) => handleDayChange(boardIndex, newDay)}
+                    disablePast
+                  />
+                </LocalizationProvider>
               </Grid>
             )}
           </Grid>
