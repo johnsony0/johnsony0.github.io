@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import Cookies from 'js-cookie';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -43,13 +42,13 @@ function EditToolbar(props) {
   );
 }
 
-function TaskList({ id, tasks, frequency, onTasksChange }) {
-  const [rows, setRows] = useState(tasks);
+function TaskList({ board, setBoards, boardIndex , onTasksChange }) {
+  const [rows, setRows] = useState(board.tasks);
   const [rowModesModel, setRowModesModel] = useState({});
 
   useEffect(() => {
-    setRows(tasks); 
-  }, [tasks]);
+    setRows(board.tasks); 
+  }, [board.tasks]);
 
   const handleRowEditStop = (params, event) => {
     if (params.reason === GridRowEditStopReasons.rowFocusOut) {
@@ -95,33 +94,34 @@ function TaskList({ id, tasks, frequency, onTasksChange }) {
     setRowModesModel(newRowModesModel);
   };
 
+  const checkExpiration = () => {
+    const isExpired = dayjs().isAfter(dayjs(board.expire)); 
+    if (isExpired && board.frequency!=='regular') {
+      const updatedRows = rows.map((row) => ({
+        ...row,
+        status: 'Not Started',
+      }));
+      setRows(updatedRows);
+      onTasksChange(updatedRows); 
+      const newExpiration = board.frequency === 'weekly' ? dayjs(board.expire).add(7, 'day') : dayjs(board.expire).add(1, 'day');
+      setBoards((prevBoards) => {
+        const updatedBoards = [...prevBoards];
+        updatedBoards[boardIndex] = {
+          ...board,
+          expire: newExpiration.toISOString(), 
+        };
+        return updatedBoards;
+      });
+    }
+  };
+
   useEffect(() => {
-    const checkCookieAndResetTasks = () => {
-      console.log('in_here')
-      console.log(id)
-      const cookieExists = Cookies.get(id);
-      console.log(cookieExists)
-      if (frequency !== 'regular' && cookieExists){
-        const expirationDate = dayjs(cookieExists);
-        if (dayjs().isAfter(expirationDate)) {
-          const updatedRows = rows.map((row) => ({ ...row, status: 'Not Started' }));
-          setRows(updatedRows);
-          onTasksChange(updatedRows);
+    const interval = setInterval(() => {
+      checkExpiration();
+    }, 60000); 
 
-          const newExpirationDate = frequency === 'weekly' ? dayjs().add(7, 'day') : dayjs().add(1, 'day');
-          Cookies.set(id, id,{
-            expires: newExpirationDate.toDate(), 
-            sameSite: 'Lax', 
-            secure: true 
-          });
-        }
-      }
-    };
-
-    const intervalId = setInterval(checkCookieAndResetTasks, 1 * 60 * 1000); 
-
-    return () => clearInterval(intervalId);
-  }, [id, rows, frequency, onTasksChange]);
+    return () => clearInterval(interval); 
+  }, [board, rows]);
 
   const columns = [
     {
