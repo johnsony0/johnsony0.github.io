@@ -9,6 +9,7 @@ import { MiddleSequence } from './FGEO24Middle';
 
 import PikminSound from '../../../assets/sounds/pikmin-gcn.mp3';
 import YippieeSound from '../../../assets/sounds/yippee-tbh.mp3';
+import HappySound from '../../../assets/sounds/happy-happy-happy-song.mp3';
 
 function FGEO24() {
   const [phase, setPhase] = useState(Cookies.get('ILoveYouTheMost') ? 'end' : 'open');
@@ -94,14 +95,6 @@ function FGEO24() {
     }
   },[phase]);
 
-  const pikminSound = () => {
-    const audio = new Audio(PikminSound);
-    if (audio) {
-      audio.volume = 0.1;
-      audio.play();
-    }
-  };
-
   const sounds = [
     PikminSound,
     PikminSound,
@@ -109,11 +102,24 @@ function FGEO24() {
     YippieeSound,
     YippieeSound,
     YippieeSound,
-    null, 
+    HappySound,
+    HappySound,
+    HappySound,
     null, 
     null, 
     null, 
   ];
+
+  let currentAudio = null;
+
+  const pikminSound = () => {
+    currentAudio = new Audio(PikminSound);
+    if (currentAudio) {
+      currentAudio.volume = 0.1;
+      currentAudio.play();
+    }
+  };
+
 
   const randomSound = () => {
     const randomIndex = Math.floor(Math.random() * sounds.length);
@@ -121,10 +127,17 @@ function FGEO24() {
     if (!selectedSound) {
       return;
     }
-    const audio = new Audio(selectedSound);
-    audio.volume = 0.05;
+
+    if (currentAudio) {
+      currentAudio.pause(); 
+      currentAudio.currentTime = 0; 
+    }
+
+    currentAudio = new Audio(selectedSound);
+    currentAudio.volume = 0.05;
+  
     try {
-      audio.play();
+      currentAudio.play(); 
     } catch (error) {
       console.error('Error playing sound:', error);
     }

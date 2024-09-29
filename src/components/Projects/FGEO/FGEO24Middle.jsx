@@ -15,12 +15,21 @@ const steps = [
   {
     label: '(^-^)/ 🎉',
     description:
-    `This bit will just be a bit of poems, 
-    IDK what else to write 😭: 
-  
-    He found my crying,\n
-    He crew too,\n
-    We both crode...\n`,
+    `Thank you for the last 2 years, 
+    knowing you has been a blessing
+    in every way possible.
+
+    So ahem heres a poem:
+    
+    秋の夜や / Aki no yoruya
+    君を恋ひる月の / Kimi o koi hiru tsuki no
+    影を見る / Kage o miru
+      - Yosa Buson
+
+    (On an autumn night,
+    I gaze at the moon's shadow,
+    Longing for you.)
+    `,
   },
   {
     label: '⸜(｡˃ ᵕ ˂ )⸝♡🎂',
