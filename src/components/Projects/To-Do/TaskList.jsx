@@ -94,34 +94,39 @@ function TaskList({ board, setBoards, boardIndex , onTasksChange }) {
     setRowModesModel(newRowModesModel);
   };
 
-  const checkExpiration = () => {
-    const isExpired = dayjs().isAfter(dayjs(board.expire)); 
-    if (isExpired && board.frequency!=='regular') {
-      const updatedRows = rows.map((row) => ({
-        ...row,
-        status: 'Not Started',
-      }));
-      setRows(updatedRows);
-      onTasksChange(updatedRows); 
-      const newExpiration = board.frequency === 'weekly' ? dayjs(board.expire).add(7, 'day') : dayjs(board.expire).add(1, 'day');
-      setBoards((prevBoards) => {
-        const updatedBoards = [...prevBoards];
-        updatedBoards[boardIndex] = {
-          ...board,
-          expire: newExpiration.toISOString(), 
-        };
-        return updatedBoards;
-      });
-    }
-  };
-
   useEffect(() => {
+    const checkExpiration = () => {
+      const isExpired = dayjs().isAfter(dayjs(board.expire));
+      if (isExpired && board.frequency !== 'regular') {
+        const updatedRows = rows.map((row) => ({
+          ...row,
+          status: 'Not Started',
+        }));
+        setRows(updatedRows);
+        onTasksChange(updatedRows);
+        const newExpiration =
+          board.frequency === 'weekly'
+            ? dayjs(board.expire).add(7, 'day')
+            : dayjs(board.expire).add(1, 'day');
+        setBoards((prevBoards) => {
+          const updatedBoards = [...prevBoards];
+          updatedBoards[boardIndex] = {
+            ...board,
+            expire: newExpiration.toISOString(),
+          };
+          return updatedBoards;
+        });
+      }
+    };
+  
+    checkExpiration();
+  
     const interval = setInterval(() => {
       checkExpiration();
-    }, 60000); 
-
-    return () => clearInterval(interval); 
-  }, [board, rows]);
+    }, 60000);
+  
+    return () => clearInterval(interval);
+  }, [board, rows, setBoards, setRows, onTasksChange, boardIndex]);
 
   const columns = [
     {

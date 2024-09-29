@@ -10,10 +10,12 @@ import Projects from './components/Projects/projects-view';
 import Resume from './components/Resume/resume-view';
 import Contact from './components/Contact/contact-view'
 
+
 import DraftPredictior from './components/Projects/Draft-Predictor/draft-predictor-view';
 import MediaBias from './components/Projects/Media-Bias/media-bias-view';
 import ToDo from './components/Projects/To-Do/to-do-view';
 import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
+import FGEO24 from './components/Projects/FGEO/FGEO24-view';
 
 const show = (Component) => {
   return(
@@ -37,6 +39,7 @@ function App() {
           <Route path="/projects/draftpredictor" element={show(DraftPredictior)} />
           <Route path="/projects/mediabias" element={show(MediaBias)} />
           <Route path="/projects/todo" element={<ToDo/>}/>
+        <Route path="/for-girlfriend-eyes-only/24" element={<FGEO24/>}/>
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
         <Route path="/resume" element={show(Resume)} />
         <Route path="/contact" element={show(Contact)} />
