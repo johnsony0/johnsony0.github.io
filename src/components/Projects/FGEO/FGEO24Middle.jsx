@@ -7,10 +7,13 @@ const steps = [
     description: 
     `Hiiiii, congrats at turning 20, and 
     here's to more birthdays together 
-    🍾🍾🍾. To the love of my life, 
-    I hope today will be the best day 
-    in your life but next year 
-    will be even better >:3. `,
+    🍾🍾🍾. I've had some of the best
+    days in my life while I have known you, 
+    and I have you to thank. To 
+    the love of my life, I hope today will 
+    be the best day in your life but next year 
+    will be even better >:3. 
+    I love you the most EHEH.`,
   },
   {
     label: '(^-^)/ 🎉',
@@ -29,6 +32,14 @@ const steps = [
     (On an autumn night,
     I gaze at the moon's shadow,
     Longing for you.)
+
+    EHEHEH AND
+
+    From the way you smile,
+    the way you smell,
+    the way you sound,
+    the way you laugh,
+    every aspect, perfection.
     `,
   },
   {
