@@ -25,7 +25,7 @@ export const projectData = [
       network consisting of leaky ReLUs and linear layers. The trained model has
       an accuracy of ~90% on the test dataset.`,
       tools: ['Python','PyTorch','NumPy','Gensim','Sklearn'],
-      docs: '/projects/mediabias',
+      docs: '/projects/media-bias',
       video: '',
       github: 'https://github.com/johnsony0/Media-Bias-Detector',
     },
@@ -41,7 +41,7 @@ export const projectData = [
       ensemble voting mechanism, delivering a verdict of either a blue team or red team 
       victory.`,
       tools: ['Python','PyTorch','NumPy','ONNX','Sklearn'],
-      docs: '/projects/draftpredictor',
+      docs: '/projects/draft-predictor',
       video: '',
       github: 'https://github.com/johnsony0/Draft-Analysis',
     },
