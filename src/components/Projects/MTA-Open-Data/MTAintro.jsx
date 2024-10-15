@@ -1,8 +1,5 @@
 import { motion } from 'framer-motion';
-import { Box, Typography } from '@mui/material';
-import train from '../../../assets/open_data_images/train.jpg'
-import mta from '../../../assets/open_data_images/MTA.png'
-import bus from '../../../assets/open_data_images/bus.jpg'
+import { Box } from '@mui/material';
 
 const WhiteCircle = ({cx,cy}) => (
   <motion.circle
@@ -25,7 +22,7 @@ const ClickableText = ({ x, y, text, onClick }) => (
     transition={{ duration: 0.5}}
     whileHover={{ scale: 1.1, transition: { duration: 0.1, delay: 0.1 }}}
     whileTap={{ scale: 0.9, transition: { duration: 0.1, delay: 0.1 } }}
-    onClick={onClick} 
+    onClick={() => onClick(text)} 
     style={{ cursor: "pointer" }} 
   >
     <motion.text
@@ -57,11 +54,6 @@ export const IntroSequence = ({setPage}) => {
         backgroundRepeat: 'no-repeat'
       }}
     >
-      <Typography
-        fontSize={50}
-      >
-        MTA Open Data Challenge
-      </Typography>
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 300 300"
@@ -70,6 +62,22 @@ export const IntroSequence = ({setPage}) => {
         width="100vw"
         height="auto"
       >
+        <motion.text
+          x="150" 
+          y="50"
+          dy=".1em"
+          fill="black"
+          fontSize="15"
+          fontWeight="bold"
+          textAnchor="middle" 
+          alignmentBaseline="middle" 
+          initial={{ scale: 0 }} 
+          animate={{ scale: 1 }} 
+          transition={{ duration: 0.25, delay: 1 }} 
+        >
+          Choose Your
+          Destination
+        </motion.text>
         <motion.circle
           cx="20"
           cy={y_axis}
@@ -108,55 +116,12 @@ export const IntroSequence = ({setPage}) => {
           animate={{ x2: 290, opacity: 1}}
           transition={{ duration: 0.5, delay: 0.25 }}
         />
-        <motion.image
-          href={mta} 
-          x="50"
-          y="50"
-          width="50"
-          height="50"
-          animate={{scale:[0.8,1.1,0.8]}}
-          transition={{
-            repeat: Infinity,
-            duration: 3,
-            ease: "easeInOut"
-          }}
-          style={{ transformOrigin: 'center' }}
-        />
-        <motion.image
-          href={train} 
-          x="-50"
-          y="225"
-          width="100"
-          height="100"
-          animate={{x:[350,-50,350]}}
-          transition={{
-            repeat: Infinity,
-            duration: 5,
-            ease: "anticipate"
-          }}
-        />
-        <motion.image
-          href={bus} 
-          x="150"
-          y="-150"
-          width="100"
-          height="100"
-          initial={{rotate: -90}}
-          animate={{y:[-150,500]}}
-          transition={{
-            repeat: Infinity,
-            duration: 1,
-            repeatDelay: 5,
-            ease: "linear",
-            delay: 5,
-          }}
-        />
         <WhiteCircle cx={102.5} cy={y_axis}/>
         <WhiteCircle cx={165} cy={y_axis}/>
         <WhiteCircle cx={227.5} cy={y_axis}/>
-        <ClickableText x={205} y={y_axis-42} text={"Safety Data"} onClick={setPage}/>
-        <ClickableText x={133} y={y_axis-58} text={"Art Location Map"} onClick={setPage}/>
-        <ClickableText x={63} y={y_axis-68} text={"Ridership Prediction"} onClick={setPage}/>
+        <ClickableText x={198} y={y_axis-45} text={"View Art Map"} onClick={setPage}/>
+        <ClickableText x={130} y={y_axis-62} text={"Explore Art Nearby"} onClick={setPage}/>
+        <ClickableText x={67} y={y_axis-60} text={"Display Similar Art"} onClick={setPage}/>
       </motion.svg>
     </Box>
   )
