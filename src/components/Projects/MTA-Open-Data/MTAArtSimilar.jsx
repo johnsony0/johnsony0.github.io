@@ -1,6 +1,8 @@
-import { Box, Grid, Typography, Button } from "@mui/material"
+import { Box } from "@mui/material"
+import { NavBar
 
-export const ArtSimilar = ({setPage}) => {
+ } from "./MTAutils"
+export const ArtSimilar = ({setPage,nextPage,prevPage}) => {
   return (
     <Box
       sx={{
@@ -9,36 +11,10 @@ export const ArtSimilar = ({setPage}) => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        height: '100vh', 
+        height: '95vh', 
       }}
     >
-      <Grid container>
-        <Grid item xs={12}>
-          <Typography>
-            Similar Art
-          </Typography>
-        </Grid>
-        <Grid item xs={6}>
-          <Button
-          fullWidth
-          color="inherit"
-          variant="contained"
-          onClick={() => setPage('View Art Map')}
-          >
-            View Art Map
-          </Button>
-        </Grid>
-        <Grid item xs={6}>
-          <Button
-          fullWidth
-          color="inherit"
-          variant="contained"
-          onClick={() => setPage('Explore Art Nearby')}
-          >
-            Explore Art Nearby
-          </Button>
-        </Grid>
-      </Grid>
+      <NavBar setPage={setPage} nextPage={nextPage} prevPage={prevPage}/>
     </Box>
   )
 }

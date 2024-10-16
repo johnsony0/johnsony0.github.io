@@ -36,7 +36,7 @@ const ClickableText = ({ x, y, text, onClick }) => (
   </motion.g>
 );
 
-export const IntroSequence = ({setPage}) => {
+export const Home = ({setPage, pageOne, pageTwo, pageThree}) => {
   const y_axis = 200;
   return(
     
@@ -60,7 +60,6 @@ export const IntroSequence = ({setPage}) => {
         initial="hidden"
         animate="visible"
         width="100vw"
-        height="auto"
       >
         <motion.text
           x="150" 
@@ -73,7 +72,7 @@ export const IntroSequence = ({setPage}) => {
           alignmentBaseline="middle" 
           initial={{ scale: 0 }} 
           animate={{ scale: 1 }} 
-          transition={{ duration: 0.25, delay: 1 }} 
+          transition={{ duration: 0.25, delay: 0.25 }} 
         >
           Choose Your
           Destination
@@ -119,9 +118,9 @@ export const IntroSequence = ({setPage}) => {
         <WhiteCircle cx={102.5} cy={y_axis}/>
         <WhiteCircle cx={165} cy={y_axis}/>
         <WhiteCircle cx={227.5} cy={y_axis}/>
-        <ClickableText x={198} y={y_axis-45} text={"View Art Map"} onClick={setPage}/>
-        <ClickableText x={130} y={y_axis-62} text={"Explore Art Nearby"} onClick={setPage}/>
-        <ClickableText x={67} y={y_axis-60} text={"Display Similar Art"} onClick={setPage}/>
+        <ClickableText x={193} y={y_axis-55} text={pageOne} onClick={setPage}/>
+        <ClickableText x={130} y={y_axis-62} text={pageTwo} onClick={setPage}/>
+        <ClickableText x={73} y={y_axis-45} text={pageThree} onClick={setPage}/>
       </motion.svg>
     </Box>
   )

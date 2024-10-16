@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'; 
-import { Box, Button } from "@mui/material";
-import Papa from 'papaparse';
+import { Box } from "@mui/material";
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, GeoJSON  } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { NavBar, useFetchData } from './MTAutils';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -21,6 +21,33 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 const startPosition = [40.7128, -73.91875];
 
+const lineColorMapping = {
+  "1" : "#ee352e",
+  "2" : "#ee352e",
+  "3" : "#ee352e",
+  "A" : "#0039a6",
+  "C" : "#0039a6",
+  "E" : "#0039a6",
+  "B" : "#ff6319",
+  "D" : "#ff6319",
+  "F" : "#ff6319",
+  "M" : "#ff6319",
+  "G" : "#6cbe45",
+  "L" : "#a7a9ac",
+  "J" : "#996633",
+  "Z" : "#996633",
+  "N" : "#fccc0a",
+  "Q" : "#fccc0a",
+  "R" : "#fccc0a",
+  "W" : "#fccc0a",
+  "4" : "#00933c",
+  "5" : "#00933c",
+  "6" : "#00933c",
+  "7" : "#b933ad",
+  "T" : "#00add0",
+  "S" : "#808183"
+}
+
 const ArtMarkers = ({ artData }) => {
   return (
     <MarkerClusterGroup>
@@ -28,7 +55,8 @@ const ArtMarkers = ({ artData }) => {
         <Marker key={index} position={[art.latitude, art.longitude]}>
           <Popup>
             <div>
-              <h3>{art.art_title}</h3>
+              <h3><em>{art.art_title}, {art.art_date}</em></h3>
+              <h5>by {art.artist}</h5> 
               <img 
                 src={art.art_image_src}
                 alt={art.art_title}
@@ -38,10 +66,8 @@ const ArtMarkers = ({ artData }) => {
                   objectFit: 'cover' 
                 }} 
               />
-              <p>Artist: {art.artist}</p>
-              <p>Agency: {art.agency}</p>
-              <p>Art Date: {art.art_date}</p>
-              <p>Material: {art.art_material}</p>
+              <p><strong>{art.station_name}:</strong> {art.line}</p>
+              <p><strong>Material:</strong> {art.art_material}</p>
               <p>
                 More Info: 
                 <a 
@@ -61,10 +87,11 @@ const ArtMarkers = ({ artData }) => {
   );
 };
 
-export const ArtMap = ({ setPage }) => {
+export const ArtMap = ({ setPage, nextPage, prevPage }) => {
   const [artData, setArtData] = useState([]);
-  const file_path = `${process.env.PUBLIC_URL}/mta_art.csv`;
   const [geojsonData, setGeojsonData] = useState(null);
+
+  useFetchData(setArtData)
 
   useEffect(() => {
     const fetchGeoJSON = async () => {
@@ -83,62 +110,19 @@ export const ArtMap = ({ setPage }) => {
     fetchGeoJSON();
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(file_path);
-      const csvData = await response.text();
-  
-      Papa.parse(csvData, {
-        header: true,
-        complete: (results) => {
-          const parsedData = results.data.map(row => {
-            let imageUrl = null
-            if (row.art_image_link === ''){
-              imageUrl = null
-            } else  {
-              const parsedLink  = JSON.parse(row.art_image_link.replace(/'/g, '"'));
-              imageUrl = parsedLink.url ? parsedLink.url : null;
-            }
-            return {
-              id: row.id,
-              agency: row.agency,
-              station_name: row.station_name,
-              line: row.line,
-              artist: row.artist,
-              art_title: row.art_title,
-              art_date: row.art_date,
-              art_material: row.art_material,
-              art_description: row.art_description,
-              art_image_link: imageUrl, 
-              art_image_src: row.image_src,
-              latitude: parseFloat(row.latitude),
-              longitude: parseFloat(row.longitude),
-            };
-          });
-          setArtData(parsedData);
-          console.log('All data loaded', parsedData);
-        },
-        error: (err) => {
-          console.error('Error loading data:', err);
-        },
-      });
-    } catch (error) {
-      console.error('Error fetching data:', error);
+  const subwayLineStyle = (feature) => {
+    const lineId = feature.properties.rt_symbol
+    const color = lineColorMapping[lineId] || "#F5F5DC"
+
+    return{
+      color: color,
+      weight: 3,
+      opacity: 0.8,
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  },); 
-
-  const subwayLineStyle = {
-    color: "#FF0000",
-    weight: 3,
-    opacity: 0.8,
-  };
-
   const onEachFeature = (feature, layer) => {
-    const lineName = feature.properties.line_name; 
+    const lineName = feature.properties.name; 
 
     layer.on('click', () => {
       layer.bindPopup(`<strong>Line:</strong> ${lineName}`).openPopup();
@@ -164,32 +148,7 @@ export const ArtMap = ({ setPage }) => {
         )}
         <ArtMarkers artData={artData} />
       </MapContainer>
-      <Box
-        sx={{
-          display: 'flex',
-          position: 'absolute',
-          bottom: 0, 
-          height: '5vh', 
-          width: '100%', 
-        }}
-      >
-        <Button
-          sx={{ width: '50%' }} 
-          color="inherit"
-          variant="contained"
-          onClick={() => setPage('Display Similar Art')}
-        >
-          Display Similar Art
-        </Button>
-        <Button
-          sx={{ width: '50%' }} 
-          color="inherit"
-          variant="contained"
-          onClick={() => setPage('Explore Art Nearby')}
-        >
-          Explore Art Nearby
-        </Button>
-      </Box>
+      <NavBar setPage={setPage} nextPage={nextPage} prevPage={prevPage}/>
     </Box>
   );
 };

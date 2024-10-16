@@ -1,22 +1,26 @@
 import React, {useState} from 'react';
-import { IntroSequence } from './MTAintro';
+import { Home } from './MTAhome';
 import { ArtMap } from './MTAArtMap';
 import { ArtNearby } from './MTAArtNearby';
-import { ArtSimilar } from './MTAArtSimilar';
+//import { ArtSimilar } from './MTAArtSimilar';
+import { Art } from './MTAArt'
 
 function MTAOpenData(){ 
-  const [page,setPage] = useState('Intro')
+  const [page,setPage] = useState('Home')
+  const pageOne = 'Explore Artworks'
+  const pageTwo = 'Display Nearby Art'
+  const pageThree = 'View Art Map'
 
   return (
     <>
-      {page === 'Intro' ? (
-        <IntroSequence setPage={setPage} />
-      ) : page === 'View Art Map' ? (
-        <ArtMap setPage={setPage} />
-      ) : page === 'Explore Art Nearby' ? (
-        <ArtNearby setPage={setPage} />
-      ) : page === 'Display Similar Art' ? (
-        <ArtSimilar setPage={setPage} />
+      {page === 'Home' ? (
+        <Home setPage={setPage} pageOne={pageOne} pageTwo={pageTwo} pageThree={pageThree}/>
+      ) : page === pageThree ? (
+        <ArtMap setPage={setPage} nextPage={pageOne} prevPage={pageTwo}/>
+      ) : page === pageTwo ? (
+        <ArtNearby setPage={setPage} nextPage={pageThree} prevPage={pageOne}/>
+      ) : page === pageOne ? (
+        <Art setPage={setPage} nextPage={pageTwo} prevPage={pageThree}/>
       ) : null}
     </>
   );
