@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography } from "@mui/material";
-import { NavBar, useFetchData } from "./MTAutils";
+import { NavBar } from "./MTAutils";
 import { motion, useMotionValue, useTransform, useAnimation } from "framer-motion";
 import { IconButton, Tooltip, Dialog,DialogTitle,DialogActions,DialogContent,DialogContentText,Button,Link} from '@mui/material';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
 import InfoIcon from '@mui/icons-material/Info';
 
-export const Art = ({ setPage, nextPage, prevPage }) => {
-  const [artData, setArtData] = useState([]);
+export const Art = ({ artData, setPage, nextPage, prevPage }) => {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = React.useState(false);
 
   const controls = useAnimation();
-
-  useFetchData(setArtData);  
 
   useEffect(() => {
     if (artData.length > 0) {
@@ -41,6 +40,14 @@ export const Art = ({ setPage, nextPage, prevPage }) => {
 
   const currentImage = artData[currentIndex];  
 
+  if (artData.length === 0 || currentIndex === null) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Typography>Loading art...</Typography>
+      </Box>
+    );
+  } 
+
   const handleClose = () => {
     setShowInfo(false);
   };
@@ -50,15 +57,14 @@ export const Art = ({ setPage, nextPage, prevPage }) => {
     setCurrentIndex(Math.floor(Math.random() * artData.length)); 
   }
 
-  if (artData.length === 0) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <Typography>Loading art...</Typography>
-      </Box>
-    );
-  } 
+  const handleTooltipClose = () => {
+    setTooltipOpen(false);
+  };
 
-  console.log(currentIndex)
+  const handleTooltipOpen = () => {
+    setTooltipOpen(true);
+  };
+
 
   return (
     <Box
@@ -67,25 +73,34 @@ export const Art = ({ setPage, nextPage, prevPage }) => {
         height: '100vh', 
         padding: 0,
         margin: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        flexDirection: 'column',
       }}
     >
-      <Tooltip 
-      title={`Swipe left to see a different piece.
-        Swipe right for more info on the current piece.
-        `}
-      sx={{
-        position: 'absolute'
-      }}
-      >
-        <IconButton>
-          <InfoIcon />
-        </IconButton>
-      </Tooltip>
+      <ClickAwayListener onClickAway={handleTooltipClose}>
+        <Tooltip 
+          arrow
+          open={tooltipOpen}
+          onClose={handleTooltipClose}
+          disableFocusListener
+          disableHoverListener
+          disableTouchListener 
+          title={`Swipe left to see a different piece.
+            Swipe right for more info on the current piece.
+            `}
+          sx={{
+            position: 'absolute'
+          }}
+        >
+          <IconButton onClick={handleTooltipOpen}>
+            <InfoIcon />
+          </IconButton>
+        </Tooltip>
+      </ClickAwayListener>
       <motion.div 
       style={{
       background,
-      width: '100vw',
+      width: '100%',
       height: '95vh',
       display: 'flex',
       justifyContent: 'center',
@@ -109,7 +124,6 @@ export const Art = ({ setPage, nextPage, prevPage }) => {
           dragConstraints={{ left: 0, right: 0 }}
         />
       </motion.div>
-      <NavBar setPage={setPage} nextPage={nextPage} prevPage={prevPage}/>
       <Dialog onClose={handleNext} open={showInfo}>
         <DialogTitle>
           {currentImage?.art_title}, {currentImage?.art_date}
@@ -153,6 +167,8 @@ export const Art = ({ setPage, nextPage, prevPage }) => {
           </Button>
         </DialogActions>
       </Dialog>
+      <NavBar setPage={setPage} nextPage={nextPage} prevPage={prevPage}/>
     </Box>
+    
   );
 };

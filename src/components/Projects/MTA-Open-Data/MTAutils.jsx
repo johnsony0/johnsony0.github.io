@@ -50,7 +50,7 @@ export const useFetchData = (setArtData) => {
       }
     };
     fetchData();
-  },[file_path]); 
+  },[file_path,setArtData]); 
 }
 
 export const NavBar = ({ setPage, nextPage, prevPage }) => {
@@ -58,19 +58,15 @@ export const NavBar = ({ setPage, nextPage, prevPage }) => {
     <Box
       sx={{
         display: 'flex',
-        position: 'absolute',
-        bottom: 0, 
         height: '5vh', 
-        width: '100%', 
+        width: '100%'
       }}
     >
       <Button
         sx={{ 
-          width: '50%',
-          position: 'relative', 
+          width: '33%',
           '&::after': { 
             content: '""',
-            display: 'block',
             width: '3px',  
             height: '70%', 
             backgroundColor: 'black',
@@ -86,7 +82,7 @@ export const NavBar = ({ setPage, nextPage, prevPage }) => {
       </Button>
 
       <Button
-        sx={{ width: '50%' }} 
+        sx={{ width: '33%' }} 
         color="inherit"
         onClick={() => setPage('Home')}
       >
@@ -95,11 +91,9 @@ export const NavBar = ({ setPage, nextPage, prevPage }) => {
 
       <Button
         sx={{ 
-          width: '50%',
-          position: 'relative', 
+          width: '33%',
           '&::before': { 
             content: '""',
-            display: 'block',
             width: '3px',  
             height: '70%', 
             backgroundColor: 'black',

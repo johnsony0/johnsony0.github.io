@@ -6,7 +6,7 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import { NavBar, useFetchData } from './MTAutils';
+import { NavBar } from './MTAutils';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -87,11 +87,8 @@ const ArtMarkers = ({ artData }) => {
   );
 };
 
-export const ArtMap = ({ setPage, nextPage, prevPage }) => {
-  const [artData, setArtData] = useState([]);
+export const ArtMap = ({ artData, setPage, nextPage, prevPage }) => {
   const [geojsonData, setGeojsonData] = useState(null);
-
-  useFetchData(setArtData)
 
   useEffect(() => {
     const fetchGeoJSON = async () => {
