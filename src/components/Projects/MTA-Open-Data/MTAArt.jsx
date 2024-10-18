@@ -38,6 +38,25 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
     controls.start({ x: 0 });  
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowLeft') {
+      setShowInfo(true);  
+      controls.start({ x: 0 }); 
+    } else if (event.key === 'ArrowRight') {
+      setShowInfo(false);
+      setCurrentIndex(Math.floor(Math.random() * artData.length)); 
+      controls.start({ x: 0 }); 
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const currentImage = artData[currentIndex];  
 
   if (artData.length === 0 || currentIndex === null) {
@@ -108,6 +127,8 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
       }}
       >
         <motion.img
+          whileHover={{scale: 1.2}}
+          whileTap={{scale:0.8}}
           src={currentImage?.art_image_src} 
           alt={currentImage?.art_title}  
           style={{ 
