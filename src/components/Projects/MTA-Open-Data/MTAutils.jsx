@@ -1,7 +1,105 @@
 import React, { useEffect } from 'react'; 
 import Papa from 'papaparse';
-import { Box, Button } from "@mui/material";
 import HomeIcon from '@mui/icons-material/Home';
+import {CitySelect, CountrySelect, StateSelect} from "react-country-state-city";
+import "react-country-state-city/dist/react-country-state-city.css";
+import { Typography, TextField, Box, Button, Grid, FormControl, FormHelperText } from "@mui/material"
+
+
+export const AddressForm = ({getCoordinates, country, state, setAddress, setCountry, setState, setCity, setZip, errors}) => {
+  return(
+    <Grid
+      container
+      spacing={3} 
+      sx={{
+        justifyContent: 'center', 
+        alignItems: 'center',     
+      }}
+    >
+      <Grid item xs={12}>
+        <Typography gutterBottom>Address</Typography>
+        <TextField
+          fullWidth
+          variant="outlined"
+          size="small"
+          placeholder='e.g. 123 Lane Drive'
+          onChange={(e) => setAddress(e.target.value)}
+          error={errors.address}
+          helperText={errors.address ? "Please enter an Address" : ""}
+        />
+      </Grid>
+        <Grid item xs={6}> 
+          <FormControl fullWidth error={errors.country} required>
+            <Typography gutterBottom>Country</Typography>
+            <CountrySelect
+              defaultValue={country}
+              onChange={(e) => setCountry(e)}
+              placeHolder="Select Country"
+            />
+            <FormHelperText>
+              {errors.country ? "Please select a Country" : ""}
+            </FormHelperText>
+          </FormControl>
+        </Grid>
+
+      <Grid item xs={6}>
+        <FormControl fullWidth error={errors.state} required>
+          <Typography gutterBottom>State</Typography>
+          <StateSelect
+            defaultValue={state}
+            countryid={country.id}
+            onChange={(e) => setState(e)}
+            placeHolder="Select State"
+          />
+          <FormHelperText>
+            {errors.state ? "Please select a State" : ""}
+          </FormHelperText>
+        </FormControl>
+      </Grid>
+      <Grid item xs={6}>
+        <FormControl fullWidth error={errors.city} required>
+          <Typography gutterBottom>City</Typography>
+          <CitySelect
+            countryid={country.id}
+            stateid={state.id}
+            onChange={(e) => setCity(e)}
+            placeHolder="Select City"
+          />
+          <FormHelperText>
+            {errors.city ? "Please select a State" : ""}
+          </FormHelperText>
+        </FormControl>
+      </Grid>
+      <Grid item xs={6}>
+        <Typography gutterBottom>Zip Code</Typography>
+        <TextField
+          onChange={(e) => setZip(e.target.value)}
+          fullWidth
+          variant="outlined"
+          size="small"
+          type="number"
+          placeholder='e.g. 11111'
+          error={errors.zip}
+          helperText={errors.zip ? "Please enter valid Zip Code" : ""}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <Button
+          variant="outlined"
+          fullWidth
+          sx={{
+            color: 'black',
+            borderColor: 'black',
+            mt: 2, 
+          }}
+          onClick={getCoordinates}
+        >
+          Find Nearest Art
+        </Button>
+      </Grid>
+    </Grid>
+  )
+}
 
 export const useFetchData = (setArtData) => {
   const file_path = `${process.env.PUBLIC_URL}/mta_art.csv`;

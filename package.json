@@ -36,7 +36,6 @@
     "react-leaflet-cluster": "^2.1.0",
     "react-papaparse": "^4.4.0",
     "react-router-dom": "^6.23.1",
-    "react-scripts": "5.0.1",
     "react-spring": "^9.7.4",
     "recharts": "^2.12.7",
     "seedrandom": "^3.0.5",
@@ -73,8 +72,10 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@vitejs/plugin-react": "^4.3.2",
     "copy-webpack-plugin": "^6.4.1",
     "cross-env": "^7.0.3",
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "vite": "^5.4.9"
   }
 }
