@@ -46,7 +46,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "serve": "vite preview",
+    "preview": "vite preview --port 3000",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
