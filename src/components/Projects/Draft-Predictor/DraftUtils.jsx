@@ -1,37 +1,37 @@
 import * as ort from 'onnxruntime-web';
 import { usePapaParse } from 'react-papaparse';
-import { versions,champions } from './DraftData';
+import { versions, champions } from './DraftData';
 
-export const FindSimilarGame = async(formData) => {
+export const FindSimilarGame = async (formData) => {
   const { readRemoteFile } = usePapaParse();
-  const file_path = `${process.env.PUBLIC_URL}/database.csv`
-  let dict = {
-    'count': 0
-  };
+  let dict = { count: 0 };
+  const database_url =  new URL('/src/assets/database.csv', import.meta.url).href;
+  
   return new Promise((resolve, reject) => {
-    readRemoteFile(file_path, {
+    readRemoteFile(database_url, {
       step: (row) => {
         const match_region = formData.region === 'ANY' || formData.region === row.data[2];
         const match_gameMode = formData.game_mode === 'ANY' || formData.game_mode === row.data[3];
         const match_elo = formData.elo.includes('ANY') || formData.elo.includes(row.data[4].split(' ')[0]);
         const match_version = formData.version === 'ANY' || formData.version === row.data[5].split('.').slice(0, 2).join('.');
+
         if (match_region && match_gameMode && match_elo && match_version) {
           dict.count++;
           const blue_matches = formData.blue_team.filter(item => row.data.slice(6, 11).includes(item));
           const red_matches = formData.red_team.filter(item => row.data.slice(11, 16).includes(item));
           const total_matches = blue_matches.length + red_matches.length;
-          if (total_matches >= formData.threshold ) {
-            let push_data = true
-            if(formData.champion){
-              if(!blue_matches.includes(formData.champion) && !red_matches.includes(formData.champion)) push_data = false
-            }
-              if(push_data){
-              let [region, matchId] = row.data[1].split('_');
-              if (region === 'NA1') {
-                region = 'na';
-              } else if (region === 'EUW1') {
-                region = 'euw'
+
+          if (total_matches >= formData.threshold) {
+            let push_data = true;
+            if (formData.champion) {
+              if (!blue_matches.includes(formData.champion) && !red_matches.includes(formData.champion)) {
+                push_data = false;
               }
+            }
+            if (push_data) {
+              let [region, matchId] = row.data[1].split('_');
+              region = region === 'NA1' ? 'na' : region === 'EUW1' ? 'euw' : region;
+              
               if (!dict[total_matches]) {
                 dict[total_matches] = [];
               }
@@ -43,12 +43,8 @@ export const FindSimilarGame = async(formData) => {
           }
         }
       },
-      complete: () => {
-        resolve(dict);
-      },
-      error: (error) => {
-        reject(error);
-      }
+      complete: () => resolve(dict),
+      error: (error) => reject(error)
     });
   });
 };
@@ -61,10 +57,10 @@ export const runModel = async (e, formData) => {
   const blue_team = encodeTeam(formData.blue_team);
   const red_team = encodeTeam(formData.red_team);
   const version = labelToValueMap(versions, formData.version);
-  const model_path = `${process.env.PUBLIC_URL}/models/${formData.region}_${formData.game_mode}_${formData.elo}_${version}_nn_model.onnx`;
+  const model_url =  new URL(`/src/assets/models/${formData.region}_${formData.game_mode}_${formData.elo}_${version}_nn_model.onnx`, import.meta.url).href;
 
   try {
-    const session = await ort.InferenceSession.create(model_path);
+    const session = await ort.InferenceSession.create(model_url);
 
     const data = Float32Array.from([...blue_team, ...red_team]);
     const tensor_data = new ort.Tensor('float32', data, [1, 2, 168]);

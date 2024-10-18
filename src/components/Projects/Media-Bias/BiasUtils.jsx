@@ -1,5 +1,5 @@
 import * as ort from 'onnxruntime-web';
-import { AutoTokenizer,env } from '@xenova/transformers'
+import { AutoTokenizer,env } from '@xenova/transformers';
 
 env.allowLocalModels = false;
 env.useBrowserCache = false;
@@ -13,10 +13,10 @@ export const checkText = (text) => {
 
 export const runModel = async(text) => {
   ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/";
-  const model_path = `${process.env.PUBLIC_URL}/models/classification_model.onnx`
   const vectorized_text = await convertTextToVector(text)
+  const model_url = new URL('/src/assets/models/classification_model.onnx', import.meta.url).href;
   try{
-    const session = await ort.InferenceSession.create(model_path);
+    const session = await ort.InferenceSession.create(model_url);
     const data = new Int32Array(vectorized_text)
     const tensor_data = new ort.Tensor('int32',data,[1,data.length])
     const feeds = {input: tensor_data}

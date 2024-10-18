@@ -102,7 +102,7 @@ export const AddressForm = ({getCoordinates, country, state, setAddress, setCoun
 }
 
 export const useFetchData = (setArtData) => {
-  const file_path = `${process.env.PUBLIC_URL}/mta_art.csv`;
+  const file_path = new URL('/src/assets/mta_art.csv', import.meta.url).href;
   useEffect(() => {
     const fetchData = async () => {
       try {

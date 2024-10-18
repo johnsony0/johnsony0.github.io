@@ -17,7 +17,7 @@ export const ArtNearby = ({setPage, nextPage, prevPage}) => {
   });
 
   const [coordinates, setCoordinates] = useState({ lat: '', lng: '' });
-  const apiKey = process.env.REACT_APP_GOOGLE_GEOCODING_KEY; 
+  const apiKey = import.meta.env.REACT_APP_GOOGLE_GEOCODING_KEY; 
   const getCoordinates = async (e) => {
     e.preventDefault();
     if(!validateForm()){

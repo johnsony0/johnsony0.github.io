@@ -16,7 +16,7 @@ function StardewQuizResult({result, onRestart}){
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundImage: `url(${process.env.PUBLIC_URL}/stardew_quiz/background.gif)`,
+    backgroundImage: `url(/stardew_quiz/background.gif)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   }
@@ -73,7 +73,7 @@ function StardewQuizResult({result, onRestart}){
           <Box
             component='img'
             key='result-img'
-            src={`${process.env.PUBLIC_URL}/stardew_quiz/character_sheets/${result}.webp`}
+            src={`/stardew_quiz/character_sheets/${result}.webp`}
             sx={resultStyles}
           />
         </Grid>

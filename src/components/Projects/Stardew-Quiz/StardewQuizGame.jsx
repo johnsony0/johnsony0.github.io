@@ -7,7 +7,7 @@ function StardewQuizGame({ currentStory, currentImage, handleOptionClick }) {
     justifyContent: 'center',
     textAlign: 'center',
     height: '100vh',
-    backgroundImage: `url(${process.env.PUBLIC_URL}/stardew_quiz/background.gif)`,
+    backgroundImage: `url(/stardew_quiz/background.gif)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   }

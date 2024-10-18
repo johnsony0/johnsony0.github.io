@@ -93,7 +93,7 @@ export const ArtMap = ({ artData, setPage, nextPage, prevPage }) => {
   useEffect(() => {
     const fetchGeoJSON = async () => {
       try {
-        const response = await fetch(`${process.env.PUBLIC_URL}/SubwayLines.geojson`);
+        const response = await fetch(`/src/assets/SubwayLines.geojson`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

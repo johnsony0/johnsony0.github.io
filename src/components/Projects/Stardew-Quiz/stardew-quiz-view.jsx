@@ -98,7 +98,7 @@ function StardewQuiz() {
         />
         <meta
           property="og:image"
-          content={`${process.env.PUBLIC_URL}/favicon.png`}
+          content={`/favicon.png`}
         />
       </Helmet>
       {result ? (
