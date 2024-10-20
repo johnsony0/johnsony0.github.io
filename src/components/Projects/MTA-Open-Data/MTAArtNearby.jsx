@@ -60,7 +60,7 @@ export const ArtNearby = ({setPage, nextPage, prevPage}) => {
       newErrors.city = true;
       hasErrors = true;
     }
-    if (zip.length != 5) {
+    if (zip.length !== 5) {
       newErrors.zip = true;
       hasErrors = true;
     }
