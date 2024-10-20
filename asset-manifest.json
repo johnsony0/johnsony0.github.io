@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2d4d5c00.css",
+    "main.js": "/static/js/main.5065c081.js",
+    "static/js/453.ace21015.chunk.js": "/static/js/453.ace21015.chunk.js",
+    "static/media/me-with-fish.jpg": "/static/media/me-with-fish.c029da80368bdd337b81.jpg",
+    "static/media/Portfolio.png": "/static/media/Portfolio.911921c77c338a9f593f.png",
+    "static/media/TwemojiMozilla.ttf": "/static/media/TwemojiMozilla.c993f93bd40b647e0b38.ttf",
+    "static/media/Timer_Project.png": "/static/media/Timer_Project.84d04b3162d35c66d3a7.png",
+    "static/media/Boston_University.png": "/static/media/Boston_University.4c1098a1e1a28eaa07ff.png",
+    "static/media/happy-happy-happy-song.mp3": "/static/media/happy-happy-happy-song.6e60a8d645edea006cfa.mp3",
+    "static/media/me.png": "/static/media/me.84100affcb23940449f2.png",
+    "static/media/Resume.pdf": "/static/media/Resume.40a451a96716ba0cf97a.pdf",
+    "static/media/Temp_Sensor.png": "/static/media/Temp_Sensor.0564c4bbe9389eb335cb.png",
+    "static/media/Wheelchair_Lights.png": "/static/media/Wheelchair_Lights.d0c08c126812a7a26d81.png",
+    "static/media/Evolution_Kubernetes.png": "/static/media/Evolution_Kubernetes.48419f2f9c5043efdbcd.png",
+    "static/media/PySuperTuxKart.jpg": "/static/media/PySuperTuxKart.70b213bce735807f1db7.jpg",
+    "static/media/Stock_Predictor.png": "/static/media/Stock_Predictor.d2d839f47ac95be89154.png",
+    "static/media/PokerProPlus.png": "/static/media/PokerProPlus.c1a0d4c4ba8ac9f32126.png",
+    "static/media/Langolio.png": "/static/media/Langolio.79ac282210c10f4de3d3.png",
+    "static/media/Draft_Predictor.png": "/static/media/Draft_Predictor.dfa0579f465702fc45e9.png",
+    "static/media/Calculator_App.png": "/static/media/Calculator_App.d8344fc3b5a054f740ac.png",
+    "static/media/pikmin-gcn.mp3": "/static/media/pikmin-gcn.1f4e568398ffc802733e.mp3",
+    "static/media/Chat_App.png": "/static/media/Chat_App.4ba075c2cf078505b8f7.png",
+    "static/media/Media_Bias.png": "/static/media/Media_Bias.3c7c486be48cb483f9a8.png",
+    "static/media/Stardew_Valley.ttf": "/static/media/Stardew_Valley.37b14cb7ae9c0b1961bd.ttf",
+    "static/media/Boston_Crime_Data.png": "/static/media/Boston_Crime_Data.8d5f441bc4b3bec1f6ac.png",
+    "static/media/yippee-tbh.mp3": "/static/media/yippee-tbh.502d0e062ba7fb25291e.mp3",
+    "index.html": "/index.html",
+    "main.2d4d5c00.css.map": "/static/css/main.2d4d5c00.css.map",
+    "main.5065c081.js.map": "/static/js/main.5065c081.js.map",
+    "453.ace21015.chunk.js.map": "/static/js/453.ace21015.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2d4d5c00.css",
+    "static/js/main.5065c081.js"
+  ]
+}
