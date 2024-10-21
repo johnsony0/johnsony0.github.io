@@ -38,13 +38,16 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
   }
 
   useEffect(() => {
-    const distanceData = artData.map((item) => ({
-      ...item,
-      distance: haversineDistance(coordinates.lat, coordinates.lng, item.latitude, item.longitude),
-    }))
-    const sortedArtData = distanceData.sort((a, b) => a.distance - b.distance);
-
-    setSortedList(sortedArtData)
+    if (coordinates.lat !== '' && coordinates.lng !== ''){
+      const distanceData = artData.map((item) => ({
+        ...item,
+        distance: haversineDistance(coordinates.lat, coordinates.lng, item.latitude, item.longitude),
+      }))
+      const sortedArtData = distanceData.sort((a, b) => a.distance - b.distance);
+      setSortedList(sortedArtData)
+    } else {
+      setSortedList([])
+    }
   }, [coordinates, artData]);
 
   const handleTooltipOpen = (tooltipId) => {
@@ -54,6 +57,8 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
   const handleTooltipClose = () => {
     setOpenTooltip(null); 
   };
+
+  console.log(sortedList)
 
   return (
     <Box
@@ -166,20 +171,12 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
                     <Box display="flex" justifyContent="space-between" alignItems="center">
                       <Box display="flex" alignItems="center">
                         <Link
-                          href={`https://www.google.com/maps/place/${item.latitude},${item.longitude}/@${item.latitude},${item.longitude},16z/`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          sx={{ marginRight: 1, color: 'rgba(255, 255, 255, 0.7)' }}
-                        >
-                          Location
-                        </Link>
-                        <Link
                           href={`https://www.google.com/maps/dir/${coordinates.lat},${coordinates.lng}/${item.latitude},${item.longitude}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           sx={{ marginRight: 1, color: 'rgba(255, 255, 255, 0.7)' }}
                         >
-                          Direction
+                          Directions
                         </Link>
                         <Link
                           href={item.art_image_link}

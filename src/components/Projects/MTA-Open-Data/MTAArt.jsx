@@ -132,7 +132,7 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
               By {currentImage?.artist}
             </Typography>
             <Typography variant="caption" sx={{ color: 'gray' }}>
-              Found at {currentImage?.station_name} with {currentImage?.line} line(s)
+              Found at <strong>{currentImage?.station_name}</strong> with <strong>{currentImage?.line}</strong> line(s)
             </Typography>
           </div>
         </DialogTitle>

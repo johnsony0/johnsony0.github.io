@@ -56,7 +56,7 @@ const ArtMarkers = ({ artData }) => {
           <Popup>
             <div>
               <h3><em>{art.art_title}, {art.art_date}</em></h3>
-              <h5>by {art.artist}</h5> 
+              <h5>By {art.artist}</h5> 
               <img 
                 src={art.art_image_src}
                 alt={art.art_title}
@@ -66,7 +66,7 @@ const ArtMarkers = ({ artData }) => {
                   objectFit: 'cover' 
                 }} 
               />
-              <p><strong>{art.station_name}:</strong> {art.line}</p>
+              <p>Found at <strong>{art.station_name}</strong>  with <strong>{art.line}</strong> line(s)</p>
               <p><strong>Material:</strong> {art.art_material}</p> 
               <a 
                 href={`https://www.google.com/maps/dir/?api=1&destination=${art.latitude},${art.longitude}`}
