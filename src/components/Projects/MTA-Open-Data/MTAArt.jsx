@@ -9,7 +9,7 @@ import InfoIcon from '@mui/icons-material/Info';
 export const Art = ({ artData, setPage, nextPage, prevPage }) => {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
-  const [tooltipOpen, setTooltipOpen] = React.useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
 
   const controls = useAnimation();
 
@@ -62,7 +62,7 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
   };
 
   const handleTooltipOpen = () => {
-    setTooltipOpen(true);
+    setTooltipOpen(!tooltipOpen);
   };
 
 

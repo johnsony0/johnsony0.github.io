@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Box } from "@mui/material"
-import { NavBar, AddressForm, haversineDistance } from "./MTAutils";
-import { useMediaQuery, useTheme, Link } from '@mui/material';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { Box, Typography } from "@mui/material"
+import { NavBar, haversineDistance } from "./MTAutils";
+import { useMediaQuery, useTheme, Link, IconButton, Tooltip, ImageList, ImageListItem,ImageListItemBar  } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import InfoIcon from '@mui/icons-material/Info';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Autocomplete from "react-google-autocomplete";
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
-  const [address, setAddress] = useState("");
-  const [country, setCountry] = useState({id: 233, name: 'United States', iso3: 'USA', iso2: 'US', numeric_code: '840', phone_code: 1, region: 'Americas', subregion: 'North America', tld: '.us'});
-  const [state, setState] = useState({id: 1452, name: 'New York', state_code: 'NY'});
-  const [city, setCity] = useState(0);
-  const [zip, setZip] = useState("");
-  const [errors, setErrors] = useState({
-    address: false,
-    country: false,
-    state: false,
-    city: false,
-    zip: false,
-  });
+  const [coordinates, setCoordinates] = useState({ lat: '', lng: '' });
+  const [sortedList, setSortedList] = useState([])
+  const [openTooltip, setOpenTooltip] = useState(null);
+
+  const apiKey = process.env.REACT_APP_GOOGLE_GEOCODING_KEY; 
 
   const theme = useTheme();
   const isXs = useMediaQuery(theme.breakpoints.down('sm')); 
@@ -33,56 +27,15 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
   else if (isMd) cols = 3;
   else if (isLg) cols = 4;
 
-  const [coordinates, setCoordinates] = useState({ lat: '', lng: '' });
-  const [sortedList, setSortedList] = useState([])
-  const apiKey = process.env.REACT_APP_GOOGLE_GEOCODING_KEY; 
-  const getCoordinates = async (e) => {
-    e.preventDefault();
-    const formattedAddress = `${address}, ${city.name}, ${state.name} ${zip}, ${country.name}`;
-    if(!validateForm()){
-      try {
-        const response = await fetch(
-          `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(formattedAddress)}&key=${apiKey}`
-        );
-        const data = await response.json();
-        if (data.status === 'OK') {
-          const location = data.results[0].geometry.location;
-          setCoordinates({ lat: location.lat, lng: location.lng });
-        } else {
-          console.error('Geocoding error:', data.error_message);
-        }
-      } catch (error) {
-        console.error('Failed to fetch coordinates:', error);
-      }
-    }
+  const getCoordinates = (place) => {
+    const place_lat = place.geometry.location.lat();
+    const place_lng = place.geometry.location.lng();
+    setCoordinates({ lat: place_lat, lng: place_lng });
   };
 
-  const validateForm = () => {
-    let hasErrors = false;
-    const newErrors = { address: false, country: false, state: false, city: false, zip: false};
-    if (!address) {
-      newErrors.address = true;
-      hasErrors = true;
-    }
-    if (!country) {
-      newErrors.country = true;
-      hasErrors = true;
-    }
-    if (!state) {
-      newErrors.state = true;
-      hasErrors = true;
-    }
-    if (!city) {
-      newErrors.city = true;
-      hasErrors = true;
-    }
-    if (zip.length !== 5) {
-      newErrors.zip = true;
-      hasErrors = true;
-    }
-    setErrors(newErrors);
-    return hasErrors;
-  };
+  const removeCoordinates = () => {
+    setCoordinates({ lat: '', lng: '' })
+  }
 
   useEffect(() => {
     const distanceData = artData.map((item) => ({
@@ -92,7 +45,15 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
     const sortedArtData = distanceData.sort((a, b) => a.distance - b.distance);
 
     setSortedList(sortedArtData)
-  }, [coordinates]);
+  }, [coordinates, artData]);
+
+  const handleTooltipOpen = (tooltipId) => {
+    setOpenTooltip((prev) => (prev === tooltipId ? null : tooltipId));
+  };
+  
+  const handleTooltipClose = () => {
+    setOpenTooltip(null); 
+  };
 
   return (
     <Box
@@ -105,76 +66,140 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
       }}
     >
       <Box
-        maxWidth={'500px'}
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
           alignItems: 'center',
+          justifyContent: 'center',
           height: '95vh',
-          my: 5,
-          mx: 5,
         }}
         
       >
         {(coordinates.lat === '' || coordinates.lng === '') ? (
-        <AddressForm getCoordinates={getCoordinates} country={country} state={state} setAddress={setAddress} setCountry={setCountry} setState={setState} setCity={setCity} setZip={setZip} errors={errors}/>
-        )  : (
-          <ImageList
-            cols={cols}
-            sx={{
-              height: '80vh',
-              width: '90vw',
-              margin: 0,
-              padding: 0,
-              overflowY: 'auto',
-              scrollbarWidth: 'none', 
-              '&::-webkit-scrollbar': {
-                display: 'none', 
-              },
-            }}
-          >
-            {sortedList.map((item) => (
-              <ImageListItem key={item.id}>
-                <img
-                  src={item.art_image_src}
-                  alt={item.art_title}
-                  loading="lazy"
+            <ClickAwayListener onClickAway={handleTooltipClose}>
+              <Box>
+                <Autocomplete
+                  apiKey={apiKey}
+                  onPlaceSelected={(place) => {getCoordinates(place)}}
+                  placeholder="Enter location..."
+                  style={{ width: '50vw', height: '40px' }}
+                  options={{
+                    types: ["address"],
+                    componentRestrictions: { country: "us" },
+                  }}
                 />
-              <ImageListItemBar
-                title={`${item.art_title}, ${item.art_date} - ${item.artist}`}
-                subtitle={
-                  <div>
-                    <Link
-                      href={item.art_image_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{ marginRight: 1, color: 'rgba(255, 255, 255, 0.7)' }}
+                <Tooltip
+                  arrow
+                  open={openTooltip === 'info'}
+                  onClose={handleTooltipClose}
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                  title={`Enter a location and we will display all the
+                    MTA artworks sorted by closest to farthest from that location.
+                    After submitting a location, if you wish to reset the location
+                    click the reset button at the top left.`}
+                >
+                  <IconButton onClick={() => handleTooltipOpen('info')}>
+                    <InfoIcon />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip
+                  arrow
+                  open={openTooltip === 'data'}
+                  onClose={handleTooltipClose}
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                  title={`This website does not have a database, therefore I 
+                    (the developer) will never see your input, HOWEVER, this 
+                    form uses Google APIs so they will see your entries. 
+                    Use this tool if you trust Google with your data.`}
+                >
+                  <Typography onClick={() => handleTooltipOpen('data')}
+                    sx={{
+                      fontSize: '12px',
+                      cursor: 'pointer',          
+                      textDecoration: 'underline',
+                      color: 'grey',      
+                      '&:hover': {
+                        color: 'primary.dark',    
+                      },
+                    }}
                     >
-                      Learn More
-                    </Link>
-                    <Link
-                      href={`https://www.google.com/maps/place/${item.latitude},${item.longitude}/@${item.latitude},${item.longitude},16z/`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{ marginRight: 1, color: 'rgba(255, 255, 255, 0.7)' }}
-                    >
-                      Location
-                    </Link>
-                    <Link
-                      href={`https://www.google.com/maps/dir/${coordinates.lat},${coordinates.lng}/${item.latitude},${item.longitude}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{ color: 'rgba(255, 255, 255, 0.7)' }}
-                    >
-                      Direction
-                    </Link>
-                  </div>
-                }
-              />
-              </ImageListItem>
-            ))}
-          </ImageList>
+                    How Your Data Is Protected.
+                  </Typography>
+                </Tooltip>
+              </Box>
+            </ClickAwayListener>
+        ) : (sortedList.length < artData.length) ? (
+          <CircularProgress/>
+        ) : (
+          <Box>
+            <IconButton onClick={removeCoordinates}>
+              <RestartAltIcon />
+            </IconButton>
+            <ImageList
+              cols={cols}
+              sx={{
+                height: '90vh',
+                width: '90vw',
+                margin: 0,
+                padding: 0,
+                overflowY: 'auto',
+                scrollbarWidth: 'none', 
+                '&::-webkit-scrollbar': {
+                  display: 'none', 
+                },
+              }}
+            >
+              {sortedList.map((item) => (
+                <ImageListItem key={item.id}>
+                  <img
+                    src={item.art_image_src}
+                    alt={item.art_title}
+                    loading="lazy"
+                  />
+                <ImageListItemBar
+                  title={`${item.art_title}, ${item.art_date} - ${item.artist}`}
+                  subtitle={
+                    <Box display="flex" justifyContent="space-between" alignItems="center">
+                      <Box display="flex" alignItems="center">
+                        <Link
+                          href={`https://www.google.com/maps/place/${item.latitude},${item.longitude}/@${item.latitude},${item.longitude},16z/`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ marginRight: 1, color: 'rgba(255, 255, 255, 0.7)' }}
+                        >
+                          Location
+                        </Link>
+                        <Link
+                          href={`https://www.google.com/maps/dir/${coordinates.lat},${coordinates.lng}/${item.latitude},${item.longitude}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ marginRight: 1, color: 'rgba(255, 255, 255, 0.7)' }}
+                        >
+                          Direction
+                        </Link>
+                        <Link
+                          href={item.art_image_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          sx={{ marginRight: 1, color: 'rgba(255, 255, 255, 0.7)' }}
+                        >
+                          Learn More
+                        </Link>
+                      </Box>
+                      <Typography variant='caption'>
+                        {Math.round(item.distance * 62.1371) / 100} mi
+                      </Typography>
+                    </Box>
+                  }
+                />
+                </ImageListItem>
+              ))}
+            </ImageList>
+          </Box>
         )}
       </Box>
       <NavBar setPage={setPage} nextPage={nextPage} prevPage={prevPage} />
