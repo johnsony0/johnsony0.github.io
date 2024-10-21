@@ -7,9 +7,13 @@ import InfoIcon from '@mui/icons-material/Info';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Autocomplete from "react-google-autocomplete";
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import Cookies from 'js-cookie';
 
 export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
-  const [coordinates, setCoordinates] = useState({ lat: '', lng: '' });
+  const [coordinates, setCoordinates] = useState(() => {
+    const savedCoordinates = Cookies.get('coordinates');
+    return savedCoordinates ? JSON.parse(savedCoordinates) : { lat: '', lng: '' };
+  });  
   const [sortedList, setSortedList] = useState([])
   const [openTooltip, setOpenTooltip] = useState(null);
 
@@ -26,6 +30,12 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
   else if (isSm) cols = 2;
   else if (isMd) cols = 3;
   else if (isLg) cols = 4;
+
+  useEffect(() => {
+    if (coordinates.lat && coordinates.lng) {
+      Cookies.set('coordinates', JSON.stringify(coordinates), { expires: 7 }); 
+    }
+  }, [coordinates]);
 
   const getCoordinates = (place) => {
     const place_lat = place.geometry.location.lat();
@@ -57,8 +67,6 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
   const handleTooltipClose = () => {
     setOpenTooltip(null); 
   };
-
-  console.log(sortedList)
 
   return (
     <Box
@@ -163,7 +171,7 @@ export const ArtNearby = ({artData, setPage, nextPage, prevPage}) => {
                   <img
                     src={item.art_image_src}
                     alt={item.art_title}
-                    loading="lazy"
+                    loading="eager"
                   />
                 <ImageListItemBar
                   title={`${item.art_title}, ${item.art_date} - ${item.artist}`}

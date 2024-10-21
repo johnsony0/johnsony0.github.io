@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Home } from './MTAhome';
 import { ArtMap } from './MTAArtMap';
 import { ArtNearby } from './MTAArtNearby';
 //import { ArtSimilar } from './MTAArtSimilar';
 import { Art } from './MTAArt'
 import { useFetchData } from './MTAutils';
+import Cookies from 'js-cookie';
 
 function MTAOpenData(){ 
-  const [page,setPage] = useState('Home')
+  const [page, setPage] = useState(() => Cookies.get('currentPage') || 'Home');
   const pageOne = 'Explore Artworks'
   const pageTwo = 'Display Nearby Art'
   const pageThree = 'View Art Map'
 
   const [artData, setArtData] = useState([]);
   useFetchData(setArtData)
+
+  useEffect(() => {
+    Cookies.set('currentPage', page, { expires: 7 }); 
+  }, [page]);
 
   return (
     <>

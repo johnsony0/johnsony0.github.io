@@ -87,6 +87,8 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
           disableTouchListener 
           title={`Swipe left to see a different piece.
             Swipe right for more info on the current piece.
+            Some pieces do not have an image associated, if
+            they do not load within a couple seconds, swipe left.
             `}
           sx={{
             position: 'absolute'
