@@ -5,6 +5,16 @@ import {CitySelect, CountrySelect, StateSelect} from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
 import { Typography, TextField, Box, Button, Grid, FormControl, FormHelperText } from "@mui/material"
 
+export const haversineDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; 
+  const dLat = (lat2 - lat1) * (Math.PI / 180); 
+  const dLon = (lon2 - lon1) * (Math.PI / 180);
+  const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; 
+}
 
 export const AddressForm = ({getCoordinates, country, state, setAddress, setCountry, setState, setCity, setZip, errors}) => {
   return(
@@ -19,6 +29,9 @@ export const AddressForm = ({getCoordinates, country, state, setAddress, setCoun
       <Grid item xs={12}>
         <Typography gutterBottom>Address</Typography>
         <TextField
+          id="address-line1" 
+          name="address-line1"
+          autoComplete='address-line1'
           fullWidth
           variant="outlined"
           size="small"
@@ -66,7 +79,7 @@ export const AddressForm = ({getCoordinates, country, state, setAddress, setCoun
             placeHolder="Select City"
           />
           <FormHelperText>
-            {errors.city ? "Please select a State" : ""}
+            {errors.city ? "Please select a City" : ""}
           </FormHelperText>
         </FormControl>
       </Grid>
@@ -78,6 +91,9 @@ export const AddressForm = ({getCoordinates, country, state, setAddress, setCoun
           variant="outlined"
           size="small"
           type="number"
+          id="zip" 
+          name="zip"
+          autoComplete='postal-code'
           placeholder='e.g. 11111'
           error={errors.zip}
           helperText={errors.zip ? "Please enter valid Zip Code" : ""}

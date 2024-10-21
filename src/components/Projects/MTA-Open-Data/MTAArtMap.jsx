@@ -67,18 +67,24 @@ const ArtMarkers = ({ artData }) => {
                 }} 
               />
               <p><strong>{art.station_name}:</strong> {art.line}</p>
-              <p><strong>Material:</strong> {art.art_material}</p>
-              <p>
-                More Info: 
-                <a 
-                  href={art.art_image_link} 
-                  target="_blank"
-                  rel="noopener noreferrer" 
-                  style={{ textDecoration: 'underline' }} 
-                >
-                  {art.art_image_link}
-                </a>
-              </p>
+              <p><strong>Material:</strong> {art.art_material}</p> 
+              <a 
+                href={`https://www.google.com/maps/dir/?api=1&destination=${art.latitude},${art.longitude}`}
+                target="_blank"
+                rel="noopener noreferrer" 
+                style={{ textDecoration: 'underline' }} 
+              >
+                Directions
+              </a>
+              <br />
+              <a 
+                href={art.art_image_link} 
+                target="_blank"
+                rel="noopener noreferrer" 
+                style={{ textDecoration: 'underline' }} 
+              >
+                Learn More
+              </a>
             </div>
           </Popup>
         </Marker>

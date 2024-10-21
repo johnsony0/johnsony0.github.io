@@ -127,12 +127,14 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
       <Dialog onClose={handleNext} open={showInfo}>
         <DialogTitle>
           {currentImage?.art_title}, {currentImage?.art_date}
-          <Typography variant="subtitle1" sx={{ color: 'gray' }}>
-            By {currentImage?.artist}
-          </Typography>
-          <Typography variant="caption" sx={{ color: 'gray' }}>
-            Found at {currentImage?.station_name} with {currentImage?.line} line(s)
-          </Typography>
+          <div>
+            <Typography variant="subtitle1" sx={{ color: 'gray' }}>
+              By {currentImage?.artist}
+            </Typography>
+            <Typography variant="caption" sx={{ color: 'gray' }}>
+              Found at {currentImage?.station_name} with {currentImage?.line} line(s)
+            </Typography>
+          </div>
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -143,6 +145,14 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+          <Link 
+            href={`https://www.google.com/maps/dir/?api=1&destination=${currentImage.latitude},${currentImage.longitude}`}
+            target="_blank" 
+            rel="noopener noreferrer" 
+            sx={{ fontSize: '0.75rem', color: 'blue' }}
+          >
+            Directions
+          </Link>
           <Link 
             href={currentImage?.art_image_link} 
             target="_blank" 
