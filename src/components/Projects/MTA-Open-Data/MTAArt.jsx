@@ -117,8 +117,9 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
             x,
             background: 'white',
             borderRadius: '30px',
-            width: '300px',
-            height: '300px',
+            width: '60vw',
+            height: '60vw',
+            maxHeight: '70vh',
             alignItems: 'center',
             objectFit: 'cover',
           }}

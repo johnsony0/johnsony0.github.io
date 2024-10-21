@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import { Home } from './MTAhome';
 import { ArtMap } from './MTAArtMap';
 import { ArtNearby } from './MTAArtNearby';
-//import { ArtSimilar } from './MTAArtSimilar';
 import { Art } from './MTAArt'
 import { useFetchData } from './MTAutils';
 import Cookies from 'js-cookie';
