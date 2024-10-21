@@ -77,6 +77,20 @@ export const Home = ({setPage, pageOne, pageTwo, pageThree}) => {
           Choose Your
           Destination
         </motion.text>
+        <motion.text
+          x="150" 
+          y="60"
+          dy=".1em"
+          fill="black"
+          fontSize="5"
+          textAnchor="middle" 
+          alignmentBaseline="middle" 
+          initial={{ scale: 0 }} 
+          animate={{ scale: 1 }} 
+          transition={{ duration: 0.25, delay: 0.25 }} 
+        >
+          (Location shown are rough estimates)
+        </motion.text>
         <motion.circle
           cx="20"
           cy={y_axis}

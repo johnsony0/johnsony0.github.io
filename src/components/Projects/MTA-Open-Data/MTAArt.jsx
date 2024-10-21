@@ -108,6 +108,7 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
       }}
       >
         <motion.img
+          loading='lazy'
           src={currentImage?.art_image_src} 
           alt={currentImage?.art_title}  
           style={{ 
