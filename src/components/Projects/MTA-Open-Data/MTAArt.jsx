@@ -23,9 +23,9 @@ export const Art = ({ artData, setPage, nextPage, prevPage }) => {
   const x = useMotionValue(0);
   const xInput = [-100, 0, 100];
   const background = useTransform(x, xInput, [
-    "linear-gradient(180deg, #ff008c 0%, rgb(211, 9, 225) 100%)",
+    "linear-gradient(180deg, #ff008c 0%, rgb(163, 24, 24) 100%)",
     "linear-gradient(180deg, #7700ff 0%, rgb(68, 0, 255) 100%)",
-    "linear-gradient(180deg, rgb(230, 255, 0) 0%, rgb(3, 209, 0) 100%)"
+    "linear-gradient(180deg, rgb(46, 171, 24) 0%, rgb(0, 128, 0) 100%)"
   ]);
 
   const handleDragEnd = (_, info) => {
