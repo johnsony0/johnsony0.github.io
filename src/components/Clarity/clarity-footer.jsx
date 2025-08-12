@@ -7,7 +7,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import {ClickAwayListener, Tooltip,Typography } from '@mui/material';
 import React from 'react';
 
-function Footer(){
+function ClarityFooter(){
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
@@ -88,4 +88,4 @@ function Footer(){
   )
 }
 
-export default Footer;
+export default ClarityFooter;
