@@ -11,8 +11,6 @@ import Resume from './components/Resume/resume-view';
 import Contact from './components/Contact/contact-view'
 import Clarity from './components/Clarity/clarity-view';
 
-
-import DraftPredictior from './components/Projects/Draft-Predictor/draft-predictor-view';
 import MediaBias from './components/Projects/Media-Bias/media-bias-view';
 import ToDo from './components/Projects/To-Do/to-do-view';
 import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
@@ -37,7 +35,6 @@ function App() {
         <Route path="/home" element={show(Home)} />
         <Route path="/about" element={show(About)} />
         <Route path="/projects" element={show(Projects)} />
-          <Route path="/projects/draft-predictor" element={show(DraftPredictior)} />
           <Route path="/projects/media-bias" element={show(MediaBias)} />
           <Route path="/projects/todo" element={<ToDo/>}/>
           <Route path="/projects/mta-open-data" element={<MTAOpenData/>}/>
