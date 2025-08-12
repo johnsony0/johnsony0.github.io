@@ -9,13 +9,13 @@ import About from './components/About/about-view';
 import Projects from './components/Projects/projects-view';
 import Resume from './components/Resume/resume-view';
 import Contact from './components/Contact/contact-view'
+import Clarity from './components/Clarity/clarity-view';
 
 
 import DraftPredictior from './components/Projects/Draft-Predictor/draft-predictor-view';
 import MediaBias from './components/Projects/Media-Bias/media-bias-view';
 import ToDo from './components/Projects/To-Do/to-do-view';
 import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
-import FGEO24 from './components/Projects/FGEO/FGEO24-view';
 import MTAOpenData from './components/Projects/MTA-Open-Data/mta-open-data-view'
 
 const show = (Component) => {
@@ -41,9 +41,9 @@ function App() {
           <Route path="/projects/media-bias" element={show(MediaBias)} />
           <Route path="/projects/todo" element={<ToDo/>}/>
           <Route path="/projects/mta-open-data" element={<MTAOpenData/>}/>
-        <Route path="/for-girlfriend-eyes-only/24" element={<FGEO24/>}/>
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
         <Route path="/resume" element={show(Resume)} />
+        <Route path="/clarity" element={<Clarity/>}/>
         <Route path="/contact" element={show(Contact)} />
         <Route path="*" element={<NotFound />} />
       </Routes>
