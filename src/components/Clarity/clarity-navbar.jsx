@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import GetAppIcon from '@mui/icons-material/GetApp'; 
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -15,6 +16,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import bogo from '../../assets/clarity/icon.png'; 
+import { Typography } from '@mui/material';
 
 function ClarityNavBar(){
   const location = useLocation();
@@ -31,7 +33,7 @@ function ClarityNavBar(){
   };
 
   const navLinks = [
-    { label: 'Home', path: '/clarity' },
+    { label: 'Home', path: '/clarity/' },
     { label: 'Facebook', path: '/clarity/fb' },
     { label: 'Twitter/X', path: '/clarity/x' },
     { label: 'YouTube', path: '/clarity/yt' },
@@ -49,16 +51,18 @@ function ClarityNavBar(){
         boxShadow: trigger ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
         height: '64px'
       }}
+      
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box
+          component="img"
+          alt="Logo"
           src={bogo}
           sx={{
             display: 'flex',
             alignItems: 'center',
-            height: '100%',
+            height: '35px',
             width: 'auto',
-            marginRight: isMobile ? 0 : '20px',
           }}
         />
         {isMobile ? (
@@ -90,38 +94,75 @@ function ClarityNavBar(){
                     </ListItem>
                   ))}
                 </List>
+                <Button
+                  component="a"
+                  href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="text"
+                  color='inherit'
+                  fullWidth
+                  sx={{
+                    padding: '20px',
+                  }}
+                  startIcon={
+                    <GetAppIcon/>
+                  }
+                >
+                  Download
+                </Button>
               </Box>
             </Drawer>
           </>
         ) : (
-          <Box
-            sx={{
-              position: 'absolute',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              flexGrow: 1,
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            {navLinks.map((link) => (
-              <Button
-                key={link.path}
-                color="inherit"
-                component={Link}
-                to={link.path}
-                sx={{
-                  color: theme.palette.text.primary,
-                  textTransform: location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(`${link.path}/`)) ? 'uppercase' : 'none',
-                  '&:hover': {
-                    color: theme.palette.text.secondary,
-                },
-                }}
-              >
-                {link.label}
-              </Button>
-            ))}
-          </Box>
+          <>
+            <Box
+              sx={{
+                position: 'absolute',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                flexGrow: 1,
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              {navLinks.map((link) => (
+                <Button
+                  key={link.path}
+                  color="inherit"
+                  component={Link}
+                  to={link.path}
+                  sx={{
+                    padding: '20px',
+                    //margin: '0 10px 0 10px',
+                    color: theme.palette.text.primary,
+                    textTransform: location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(`${link.path}/`)) ? 'uppercase' : 'none',
+                    '&:hover': {
+                      color: theme.palette.text.secondary,
+                  },
+                  }}
+                >
+                  {link.label}
+                </Button>
+              ))}
+            </Box>
+            <Button
+              component="a"
+              href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outlined"
+              color='inherit'
+              sx={{
+                padding: '10px',
+              }}
+              startIcon={
+                <GetAppIcon/>
+              }
+            >
+              Download
+            </Button>
+          </>
         )}
       </Toolbar>
     </AppBar>
