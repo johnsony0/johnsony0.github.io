@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box } from "@mui/material";
 import Carousel from 'react-material-ui-carousel'
-import { Grid, Typography } from '@mui/material'
+import { Grid, Typography, Paper } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
 import ss1 from '../../assets/clarity/screenshot-1.png';
 import ss2 from '../../assets/clarity/screenshot-2.png';
@@ -17,22 +17,22 @@ const items = [
   },
   {
     name: "Minimize Distractions",
-    description: "xyzz",
+    description: "Clarity minimize distractions through hiding elements that encourage more clicking and scrolling such as suggestions or comments.",
     image: ss2
   },
   {
     name: "Promote Less Scrolling",
-    description: "xyzzz",
+    description: "We promote less scrolling through restricting how far you can scroll, or adding limits to how many posts you can view.",
     image: ss3
   },
   {
     name: "Reduce Clutter on Pages",
-    description: "xyzzzz",
+    description: "Pages are often cluttered with navigation tools, trending pages or friend suggestions, which we can help remove, so you can focus on posts and not on peripherals.",
     image: ss4
   },
   {
     name: "Take Control of Your Feed",
-    description: "xyzzzzz",
+    description: "Control what you see, hide posts that match your keywords/terms or politically biased posts.",
     image: ss5
   }
 ];
@@ -68,57 +68,59 @@ function Clarity() {
   const [slideIndex, setSlideIndex] = useState(0);
 
   return (
-    <Grid container spacing={0} sx={{ height: 'calc(100vh - 60px - 120px)' }}>
-      <Grid item xs={12} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', p: { xs: 2, sm: 4, md: 6 }}}>
-        <Box
-          sx={{
-            width: '100%', 
-            height: '100%',
-          }}
-        >
-          <Carousel
-            autoPlay={true}
-            interval={10000}
-            animation="slide"
-            navButtonsAlwaysVisible={true}
-            cycleNavigation={true}
-            swipe={true}
-            duration={600}
-            indicators={true}
-            onChange={(newIndex) => setSlideIndex(newIndex)}
+    <Paper elevation={2} square={false} sx={{ height: 'calc(100vh - 60px - 160px)', margin: '20px', backgroundColor: 'whitesmoke'}}>
+      <Grid container spacing={0}>
+        <Grid item xs={12} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', p: { xs: 2, sm: 4, md: 6 }}}>
+          <Box
             sx={{
+              width: '100%', 
               height: '100%',
-              '& .Carousel-slide': {
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
-              },
-              '& .MuiButtonBase-root.MuiIconButton-root:first-of-type': {
-                marginLeft: theme.spacing(1),
-              },
-              '& .MuiButtonBase-root.MuiIconButton-root:last-of-type': {
-                marginRight: theme.spacing(1),
-              },
             }}
           >
-            {items.map((item, i) => <Item key={i} item={item} />)}
-          </Carousel>
-        </Box>
+            <Carousel
+              autoPlay={true}
+              interval={10000}
+              animation="slide"
+              navButtonsAlwaysVisible={true}
+              cycleNavigation={true}
+              swipe={true}
+              duration={600}
+              indicators={true}
+              onChange={(newIndex) => setSlideIndex(newIndex)}
+              sx={{
+                height: '100%',
+                '& .Carousel-slide': {
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100%',
+                },
+                '& .MuiButtonBase-root.MuiIconButton-root:first-of-type': {
+                  marginLeft: theme.spacing(1),
+                },
+                '& .MuiButtonBase-root.MuiIconButton-root:last-of-type': {
+                  marginRight: theme.spacing(1),
+                },
+              }}
+            >
+              {items.map((item, i) => <Item key={i} item={item} />)}
+            </Carousel>
+          </Box>
+        </Grid>
+        
+        <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <Typography
+            variant="h4"
+            sx={{
+              textAlign: { xs: 'center', md: 'left' }, 
+              color: theme.palette.text.primary,
+            }}
+          >
+            {items[slideIndex].description} 
+          </Typography>
+        </Grid>
       </Grid>
-      
-      <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Typography
-          variant="h4"
-          sx={{
-            textAlign: { xs: 'center', md: 'left' }, 
-            color: theme.palette.text.primary,
-          }}
-        >
-          {items[slideIndex].description} 
-        </Typography>
-      </Grid>
-    </Grid>
+    </Paper>
   );
 }
 
