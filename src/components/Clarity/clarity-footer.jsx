@@ -1,7 +1,9 @@
 import { Box, useTheme, Button, Typography, Divider, Grid, Stack } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import XIcon from '@mui/icons-material/X';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import FolderZipIcon from '@mui/icons-material/FolderZip';
@@ -20,15 +22,11 @@ function ClarityFooter(){
       rel="noopener noreferrer"
       startIcon={icon}
       sx={{
-        borderRadius: 3,
-        transition: 'all 0.2s',
-        '&:hover': {
-          background: theme.palette.action.hover,
-          boxShadow: 1,
-        },
+        fontSize: '10px'
       }}
+      fullWidth
     >
-      <Typography sx={{ color: theme.palette.text.primary, fontWeight: 500, fontSize: 15 }}>
+      <Typography sx={{ color: theme.palette.text.primary, fontWeight: 500, fontSize: 12 }}>
         {label}
       </Typography>
     </Button>
@@ -39,40 +37,47 @@ function ClarityFooter(){
       mx: 'auto',
       width: '95%'
     }}>
-      <Divider sx={{ m: 2 }} />
-      <Grid container spacing={4} justifyContent="center" alignItems="flex-start">
-        <Grid item xs={12} sm={4} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Typography sx={{ mb: 1, color: theme.palette.text.secondary, fontWeight: 600 }}>
+      <Divider sx={{ m: 0.5 }} />
+      <Grid container spacing={1} justifyContent="center" alignItems="flex-start">
+        <Grid item xs={3} sm={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography  sx={{ color: theme.palette.text.secondary, fontWeight: 600, fontSize: 14 }}>
             Resources
           </Typography>
-          <Stack direction="column" spacing={0.1}>
+          <Stack direction="column" spacing={0}>
             {footerButton(<GitHubIcon />, 'https://github.com/johnsony0/clarity', 'Source Code')}
-          </Stack>
-        </Grid>
-        <Grid item xs={12} sm={4} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Typography sx={{ mb: 1, color: theme.palette.text.secondary, fontWeight: 600 }}>
-            Socials
-          </Typography>
-          <Stack direction="column" spacing={0.1}>
-            {footerButton(<LinkedInIcon />, 'https://linkedin.om/in/johnsony0', 'LinkedIn')}
-            {footerButton(<InstagramIcon />, 'https://instagram.com/johnsony0', 'Instagram')}
             {footerButton(<EmailIcon />, 'mailto:theclarityextension.com', 'Email')}
           </Stack>
         </Grid>
-        <Grid item xs={12} sm={4} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <Typography sx={{ mb: 1, color: theme.palette.text.secondary, fontWeight: 600 }}>
+        <Grid item xs={6} sm={6} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography sx={{ color: theme.palette.text.secondary, fontWeight: 600, fontSize: 14 }}>
+            Socials
+          </Typography>
+          <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
+            <Stack direction="column" spacing={0}>
+              {footerButton(<InstagramIcon />, 'temp', 'Instagram')}
+              {footerButton(<MusicNoteIcon />, 'temp', 'TikTok')}
+            </Stack>
+            <Stack direction="column" spacing={0}>
+              {footerButton(<YouTubeIcon />, 'temp', 'YouTube')}
+              {footerButton(<XIcon />, 'temp', 'X/Twitter')}
+            </Stack>
+          </Stack>
+        </Grid>
+        <Grid item xs={3} sm={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography sx={{ color: theme.palette.text.secondary, fontWeight: 600, fontSize: 14 }}>
             Download
           </Typography>
-          <Stack direction="column" spacing={0.1}>
+          <Stack direction="column" spacing={0}>
             {footerButton(<ExtensionIcon />, 'https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj', 'Web Store')}
             {footerButton(<FolderZipIcon />, 'https://github.com/johnsony0/clarity/releases', 'Manual Download')}          
           </Stack>
         </Grid>
+        <Grid item xs={12}>
+          <Typography align="center" variant="body2" sx={{ color: theme.palette.text.disabled, fontSize: 12 }}>
+            Clarity is not affiliated with Facebook, Twitter/X, or YouTube
+          </Typography>
+        </Grid>
       </Grid>
-      <Divider sx={{ m: 2 }} />
-      <Typography align="center" variant="body2" sx={{ color: theme.palette.text.disabled, mt: 2 }}>
-        Clarity is not affiliated with Facebook, Twitter/X, or YouTube
-      </Typography>
     </Box>
   );
 }
