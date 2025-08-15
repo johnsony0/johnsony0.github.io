@@ -59,6 +59,7 @@ function App() {
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
         <Route path="/resume" element={show(Resume)} />
         <Route path="/clarity" element={clarityTab(<Clarity/>)}/>
+          <Route path="/clarity/home" element={clarityTab(<Clarity/>)}/>
           <Route path="clarity/fb" element={clarityTab(<ClarityFB />)} />
           <Route path="clarity/x" element={clarityTab(<ClarityX />)} />
           <Route path="clarity/yt" element={clarityTab(<ClarityYT />)} />

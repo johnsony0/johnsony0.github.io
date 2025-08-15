@@ -1,91 +1,80 @@
-import { useState } from 'react';
-import { Box, IconButton, useTheme } from '@mui/material';
+import { Box, useTheme, Button, Typography, Divider, Grid, Stack } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
-import {ClickAwayListener, Tooltip,Typography } from '@mui/material';
+import ExtensionIcon from '@mui/icons-material/Extension';
+import FolderZipIcon from '@mui/icons-material/FolderZip';
 import React from 'react';
 
 function ClarityFooter(){
-    const theme = useTheme();
-    const [open, setOpen] = useState(false);
+  const theme = useTheme();
 
-    const handleTooltipClose = () => {
-      setOpen(false);
-    };
-    
-    const handleTooltipOpen = () => {
-      if(open){
-        setOpen(false);
-      } else {
-        const mailtoUrl = `mailto:${encodeURIComponent('jy5187@nyu.edu')}`;
-        window.location.href = mailtoUrl;
-        setOpen(true);
-      }
-    };
+  const footerButton = (icon, link, label) => (
+    <Button
+      size="small"
+      variant="text"
+      href={link}
+      color="inherit"
+      target="_blank"
+      rel="noopener noreferrer"
+      startIcon={icon}
+      sx={{
+        borderRadius: 3,
+        transition: 'all 0.2s',
+        '&:hover': {
+          background: theme.palette.action.hover,
+          boxShadow: 1,
+        },
+      }}
+    >
+      <Typography sx={{ color: theme.palette.text.primary, fontWeight: 500, fontSize: 15 }}>
+        {label}
+      </Typography>
+    </Button>
+  );
 
-  return(
-    <Box sx={{ display: 'flex' , height:'32px', alignContent:'center', justifyContent:'center'}}>
-      <ClickAwayListener onClickAway={handleTooltipClose}>
-        <Tooltip
-          PopperProps={{
-          disablePortal: true,
-          }}
-          onClose={handleTooltipClose}
-          open={open}
-          disableFocusListener
-          disableHoverListener
-          disableTouchListener
-          arrow
-          placement='top'
-          title={
-              <React.Fragment>
-                  <Typography variant='caption'>johnsonyangwork@gmail.com</Typography>
-              </React.Fragment>
-          }
-        >
-        <IconButton color='inherit'
-          sx={{ 
-            '&:hover .MuiSvgIcon-root': {
-                color: theme.palette.text.secondary,
-            },
-          }}
-          onClick={handleTooltipOpen}
-        >
-          <EmailIcon sx={{color:'text.primary'}} />
-          </IconButton> 
-        </Tooltip>
-      </ClickAwayListener>
-      <IconButton color='inherit' href="https://github.com/johnsony0" target="_blank" rel="noopener noreferrer"
-        sx={{ 
-          '&:hover .MuiSvgIcon-root': {
-            color: theme.palette.text.secondary,
-          },
-        }}
-      >
-        <GitHubIcon sx={{color: 'text.primary'}} />
-      </IconButton>
-      <IconButton color='inherit' href="https://www.linkedin.com/in/johnson-yang-b0303b205/" target="_blank" rel="noopener noreferrer"
-        sx={{ 
-          '&:hover .MuiSvgIcon-root': {
-            color: theme.palette.text.secondary,
-          },
-        }}
-      >
-        <LinkedInIcon sx={{color: 'text.primary'}} />
-      </IconButton>
-      <IconButton color='inherit' href="https://www.instagram.com/johnson.yang/" target="_blank" rel="noopener noreferrer"
-        sx={{ 
-          '&:hover .MuiSvgIcon-root': {
-          color: theme.palette.text.secondary,
-          },
-        }}
-      >
-        <InstagramIcon sx={{ color: 'text.primary'}} />
-      </IconButton>
+  return (
+    <Box sx={{
+      mx: 'auto',
+      width: '95%'
+    }}>
+      <Divider sx={{ m: 2 }} />
+      <Grid container spacing={4} justifyContent="center" alignItems="flex-start">
+        <Grid item xs={12} sm={4} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography sx={{ mb: 1, color: theme.palette.text.secondary, fontWeight: 600 }}>
+            Resources
+          </Typography>
+          <Stack direction="column" spacing={0.1}>
+            {footerButton(<GitHubIcon />, 'https://github.com/johnsony0/clarity', 'Source Code')}
+          </Stack>
+        </Grid>
+        <Grid item xs={12} sm={4} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography sx={{ mb: 1, color: theme.palette.text.secondary, fontWeight: 600 }}>
+            Socials
+          </Typography>
+          <Stack direction="column" spacing={0.1}>
+            {footerButton(<LinkedInIcon />, 'https://linkedin.om/in/johnsony0', 'LinkedIn')}
+            {footerButton(<InstagramIcon />, 'https://instagram.com/johnsony0', 'Instagram')}
+            {footerButton(<EmailIcon />, 'mailto:theclarityextension.com', 'Email')}
+          </Stack>
+        </Grid>
+        <Grid item xs={12} sm={4} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Typography sx={{ mb: 1, color: theme.palette.text.secondary, fontWeight: 600 }}>
+            Download
+          </Typography>
+          <Stack direction="column" spacing={0.1}>
+            {footerButton(<ExtensionIcon />, 'https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj', 'Web Store')}
+            {footerButton(<FolderZipIcon />, 'https://github.com/johnsony0/clarity/releases', 'Manual Download')}          
+          </Stack>
+        </Grid>
+      </Grid>
+      <Divider sx={{ m: 2 }} />
+      <Typography align="center" variant="body2" sx={{ color: theme.palette.text.disabled, mt: 2 }}>
+        Clarity is not affiliated with Facebook, Twitter/X, or YouTube
+      </Typography>
     </Box>
-  )
+  );
 }
 
 export default ClarityFooter;

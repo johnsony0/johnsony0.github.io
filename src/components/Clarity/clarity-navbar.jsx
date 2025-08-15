@@ -16,12 +16,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import bogo from '../../assets/clarity/icon.png'; 
-import { Typography } from '@mui/material';
 
 function ClarityNavBar(){
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMd = useMediaQuery(theme.breakpoints.down('md'));
   const [drawerOpen, setDrawerOpen] = useState(false);
   const trigger = useScrollTrigger();
 
@@ -33,7 +33,7 @@ function ClarityNavBar(){
   };
 
   const navLinks = [
-    { label: 'Home', path: '/clarity/' },
+    { label: 'Home', path: '/clarity/home' },
     { label: 'Facebook', path: '/clarity/fb' },
     { label: 'Twitter/X', path: '/clarity/x' },
     { label: 'YouTube', path: '/clarity/yt' },
@@ -109,7 +109,7 @@ function ClarityNavBar(){
                     <GetAppIcon/>
                   }
                 >
-                  Download
+                  Get Clarity
                 </Button>
               </Box>
             </Drawer>
@@ -133,7 +133,7 @@ function ClarityNavBar(){
                   component={Link}
                   to={link.path}
                   sx={{
-                    padding: '20px',
+                    padding: isMd ? '5px' : '20px',
                     //margin: '0 10px 0 10px',
                     color: theme.palette.text.primary,
                     textTransform: location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(`${link.path}/`)) ? 'uppercase' : 'none',
@@ -160,7 +160,7 @@ function ClarityNavBar(){
                 <GetAppIcon/>
               }
             >
-              Download
+              Get Clarity
             </Button>
           </>
         )}
