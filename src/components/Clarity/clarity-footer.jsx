@@ -1,4 +1,4 @@
-import { Box, useTheme, Button, Typography, Divider, Grid, Stack } from '@mui/material';
+import { Box, useTheme, Button, Typography, Grid, Stack } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -37,8 +37,7 @@ function ClarityFooter(){
       mx: 'auto',
       width: '95%'
     }}>
-      <Divider sx={{ m: 0.5 }} />
-      <Grid container spacing={1} justifyContent="center" alignItems="flex-start">
+      <Grid container spacing={1} justifyContent="center" alignItems="flex-start" sx={{mt: '2px'}}>
         <Grid item xs={3} sm={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
           <Typography  sx={{ color: theme.palette.text.secondary, fontWeight: 600, fontSize: 14 }}>
             Resources
