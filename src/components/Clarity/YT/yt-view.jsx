@@ -8,8 +8,9 @@ import video_after from '../../../assets/clarity/clean_video_after.png';
 
 function ClarityYT(){
   return (
-    <Box>
-      <Typography>
+    <Box sx={{display: 'flex'}}>
+      <Typography
+      >
         YouTube Home Page
       </Typography>
       <BeforeAfterSlider
