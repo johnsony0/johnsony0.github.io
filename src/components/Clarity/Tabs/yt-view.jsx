@@ -11,11 +11,11 @@ import { BeforeAfterSlider } from '../before-after-component';
 function ClarityYT(){
   return (
     <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      {BeforeAfterSlider({ firstImage: video_before, secondImage: video_after, header: 'YouTube Video' })}
+      {BeforeAfterSlider({ firstImage: video_before, secondImage: video_after, header: 'YouTube Video', theme: 'dark' })}
       <Divider sx={{ width: { xs: '90%', sm: '80%', md: '60%' } }} />
-      {BeforeAfterSlider({ firstImage: yt_before, secondImage: yt_after, header: 'YouTube Home' })}
+      {BeforeAfterSlider({ firstImage: yt_before, secondImage: yt_after, header: 'YouTube Home', theme: 'dark'  })}
       <Divider sx={{ width: { xs: '90%', sm: '80%', md: '60%' } }} />
-      {BeforeAfterSlider({ firstImage: yt_profile_before, secondImage: yt_profile_after, header: 'YouTube Profile' })}      
+      {BeforeAfterSlider({ firstImage: yt_profile_before, secondImage: yt_profile_after, header: 'YouTube Profile', theme: 'dark'  })}      
       <Divider sx={{ width: { xs: '90%', sm: '80%', md: '60%' } }} />
     </Box>
   );

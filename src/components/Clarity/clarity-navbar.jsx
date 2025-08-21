@@ -37,7 +37,8 @@ function ClarityNavBar(){
     { label: 'Facebook', path: '/clarity/fb' },
     { label: 'Twitter/X', path: '/clarity/x' },
     { label: 'YouTube', path: '/clarity/yt' },
-    { label: 'FAQ', path: '/clarity/faq'}
+    { label: 'Shared', path: '/clarity/shared' },
+    { label: 'Help', path: '/clarity/faq'}
   ];
 
   return (

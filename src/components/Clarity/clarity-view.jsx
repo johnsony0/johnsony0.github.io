@@ -87,7 +87,7 @@ function Clarity() {
 
   return (
     <Box>
-      <Paper elevation={0} square={true} sx={{ height: '65vh', margin: '20px'}}>
+      <Paper elevation={0} square={true} sx={{ maxHeight: '80vh', margin: '5px'}}>
         <Grid container spacing={0}>
           <Grid item xs={12} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', p: { xs: 2, sm: 4, md: 6 }}}>
             <Box
@@ -140,7 +140,7 @@ function Clarity() {
           </Grid>
         </Grid>
       </Paper>
-      <Paper elevation={0} sx={{backgroundColor: 'whitesmoke', minHeight: '50vh', display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+      <Paper elevation={0} sx={{backgroundColor: 'whitesmoke', minHeight: '50vh', display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column', paddingBottom: {xs: '5px', md: '10px'}}}>
           <Typography variant="h4" sx={{margin: '20px'}}>
             Why Clarity?
           </Typography>

@@ -18,10 +18,11 @@ import MTAOpenData from './components/Projects/MTA-Open-Data/mta-open-data-view'
 import ClarityNavbar from './components/Clarity/clarity-navbar';
 import ClarityFooter from './components/Clarity/clarity-footer';
 import Clarity from './components/Clarity/clarity-view';
-import ClarityFAQ from './components/Clarity/FAQ/faq-view';
-import ClarityFB from './components/Clarity/FB/fb-view';
-import ClarityX from './components/Clarity/X/x-view';
-import ClarityYT from './components/Clarity/YT/yt-view';
+import ClarityFAQ from './components/Clarity/Tabs/faq-view';
+import ClarityFB from './components/Clarity/Tabs/fb-view';
+import ClarityX from './components/Clarity/Tabs/x-view';
+import ClarityYT from './components/Clarity/Tabs/yt-view';
+import ClarityShared from './components/Clarity/Tabs/shared-view';
 
 
 const show = (Component) => {
@@ -64,6 +65,7 @@ function App() {
           <Route path="clarity/x" element={clarityTab(<ClarityX />)} />
           <Route path="clarity/yt" element={clarityTab(<ClarityYT />)} />
           <Route path="clarity/faq" element={clarityTab(<ClarityFAQ />)} />
+          <Route path="clarity/shared" element={clarityTab(<ClarityShared />)} />
         <Route path="/contact" element={show(Contact)} />
         <Route path="*" element={<NotFound />} />
       </Routes>
