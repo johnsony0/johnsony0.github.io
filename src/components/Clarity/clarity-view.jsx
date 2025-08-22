@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Box } from "@mui/material";
 import { Grid, Typography, Paper } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
@@ -64,7 +63,7 @@ function WhyItem({ svg, header, text }) {
 }
 
 function Clarity() {
-  const theme = useTheme();
+  //const theme = useTheme();
 
   return (
     <Box>

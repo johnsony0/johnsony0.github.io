@@ -34,10 +34,7 @@ function ClarityNavBar(){
 
   const navLinks = [
     { label: 'Home', path: '/clarity/home' },
-    { label: 'Facebook', path: '/clarity/fb' },
-    { label: 'Twitter/X', path: '/clarity/x' },
-    { label: 'YouTube', path: '/clarity/yt' },
-    { label: 'Shared', path: '/clarity/shared' },
+    { label: 'Examples', path: '/clarity/examples' },
     { label: 'Help', path: '/clarity/faq'}
   ];
 

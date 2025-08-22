@@ -72,17 +72,17 @@ export function BeforeAfterSlider({ firstImage, secondImage, header, theme = 'li
   
   return (  
     <Box sx={{
-      padding: 2, width: { xs: '100%', sm: '80%', md: '60%' },
+      padding: {md:8, xs:0}, width: '100%',
       }}>
-      <Typography variant="h6" sx={{ mb: 2, textAlign: 'center' }}>
-        {header}
-      </Typography>
       <Box sx={{ position: 'relative', width: '100%'}}>
         <ReactCompareSlider
           handle={theme === 'light' ? <LightCustomHandle/> : <DarkCustomHandle/>}
           onPositionChange={handleSliderChange}
           itemOne={<ReactCompareSliderImage src={firstImage} srcSet={firstImage} alt="before" />}
           itemTwo={<ReactCompareSliderImage src={secondImage} srcSet={secondImage} alt="after" />}
+          style={{
+            borderRadius: '32px'
+          }}
         />
         {overlayVisible && (
           <Box

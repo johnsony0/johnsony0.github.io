@@ -18,11 +18,8 @@ import MTAOpenData from './components/Projects/MTA-Open-Data/mta-open-data-view'
 import ClarityNavbar from './components/Clarity/clarity-navbar';
 import ClarityFooter from './components/Clarity/clarity-footer';
 import Clarity from './components/Clarity/clarity-view';
-import ClarityFAQ from './components/Clarity/Tabs/faq-view';
-import ClarityFB from './components/Clarity/Tabs/fb-view';
-import ClarityX from './components/Clarity/Tabs/x-view';
-import ClarityYT from './components/Clarity/Tabs/yt-view';
-import ClarityShared from './components/Clarity/Tabs/shared-view';
+import ClarityExamples from './components/Clarity/example-view';
+import ClarityFAQ from './components/Clarity/faq-view';
 
 
 const show = (Component) => {
@@ -61,11 +58,8 @@ function App() {
         <Route path="/resume" element={show(Resume)} />
         <Route path="/clarity" element={clarityTab(<Clarity/>)}/>
           <Route path="/clarity/home" element={clarityTab(<Clarity/>)}/>
-          <Route path="clarity/fb" element={clarityTab(<ClarityFB />)} />
-          <Route path="clarity/x" element={clarityTab(<ClarityX />)} />
-          <Route path="clarity/yt" element={clarityTab(<ClarityYT />)} />
+          <Route path="/clarity/examples" element={clarityTab(<ClarityExamples />)} />
           <Route path="clarity/faq" element={clarityTab(<ClarityFAQ />)} />
-          <Route path="clarity/shared" element={clarityTab(<ClarityShared />)} />
         <Route path="/contact" element={show(Contact)} />
         <Route path="*" element={<NotFound />} />
       </Routes>
