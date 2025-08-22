@@ -5,7 +5,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Paper // Import Paper component
+  Paper 
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 

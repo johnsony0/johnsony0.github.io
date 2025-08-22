@@ -17,6 +17,12 @@ export const themeOptions = {
       main: '#d32f2f',
     },
   },
+  clarity: {
+    primary: '#f5f5dc',
+    secondary: '#d2bd96',
+    bg: '#F8F8F8',
+    heading: '#292922'
+  },
   typography: {
     fontFamily: 'Segoe UI',
   },

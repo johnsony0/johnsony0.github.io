@@ -87,13 +87,31 @@ function Clarity() {
 
   return (
     <Box>
-      <Paper elevation={0} square={true} sx={{ maxHeight: '80vh', margin: '5px'}}>
+      <Paper
+        elevation={0} 
+        sx={{
+          maxHeight: '75vh',
+          margin: { xs: '5px', sm: '10px', md: '15px' },
+        }}
+      >
         <Grid container spacing={0}>
-          <Grid item xs={12} md={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', p: { xs: 2, sm: 4, md: 6 }}}>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              p: { xs: 2, sm: 4, md: 6 },
+            }}
+          >
             <Box
               sx={{
-                width: '100%', 
+                width: '100%',
                 height: '100%',
+                borderRadius: 2,
+                overflow: 'hidden', 
               }}
             >
               <Carousel
@@ -114,29 +132,57 @@ function Clarity() {
                     alignItems: 'center',
                     height: '100%',
                   },
-                  '& .MuiButtonBase-root.MuiIconButton-root:first-of-type': {
-                    marginLeft: theme.spacing(1),
-                  },
-                  '& .MuiButtonBase-root.MuiIconButton-root:last-of-type': {
-                    marginRight: theme.spacing(1),
-                  },
                 }}
               >
                 {items.map((item, i) => <Item key={i} item={item} />)}
               </Carousel>
             </Box>
           </Grid>
-          
-          <Grid item xs={12} md={4} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBlock: '10px' }}>
-            <Typography
-              variant="h6"
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              pt: { xs: 4, md: 0 }, 
+            }}
+          >
+            <Paper
+              elevation={0} 
               sx={{
-                textAlign: { xs: 'center', md: 'left' }, 
-                color: theme.palette.text.primary,
+                p: { xs: 3, sm: 4, md: 5 }, 
+                m: { xs: 2, sm: 4, md: 6 }, 
+                minHeight: { xs: '150px', md: '300px' },
+                borderRadius: 3, 
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                flexGrow: 1, 
               }}
             >
-              {items[slideIndex].description} 
-            </Typography>
+              <Typography
+                variant="h4"
+                sx={{
+                  textAlign: { xs: 'center', md: 'left' },
+                  color: theme.palette.text.primary,
+                  fontWeight: 'bold', 
+                  mb: 1,
+                }}
+              >
+                {items[slideIndex].name}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  textAlign: { xs: 'center', md: 'left' },
+                  color: theme.palette.text.secondary, 
+                }}
+              >
+                {items[slideIndex].description}
+              </Typography>
+            </Paper>
           </Grid>
         </Grid>
       </Paper>
