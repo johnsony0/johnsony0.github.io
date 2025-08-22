@@ -1,67 +1,49 @@
 import React, { useState } from 'react';
 import { Box } from "@mui/material";
-import Carousel from 'react-material-ui-carousel'
 import { Grid, Typography, Paper } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
-import ss1 from '../../assets/clarity/screenshot-1.png';
-import ss2 from '../../assets/clarity/screenshot-2.png';
-import ss3 from '../../assets/clarity/screenshot-3.png';
-import ss4 from '../../assets/clarity/screenshot-4.png';
-import ss5 from '../../assets/clarity/screenshot-5.png';
+import intromov from '../../assets/clarity/intro.mov';
+import intromp4 from '../../assets/clarity/intro.mp4';
 
-const items = [
-  {
-    name: "Change How You Use Social Media",
-    description: "Keep all the benefits like connectivity and communities, shed the negatives such as distractions and page clutter.",
-    image: ss1
-  },
-  {
-    name: "Minimize Distractions",
-    description: "Clarity minimize distractions through hiding elements that encourage more clicking and scrolling such as suggestions or comments.",
-    image: ss2
-  },
-  {
-    name: "Promote Less Scrolling",
-    description: "We promote less scrolling through restricting how far you can scroll, or adding limits to how many posts you can view.",
-    image: ss3
-  },
-  {
-    name: "Reduce Clutter on Pages",
-    description: "Pages are often cluttered with navigation tools, trending pages or friend suggestions, which we can help remove, so you can focus on posts and not on peripherals.",
-    image: ss4
-  },
-  {
-    name: "Take Control of Your Feed",
-    description: "Control what you see, hide posts that match your keywords/terms or politically biased posts.",
-    image: ss5
-  }
-];
+const VideoPlayer = ({ srcMov, srcMp4, title, autoPlay = false, loop = false, muted = true }) => {
+  const theme = useTheme();
 
-function Item(props) {
   return (
-    <Box 
+    <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
         width: '100%',
+        maxWidth: 800,
+        margin: 'auto', 
+        mt: 4, 
+        p: 2,
+        borderRadius: 2, 
+        boxShadow: theme.shadows[3], 
+        bgcolor: theme.palette.background.paper, 
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       <Box
-        component="img"
-        alt={props.item.name}
-        src={props.item.image}
+        component="video" 
+        autoPlay={autoPlay} 
+        loop={loop} 
+        muted={muted} 
+        playsInline 
         sx={{
-          display: 'block',
-          height: '80%',
-          width: '80%',
-          objectFit: 'contain',
+          width: '100%',
+          height: 'auto', 
+          borderRadius: 1, 
+          outline: 'none', 
         }}
-      />
+      >
+        {srcMov && <source src={srcMov} type="video/quicktime" />}
+        {srcMp4 && <source src={srcMp4} type="video/mp4" />}
+        Your browser does not support the video tag.
+      </Box>
     </Box>
   );
-}
+};
 
 function WhyItem({ svg, header, text }) {
   return (
@@ -83,109 +65,19 @@ function WhyItem({ svg, header, text }) {
 
 function Clarity() {
   const theme = useTheme();
-  const [slideIndex, setSlideIndex] = useState(0);
 
   return (
     <Box>
-      <Paper
-        elevation={0} 
-        sx={{
-          maxHeight: '75vh',
-          margin: { xs: '5px', sm: '10px', md: '15px' },
-        }}
-      >
-        <Grid container spacing={0}>
-          <Grid
-            item
-            xs={12}
-            md={8}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              p: { xs: 2, sm: 4, md: 6 },
-            }}
-          >
-            <Box
-              sx={{
-                width: '100%',
-                height: '100%',
-                borderRadius: 2,
-                overflow: 'hidden', 
-              }}
-            >
-              <Carousel
-                autoPlay={true}
-                interval={10000}
-                animation="slide"
-                navButtonsAlwaysVisible={true}
-                cycleNavigation={true}
-                swipe={true}
-                duration={600}
-                indicators={true}
-                onChange={(newIndex) => setSlideIndex(newIndex)}
-                sx={{
-                  height: '100%',
-                  '& .Carousel-slide': {
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '100%',
-                  },
-                }}
-              >
-                {items.map((item, i) => <Item key={i} item={item} />)}
-              </Carousel>
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={4}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              pt: { xs: 4, md: 0 }, 
-            }}
-          >
-            <Paper
-              elevation={0} 
-              sx={{
-                p: { xs: 3, sm: 4, md: 5 }, 
-                m: { xs: 2, sm: 4, md: 6 }, 
-                minHeight: { xs: '150px', md: '300px' },
-                borderRadius: 3, 
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                flexGrow: 1, 
-              }}
-            >
-              <Typography
-                variant="h4"
-                sx={{
-                  textAlign: { xs: 'center', md: 'left' },
-                  color: theme.palette.text.primary,
-                  fontWeight: 'bold', 
-                  mb: 1,
-                }}
-              >
-                {items[slideIndex].name}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  textAlign: { xs: 'center', md: 'left' },
-                  color: theme.palette.text.secondary, 
-                }}
-              >
-                {items[slideIndex].description}
-              </Typography>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Paper>
+      <Box sx={{ p: 4, display: 'flex', justifyContent: 'center', alignItems:'center', gap: 4 }}>
+        <VideoPlayer
+          srcMov={intromov}
+          srcMp4={intromp4} 
+          title="My Local Demo Video"
+          autoPlay={true}
+          loop={true}
+          muted={true}
+        />
+      </Box>
       <Paper elevation={0} sx={{backgroundColor: 'whitesmoke', minHeight: '50vh', display: 'flex', textAlign: 'center', justifyContent: 'center', flexDirection: 'column', paddingBottom: {xs: '5px', md: '10px'}}}>
           <Typography variant="h4" sx={{margin: '20px'}}>
             Why Clarity?

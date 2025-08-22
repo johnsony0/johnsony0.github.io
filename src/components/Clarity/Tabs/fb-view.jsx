@@ -1,11 +1,11 @@
-import React from 'react';
-import { Box, Divider } from '@mui/material';
+import React, {useState} from 'react';
+import { Box } from '@mui/material';
 import fb_before from '../../../assets/clarity/clean_fb_before.png';
 import fb_after from '../../../assets/clarity/clean_fb_after.png';
 import filter_before from '../../../assets/clarity/clean_filter_before.png';
 import filter_after from '../../../assets/clarity/clean_filter_after.png';
 import { BeforeAfterSlider } from '../before-after-component';
-import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@mui/lab';
+import { useTheme, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@mui/material';
 
 const fb_data = [
   {
@@ -22,31 +22,87 @@ const fb_data = [
   }
 ]
 
+const UncheckedRectangle = () => (
+  <Box
+    sx={{
+      width: 24, 
+      height: 24, 
+      border: '2px solid grey', 
+      borderRadius: 1, 
+      backgroundColor: 'transparent',
+      display: 'inline-block',
+      transition: 'background-color 0.2s, border-color 0.2s', 
+    }}
+  />
+);
+
+const CheckedRectangle = () => {
+  const theme = useTheme();
+  return (
+    <Box
+      sx={{
+        width: 24,
+        height: 24,
+        border: `2px solid ${theme.clarity.primary}`,
+        borderRadius: 1,
+        backgroundColor: theme.clarity.primary,
+        display: 'inline-block', 
+        transition: 'background-color 0.2s, border-color 0.2s',
+      }}
+    />
+  );
+};
+
+
 function ClarityFB(){
+  const [selectedValue, setSelectedValue] = useState(0);
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
+
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {fb_data.map((item, index) => (
-        <React.Fragment key={index}>
-          <BeforeAfterSlider
-            firstImage={item.firstImage}
-            secondImage={item.secondImage}
-            header={item.header}
-            theme={item.theme}
+      <FormControl component="fieldset">
+        <RadioGroup
+          aria-label="options"
+          name="custom-radio-group"
+          value={selectedValue}
+          onChange={handleChange}
+          row 
+        >
+          <FormControlLabel
+            value={0}
+            control={
+              <Radio
+                icon={<UncheckedRectangle />}       
+                checkedIcon={<CheckedRectangle/>} 
+              />
+            }
+            label="Option 1"
           />
-          {index < fb_data.length - 1 && (
-            <Divider sx={{ width: { xs: '90%', sm: '80%', md: '60%' }, my: 2 }} />
-          )}
-        </React.Fragment>
-      ))}
-      <Timeline>
-        <TimelineItem>
-          <TimelineSeparator>
-          <TimelineDot />
-          <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent>Eat</TimelineContent>
-        </TimelineItem>
-      </Timeline>
+          <FormControlLabel
+            value={1}
+            control={
+              <Radio
+                icon={<UncheckedRectangle />}
+                checkedIcon={<CheckedRectangle />}
+              />
+            }
+            label="Option 2"
+          />
+        </RadioGroup>
+      </FormControl>
+      <React.Fragment key={selectedValue}>
+        <BeforeAfterSlider
+          firstImage={fb_data[selectedValue].firstImage}
+          secondImage={fb_data[selectedValue].secondImage}
+          header={fb_data[selectedValue].header}
+          theme={fb_data[selectedValue].theme}
+        />
+      </React.Fragment>
     </Box>
   );
 }
