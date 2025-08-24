@@ -1,4 +1,4 @@
-import { Box, useTheme } from '@mui/material';
+import { Box, useTheme, Typography, useMediaQuery } from '@mui/material';
 import { Radio, RadioGroup, FormControlLabel, FormControl} from '@mui/material';
 
 
@@ -23,9 +23,9 @@ const CheckedRectangle = () => {
       sx={{
         width: 10,
         height: 40,
-        border: `2px solid ${theme.clarity.primary}`,
+        border: `2px solid ${theme.clarity.secondary}`,
         borderRadius: 1,
-        backgroundColor: theme.clarity.primary,
+        backgroundColor: theme.clarity.secondary,
         display: 'inline-block', 
         transition: 'background-color 0.2s, border-color 0.2s',
       }}
@@ -33,34 +33,41 @@ const CheckedRectangle = () => {
   );
 };
 
-function RadioForm({ selectedValue, handleChange, data }) {
+function RadioForm({ selectedValue, handleChange, data, title }) {
+  const theme = useTheme();
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <FormControl component="fieldset">
-      <RadioGroup
-        aria-label="options"
-        name="custom-radio-group"
-        value={selectedValue}
-        onChange={handleChange}
-				sx={{
-					display: 'flex',
-					flexDirection: {xs:'row', md:'column'}
-				}}
-      >
-        {data.map((item, index) => (
-          <FormControlLabel
-            key={index}
-            value={index}
-            control={
-              <Radio
-                icon={<UncheckedRectangle />}
-                checkedIcon={<CheckedRectangle />}
-              />
-            }
-            label={item.header}
-          />
-        ))}
-      </RadioGroup>
-    </FormControl>
+    <Box>
+      <Typography variant={isSm ? 'h5' : 'h3'} sx={{ mb: 2, textAlign: {xs: 'center', md: 'left'} }}>
+        {title}
+      </Typography>
+      <FormControl component="fieldset">
+        <RadioGroup
+          aria-label="options"
+          name="custom-radio-group"
+          value={selectedValue}
+          onChange={handleChange}
+          sx={{
+            display: 'flex',
+            flexDirection: {xs:'row', md:'column'}
+          }}
+        >
+          {data.map((item, index) => (
+            <FormControlLabel
+              key={index}
+              value={index}
+              control={
+                <Radio
+                  icon={<UncheckedRectangle />}
+                  checkedIcon={<CheckedRectangle />}
+                />
+              }
+              label={item.header}
+            />
+          ))}
+        </RadioGroup>
+      </FormControl>
+    </Box>
   );
 }
 

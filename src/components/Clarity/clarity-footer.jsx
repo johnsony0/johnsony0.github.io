@@ -35,7 +35,8 @@ function ClarityFooter(){
   return (
     <Box sx={{
       mx: 'auto',
-      width: '95%'
+      width: '100%',
+      backgroundColor: theme.palette.primary.main,
     }}>
       <Grid container spacing={1} justifyContent="center" alignItems="flex-start" sx={{mt: '2px'}}>
         <Grid item xs={3} sm={3} display="flex" flexDirection="column" justifyContent="center" alignItems="center">

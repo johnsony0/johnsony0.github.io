@@ -1,6 +1,11 @@
-import React, {useState} from 'react';
-import { Box, Grid, Divider } from "@mui/material";
+import React, {useState, useRef} from 'react';
+import { Box, Grid, useMediaQuery, useTheme, Button, ButtonGroup } from "@mui/material";
 import { BeforeAfterSlider } from './components/before-after-component';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import useScrolledNearBottom from './components/scroll-near-bottom';
 import RadioForm from './components/radio-form-component';
 
 import fb_before from '../../assets/clarity/clean_fb_before.png';
@@ -29,13 +34,13 @@ const fb_data = [
 	{
 		firstImage: fb_before,
 		secondImage: fb_after,
-		header: 'Facebook Home',
+		header: 'Home',
 		theme: 'dark' 
 	},
 	{
 		firstImage: filter_before,
 		secondImage: filter_after,
-		header: 'Facebook Profile + Posts',
+		header: 'Profile + Posts',
 		theme: 'dark'
 	}
 ]
@@ -44,13 +49,13 @@ const x_data = [
 	{
 		firstImage: x_before,
 		secondImage: x_after,
-		header: 'X/Twitter Home',
+		header: 'Home',
 		theme: 'light' 
 	},
 	{
 		firstImage: x_profile_before,
 		secondImage: x_profile_after,
-		header: 'X/Twitter Profile + Posts',
+		header: 'Profile + Posts',
 		theme: 'light'
 	}
 ]
@@ -59,19 +64,19 @@ const yt_data = [
 	{
 		firstImage: video_before,
 		secondImage: video_after,
-		header: 'YouTube Video',
+		header: 'Video',
 		theme: 'dark'
 	},
 	{
 		firstImage: yt_before,
 		secondImage: yt_after,
-		header: 'YouTube Home',
+		header: 'Home',
 		theme: 'dark' 
 	},
 	{
 		firstImage: yt_profile_before,
 		secondImage: yt_profile_after,
-		header: 'YouTube Profile',
+		header: 'Profile',
 		theme: 'dark'
 	}
 ]
@@ -80,27 +85,29 @@ const shared_data = [
   {
     firstImage: grayscale_before,
     secondImage: grayscale_after,
-    header: '',
-    theme: 'dark' 
+    header: 'Grayscale Mode',
+    theme: 'light' 
   },
   {
     firstImage: timer,
     secondImage: limit,
-    header: 'Facebook Profile + Posts',
-    theme: 'dark'
+    header: 'Timer vs Limit',
+    theme: 'light'
   }
 ]
 
-function SliderSelectorComponent(selectedValue, handleChange, data, position) {
+function SliderSelectorComponent(selectedValue, handleChange, data, position, title) {
+	const theme = useTheme();
+	const isMd = useMediaQuery(theme.breakpoints.up('md'));
 	return (
-		<Box sx={{ width: '100%', height: '80vh'}}>
-			<Grid container spacing={0} sx={{ mb: 2, justifyContent: 'center', width: '100%', height: '100%' }}>
-				{position === 'left' && (
+		<Box sx={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+			<Grid container spacing={0} sx={{ mb: 2, width: '100%', height: '100%' }}>
+				{(position === 'left' && isMd) && (
 					<Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: {xs: 'start', md: 'center'}}}>
-						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} />
+						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title}/>
 					</Grid>
 				)}
-				<Grid item xs={12} md={9} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				<Grid item xs={12} md={9} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
 					<React.Fragment key={selectedValue}>
 						<BeforeAfterSlider
 							firstImage={data[selectedValue].firstImage}
@@ -110,9 +117,9 @@ function SliderSelectorComponent(selectedValue, handleChange, data, position) {
 						/>
 					</React.Fragment>
 				</Grid>
-				{position === 'right' && (
+				{(position === 'right' || !isMd) && (
 					<Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: {xs: 'start', md: 'center'}}}>
-						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} />
+						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title} />
 					</Grid>
 				)}
 			</Grid>
@@ -125,6 +132,15 @@ function ClarityExamples(){
 	const [XValue, setXvalue] = useState(0);
 	const [YTValue, setYTvalue] = useState(0);
 	const [SharedValue, setSharedValue] = useState(0);
+
+	const fbRef = useRef(null);
+  const xRef = useRef(null);
+  const ytRef = useRef(null);
+  const othersRef = useRef(null);
+
+	const theme = useTheme();
+	const isBottom = useScrolledNearBottom(107);
+	const isMd = useMediaQuery(theme.breakpoints.down('md'));
 
 	const handleFBChange = (event) => {
 		setFBvalue(event.target.value);
@@ -140,26 +156,60 @@ function ClarityExamples(){
 		setSharedValue(event.target.value);
 	}
 
+	const scrollToSection = (ref) => {
+    ref.current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
+
 	return (
-		<Grid container spacing={0} sx={{ mb: 2, justifyContent: 'center', width: '100%', height: '100%' }}>
-			<Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-				{SliderSelectorComponent(FBValue,handleFBChange,fb_data,'right')}
-			</Grid>
-			<Divider sx={{width: '90%'}}/>
-			<Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-				{SliderSelectorComponent(XValue,handleXChange,x_data,'left')}
-			</Grid>
-			<Divider sx={{width: '90%'}}/>
-			<Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-				{SliderSelectorComponent(YTValue,handleYTChange,yt_data,'right')}
-			</Grid>
-			<Divider sx={{width: '90%'}}/>
-			<Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-				{SliderSelectorComponent(SharedValue,handleSharedChange,shared_data,'left')}
-			</Grid>
-			<Divider sx={{width: '90%'}}/>
-		</Grid>
-	);
+	<Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+		<Box
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+				width: '100%',
+				height: 'auto',
+				backgroundImage: 'linear-gradient(to bottom left, #f5f5dc, #f5f5f5)',
+			}}
+		>
+			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook')}
+			</Box>
+			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'X/Twitter')}
+			</Box>
+			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube')}
+			</Box>
+			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features')}
+			</Box>
+		</Box>
+		<Box
+			sx={{
+				position: 'sticky',
+				bottom: {xs: '20px', md: '30px'},
+				zIndex: 1000,
+				borderRadius: isBottom ? '0px' : '50px',
+				overflow: 'hidden',
+				display: 'flex',
+				justifyContent: 'center',
+				width: {xs: isBottom ? '100vw' : '90vw', md: isBottom ? '100vw' : '60vw'},
+			}}
+		>
+			<ButtonGroup variant="contained" aria-label="outlined primary button group" size="large" sx={{ width: '100%' }}>
+				<Button startIcon={<FacebookIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(fbRef)}>{isMd ? 'FB' : 'Facebook'}</Button>
+				<Button startIcon={<TwitterIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(xRef)}>{isMd ? 'X' : 'X/Twitter'}</Button>
+				<Button startIcon={<YouTubeIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(ytRef)}>{isMd ? 'YT' : 'YouTube'}</Button>
+				<Button startIcon={<MoreHorizIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(othersRef)}>Others</Button>
+			</ButtonGroup>
+		</Box>
+	</Box>
+);
 }
 
 export default ClarityExamples;

@@ -5,19 +5,18 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import GetAppIcon from '@mui/icons-material/GetApp'; 
+import GetAppIcon from '@mui/icons-material/GetApp';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
-import bogo from '../../assets/clarity/icon.png'; 
+import bogo from '../../assets/clarity/icon.png';
 
-function ClarityNavBar(){
+function ClarityNavBar() {
   const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -33,134 +32,149 @@ function ClarityNavBar(){
   };
 
   const navLinks = [
-    { label: 'Home', path: '/clarity/home' },
+    { label: 'Home', path: '/clarity' },
     { label: 'Examples', path: '/clarity/examples' },
-    { label: 'Help', path: '/clarity/faq'}
+    { label: 'Help', path: '/clarity/faq' }
   ];
 
   return (
-    <AppBar 
+    <AppBar
       position="sticky"
       component="nav"
-      sx={{ 
+      sx={{
         backgroundColor: trigger ? 'rgba(255, 255, 255, 0.8)' : 'white',
         backdropFilter: trigger ? 'blur(5px)' : 'none',
         color: theme.palette.text.primary,
         boxShadow: trigger ? '0 4px 6px rgba(0, 0, 0, 0.1)' : 'none',
         height: '64px'
       }}
-      
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
         <Box
-          component="img"
-          alt="Logo"
-          src={bogo}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            height: '35px',
-            width: 'auto',
-          }}
-        />
+          component={Link}
+          to='/clarity'
+          sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', mr: isMd ? 2 : 10 }}
+        >
+          <Box
+            component="img"
+            alt="Clarity Logo"
+            src={bogo}
+            sx={{
+              height: '35px',
+              width: 'auto',
+            }}
+          />
+        </Box>
         {isMobile ? (
           <>
             <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-              <Box
-                sx={{ width: 250 }}
-                role="presentation"
-                onClick={toggleDrawer(false)}
-                onKeyDown={toggleDrawer(false)}
-              >
-                <List>
-                  {navLinks.map((link) => (
-                    <ListItem key={link.path} disablePadding>
-                      <ListItemButton
-                        color="inherit"
-                        component={Link}
-                        to={link.path}
-                        sx={{
-                          padding: '20px',
-                          textTransform: location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(`${link.path}/`)) ? 'uppercase' : 'none',
-                        }}
-                      >
-                        {link.label}
-                      </ListItemButton>
-                    </ListItem>
-                  ))}
-                </List>
-                <Button
-                  component="a"
-                  href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="text"
-                  color='inherit'
-                  fullWidth
-                  sx={{
-                    padding: '20px',
-                  }}
-                  startIcon={
-                    <GetAppIcon/>
+              <Tabs
+                orientation="vertical"
+                value={location.pathname}
+                textColor="primary"
+                sx={{
+                  '& .MuiTabs-indicator': {
+                    display: 'none',
                   }
-                >
-                  Get Clarity
-                </Button>
-              </Box>
+                }}
+              >
+                {navLinks.map((link) => (
+                  <Tab
+                    key={link.path}
+                    label={link.label}
+                    value={link.path}
+                    component={Link}
+                    to={link.path}
+                    sx={{
+                      color: theme.palette.text.primary,
+                      textTransform: 'none',
+                      padding: '0px',
+                      m: isMd? '5px' : '5px 10px 5px 10px',
+                      '&.Mui-selected': {
+                        backgroundColor: theme.clarity.primary,
+                        color: theme.palette.text.secondary,
+                        borderRadius: '50px',
+                      },
+                      '&:hover': {
+                        color: theme.palette.text.secondary,
+                      },
+                    }}
+                  />
+                ))}
+              </Tabs>
+              <Button
+                component="a"
+                href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outlined"
+                color="inherit"
+                sx={{
+                  padding: '10px',
+                  ml: 'auto', 
+                  textTransform: 'none',
+                }}
+                startIcon={<GetAppIcon />}
+              >
+                Get Clarity
+              </Button>
             </Drawer>
           </>
         ) : (
-          <>
-            <Box
+          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Tabs
+              value={location.pathname}
+              textColor="primary"
               sx={{
-                position: 'absolute',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                flexGrow: 1,
-                display: 'flex',
-                justifyContent: 'center',
+                '& .MuiTabs-indicator': {
+                  display: 'none',
+                }
               }}
             >
               {navLinks.map((link) => (
-                <Button
+                <Tab
                   key={link.path}
-                  color="inherit"
+                  label={link.label}
+                  value={link.path}
                   component={Link}
                   to={link.path}
                   sx={{
-                    padding: isMd ? '5px' : '20px',
-                    //margin: '0 10px 0 10px',
                     color: theme.palette.text.primary,
-                    textTransform: location.pathname === link.path || (link.path !== '/' && location.pathname.startsWith(`${link.path}/`)) ? 'uppercase' : 'none',
+                    textTransform: 'none',
+                    padding: '0px',
+                    m: isMd? '5px' : '5px 10px 5px 10px',
+                    '&.Mui-selected': {
+                      backgroundColor: theme.clarity.primary,
+                      color: theme.palette.text.secondary,
+                      borderRadius: '50px',
+                    },
                     '&:hover': {
                       color: theme.palette.text.secondary,
-                  },
+                    },
                   }}
-                >
-                  {link.label}
-                </Button>
+                />
               ))}
-            </Box>
+            </Tabs>
             <Button
               component="a"
               href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
               target="_blank"
               rel="noopener noreferrer"
               variant="outlined"
-              color='inherit'
+              color="inherit"
               sx={{
                 padding: '10px',
+                ml: 'auto', 
+                textTransform: 'none',
               }}
-              startIcon={
-                <GetAppIcon/>
-              }
+              startIcon={<GetAppIcon />}
             >
               Get Clarity
             </Button>
-          </>
+          </Box>
         )}
       </Toolbar>
     </AppBar>

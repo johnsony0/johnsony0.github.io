@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import NavBar from './components/navbar';
 import Footer from './components/footer';
 import NotFound from './components/notfound';
@@ -42,10 +43,21 @@ const clarityTab = (component) => {
   )
 }
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]); 
+
+  return null; 
+};
+
 function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={show(Home)} />
         <Route path="/home" element={show(Home)} />
@@ -57,7 +69,7 @@ function App() {
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
         <Route path="/resume" element={show(Resume)} />
         <Route path="/clarity" element={clarityTab(<Clarity/>)}/>
-          <Route path="/clarity/home" element={clarityTab(<Clarity/>)}/>
+          <Route path="/clarity" element={clarityTab(<Clarity/>)}/>
           <Route path="/clarity/examples" element={clarityTab(<ClarityExamples />)} />
           <Route path="clarity/faq" element={clarityTab(<ClarityFAQ />)} />
         <Route path="/contact" element={show(Contact)} />

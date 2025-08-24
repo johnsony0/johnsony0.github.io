@@ -71,9 +71,12 @@ export function BeforeAfterSlider({ firstImage, secondImage, header, theme = 'li
   };
   
   return (  
-    <Box sx={{
-      padding: {md:8, xs:0}, width: '100%',
-      }}>
+    <Box
+      sx={{
+      p: { md: 8, xs: 0 },
+      width: '100%',
+    }}
+    >
       <Box sx={{ position: 'relative', width: '100%'}}>
         <ReactCompareSlider
           handle={theme === 'light' ? <LightCustomHandle/> : <DarkCustomHandle/>}
@@ -107,7 +110,7 @@ export function BeforeAfterSlider({ firstImage, secondImage, header, theme = 'li
             }}
           >
             <ArrowBackIosNewIcon/>
-            <Typography sx={{ mr: 1 }}>
+            <Typography sx={{ mr: 1, ml: 1 }}>
               {'Slide to see changes!'}
             </Typography>
             <ArrowForwardIosIcon/>
