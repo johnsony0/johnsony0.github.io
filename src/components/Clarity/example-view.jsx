@@ -173,6 +173,23 @@ function ClarityExamples(){
     });
   };
 
+
+  useEffect(() => {
+		const hashRefMap = {
+			'#fb': fbRef,
+			'#x': xRef,
+			'#yt': ytRef,
+			'#others': othersRef,
+		};
+    const hash = window.location.hash;
+    const refToScroll = hashRefMap[hash];
+    if (refToScroll) {
+      setTimeout(() => {
+        scrollToSection(refToScroll);
+      }, 100);
+    }
+  }, []);
+
 	const allImages = [
 		...fb_data.map(item => item.firstImage),
 		...fb_data.map(item => item.secondImage),
