@@ -31,13 +31,12 @@ const faqData = [
 function ClarityFAQ() {
   return (
     <Box sx={{ width: {lg: '50%', md: '70%', sm: '90%'}, margin: 'auto', padding: '20px' }}>
-      <Paper elevation={2} sx={{ borderRadius: 2, overflow: 'hidden' }}>
+      <Paper elevation={5} sx={{ borderRadius: 2, overflow: 'hidden' }}>
         {faqData.map((faq, index) => (
           <Accordion
             key={index} 
             sx={{
-              backgroundColor: 'background.paper', 
-              borderBottom: index < faqData.length - 1 ? '1px solid rgba(0, 0, 0, 0.12)' : 'none',
+              borderBottom: index < faqData.length - 1 ? '2px solid rgba(0, 0, 0, 0.5)' : 'none',
               '&:last-child': {
                 borderBottom: 'none', 
               },

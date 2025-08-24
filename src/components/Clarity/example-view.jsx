@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { Box, Grid, useMediaQuery, useTheme, Button, ButtonGroup } from "@mui/material";
 import { BeforeAfterSlider } from './components/before-after-component';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -108,14 +108,12 @@ function SliderSelectorComponent(selectedValue, handleChange, data, position, ti
 					</Grid>
 				)}
 				<Grid item xs={12} md={9} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
-					<React.Fragment key={selectedValue}>
-						<BeforeAfterSlider
-							firstImage={data[selectedValue].firstImage}
-							secondImage={data[selectedValue].secondImage}
-							header={data[selectedValue].header}
-							theme={data[selectedValue].theme}
-						/>
-					</React.Fragment>
+					<BeforeAfterSlider
+						firstImage={data[selectedValue].firstImage}
+						secondImage={data[selectedValue].secondImage}
+						header={data[selectedValue].header}
+						theme={data[selectedValue].theme}
+					/>
 				</Grid>
 				{(position === 'right' || !isMd) && (
 					<Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: {xs: 'start', md: 'center'}}}>
@@ -126,6 +124,18 @@ function SliderSelectorComponent(selectedValue, handleChange, data, position, ti
 		</Box>
 	);
 }
+
+const useImagePreloader = (imageUrls) => {
+  useEffect(() => {
+    const preloadedImages = [];
+    imageUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+      preloadedImages.push(img);
+    });
+  }, [imageUrls]);
+};
+
 
 function ClarityExamples(){
 	const [FBValue, setFBvalue] = useState(0);
@@ -162,6 +172,19 @@ function ClarityExamples(){
       block: 'center',
     });
   };
+
+	const allImages = [
+		...fb_data.map(item => item.firstImage),
+		...fb_data.map(item => item.secondImage),
+		...x_data.map(item => item.firstImage),
+		...x_data.map(item => item.secondImage),
+		...yt_data.map(item => item.firstImage),
+		...yt_data.map(item => item.secondImage),
+		...yt_data.map(item => item.secondImage),
+		...shared_data.map(item => item.firstImage),
+		...shared_data.map(item => item.secondImage),
+	];
+	useImagePreloader(allImages);
 
 	return (
 	<Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>

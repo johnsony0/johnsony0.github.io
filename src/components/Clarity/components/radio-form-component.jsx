@@ -5,8 +5,8 @@ import { Radio, RadioGroup, FormControlLabel, FormControl} from '@mui/material';
 const UncheckedRectangle = () => (
   <Box
     sx={{
-      width: 10, 
-      height: 40,
+      width: {xs: 20, md: 10}, 
+      height: {xs: 20, md: 40},
       border: '2px solid grey', 
       borderRadius: 1, 
       backgroundColor: 'white',
@@ -21,8 +21,8 @@ const CheckedRectangle = () => {
   return (
     <Box
       sx={{
-        width: 10,
-        height: 40,
+        width: {xs: 20, md: 10},
+        height: {xs: 20, md:40},
         border: `2px solid ${theme.clarity.secondary}`,
         borderRadius: 1,
         backgroundColor: theme.clarity.secondary,

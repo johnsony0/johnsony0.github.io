@@ -70,7 +70,12 @@ function ClarityNavBar() {
             <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
-            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)} 
+              PaperProps={{
+                sx: {
+                  minWidth: '250px', 
+                },
+              }}>
               <Tabs
                 orientation="vertical"
                 value={location.pathname}
@@ -92,7 +97,8 @@ function ClarityNavBar() {
                       color: theme.palette.text.primary,
                       textTransform: 'none',
                       padding: '0px',
-                      m: isMd? '5px' : '5px 10px 5px 10px',
+                      mb: 2,
+                      mt: 1,
                       '&.Mui-selected': {
                         backgroundColor: theme.clarity.primary,
                         color: theme.palette.text.secondary,
@@ -111,11 +117,13 @@ function ClarityNavBar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="outlined"
-                color="inherit"
+                fullWidth
                 sx={{
                   padding: '10px',
-                  ml: 'auto', 
+                  ml: 'auto',
                   textTransform: 'none',
+                  color: theme.clarity.secondary,
+                  borderColor: theme.clarity.secondary,
                 }}
                 startIcon={<GetAppIcon />}
               >
@@ -164,11 +172,12 @@ function ClarityNavBar() {
               target="_blank"
               rel="noopener noreferrer"
               variant="outlined"
-              color="inherit"
               sx={{
                 padding: '10px',
-                ml: 'auto', 
+                ml: 'auto',
                 textTransform: 'none',
+                color: theme.clarity.secondary,
+                borderColor: theme.clarity.secondary,
               }}
               startIcon={<GetAppIcon />}
             >

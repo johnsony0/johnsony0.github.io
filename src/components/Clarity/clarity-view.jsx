@@ -89,12 +89,13 @@ function Clarity() {
               target="_blank"
               rel="noopener noreferrer"
               variant="outlined"
-              color="inherit"
               fullWidth
               sx={{
                 padding: '10px',
-                mt: '10px', 
+                ml: 'auto',
                 textTransform: 'none',
+                color: theme.clarity.secondary,
+                borderColor: theme.clarity.secondary,
               }}
               startIcon={<GetAppIcon />}
             >
