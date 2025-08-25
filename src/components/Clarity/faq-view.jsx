@@ -5,26 +5,25 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Paper 
+  Paper,
+  Link
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const faqData = [
   {
-    question: "What services do you offer?",
-    answer: "We offer a wide range of services including web development, mobile app development, UI/UX design, and cloud solutions."
+    question: "Where can I visualize changes that Clarity makes?",
+    answer: "R",
+    links: []
   },
   {
-    question: "How can I get a quote?",
-    answer: "You can request a quote by filling out the contact form on our website or by sending us an email directly."
+    question: "Can I see a breakdown of settings to know what element each option hides?",
+    answer: "",
+    links: []
   },
   {
-    question: "Do you provide ongoing support?",
-    answer: "Yes, we offer various support packages tailored to your needs, including maintenance, updates, and technical assistance."
-  },
-  {
-    question: "What is your development process?",
-    answer: "Our process typically involves discovery, planning, design, development, testing, and deployment, followed by ongoing support."
+    question: "I notice YouTube videos missing on my for you page.",
+    answer: "This happens when hiding shorts or playables or other elements that appear as you scroll the home page, means "
   }
 ];
 
@@ -36,7 +35,7 @@ function ClarityFAQ() {
           <Accordion
             key={index} 
             sx={{
-              borderBottom: index < faqData.length - 1 ? '2px solid rgba(0, 0, 0, 0.5)' : 'none',
+              borderBottom: index < faqData.length - 1 ? '2px solid rgba(0, 0, 0, 0.4)' : 'none',
               '&:last-child': {
                 borderBottom: 'none', 
               },
@@ -67,6 +66,8 @@ function ClarityFAQ() {
               <Typography>
                 {faq.answer}
               </Typography>
+              <Link>
+              </Link>
             </AccordionDetails>
           </Accordion>
         ))}

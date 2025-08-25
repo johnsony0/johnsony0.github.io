@@ -111,24 +111,25 @@ function ClarityNavBar() {
                   />
                 ))}
               </Tabs>
-              <Button
-                component="a"
-                href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="outlined"
-                fullWidth
-                sx={{
-                  padding: '10px',
-                  ml: 'auto',
-                  textTransform: 'none',
-                  color: theme.clarity.secondary,
-                  borderColor: theme.clarity.secondary,
-                }}
-                startIcon={<GetAppIcon />}
-              >
-                Get Clarity
-              </Button>
+              <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Button
+                  component="a"
+                  href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="contained"
+                  sx={{
+                    width: '90%',
+                    padding: '10px',
+                    textTransform: 'none',
+                    color: 'whitesmoke',
+                    backgroundColor: theme.clarity.secondary,
+                  }}
+                  startIcon={<GetAppIcon />}
+                >
+                  Get Clarity
+                </Button>
+              </Box>
             </Drawer>
           </>
         ) : (
@@ -171,13 +172,13 @@ function ClarityNavBar() {
               href="https://chromewebstore.google.com/detail/clarity/cjigopmhiclhnkjajamcdobogkgpodnj"
               target="_blank"
               rel="noopener noreferrer"
-              variant="outlined"
+              variant="contained"
               sx={{
                 padding: '10px',
                 ml: 'auto',
                 textTransform: 'none',
-                color: theme.clarity.secondary,
-                borderColor: theme.clarity.secondary,
+                color: 'whitesmoke',
+                backgroundColor: theme.clarity.secondary,
               }}
               startIcon={<GetAppIcon />}
             >
