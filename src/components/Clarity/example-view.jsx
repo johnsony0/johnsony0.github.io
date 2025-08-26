@@ -1,6 +1,8 @@
 import React, {useState, useRef, useEffect} from 'react';
 import { Box, Grid, useMediaQuery, useTheme, Button, ButtonGroup } from "@mui/material";
 import { BeforeAfterSlider } from './components/before-after-component';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -205,6 +207,13 @@ function ClarityExamples(){
 
 	return (
 	<Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+		<HelmetProvider>
+			<Helmet>
+				<title>Clarity | Examples</title>
+				<meta name="description" content="Examples of how Clarity blocks distractions on Facebook, Twitter, or YouTube." />
+				<link rel="canonical" href="https://johnsony0.github.io/clarity/examples" />
+			</Helmet>
+		</HelmetProvider>
 		<Box
 			sx={{
 				display: 'flex',
@@ -232,9 +241,9 @@ function ClarityExamples(){
 		<Box
 			sx={{
 				position: 'sticky',
-				bottom: {xs: '20px', md: '30px'},
+				bottom: {xs: 20, md: 30},
 				zIndex: 1000,
-				borderRadius: isBottom ? '0px' : '50px',
+				borderRadius: isBottom ? 0 : 50,
 				overflow: 'hidden',
 				display: 'flex',
 				justifyContent: 'center',

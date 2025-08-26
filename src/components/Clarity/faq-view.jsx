@@ -8,6 +8,7 @@ import {
   Paper,
   Link
 } from '@mui/material';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const faqData = [
@@ -26,7 +27,12 @@ const faqData = [
   },*/
   {
     question: "I notice YouTube videos missing on my home page.",
-    answer: "This happens when hiding shorts or playables or other elements that appear as you scroll the home page.",
+    answer: "This is normal behavior happens when hiding shorts or playables or other elements that appear on the YouTube feed.",
+    links: []
+  },
+  {
+    question: "This request exceeds the MAX_WRITE_OPERATIONS_PER_MINUTE quota.",
+    answer: "Chrome sync storage only allows 120 write operations per minute. So just wait a bit and try again. If the issue persists, please reach out to us.",
     links: []
   }
 ];
@@ -45,7 +51,14 @@ function ClarityFAQ() {
         backgroundImage: 'linear-gradient(to bottom right, #f5f5dc, white)',
       }}
     >
-      <Box sx={{ width: {lg: '50%', md: '70%', sm: '90%'}, margin: 'auto', padding: '20px' }}>
+      <HelmetProvider>
+        <Helmet>
+          <title>Clarity | Help</title>
+          <meta name="description" content="Help for Clarity extension" />
+          <link rel="canonical" href="https://johnsony0.github.io/clarity/faq" />
+        </Helmet>
+      </HelmetProvider>
+      <Box sx={{ width: {lg: '50%', md: '70%', sm: '90%'}, margin: 'auto', padding: 3 }}>
         <Paper elevation={5} sx={{ borderRadius: 2, overflow: 'hidden' }}>
           {faqData.map((faq, index) => (
             <Accordion
@@ -65,12 +78,12 @@ function ClarityFAQ() {
                 aria-controls={`panel${index}-content`}
                 id={`panel${index}-header`}
                 sx={{
-                  padding: '10px 20px', 
+                  padding: 1, 
                   '&.Mui-expanded': {
-                    minHeight: '24px', 
+                    minHeight: 2, 
                   },
                   '.MuiAccordionSummary-content': {
-                    margin: '12px 0', 
+                    margin: 2, 
                   },
                 }}
               >
@@ -78,7 +91,7 @@ function ClarityFAQ() {
                   {faq.question}
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails sx={{ padding: '0 24px 16px' }}
+              <AccordionDetails sx={{ pl: 3, pr: 3}}
                 id={`panel${index}-content`}
                 aria-labelledby={`panel${index}-header`}
               >
@@ -89,7 +102,7 @@ function ClarityFAQ() {
                   {faq.links.map((linkObj, linkIndex) => (
                     <Link href={linkObj.link} target="_blank" rel="noopener noreferrer" 
                     color="inherit"
-                    sx={{ display: 'block', marginTop: '8px' }}>
+                    sx={{ display: 'block', marginTop: 2 }}>
                       {linkObj.text}
                     </Link>
                   ))}
