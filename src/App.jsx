@@ -20,6 +20,7 @@ import ClarityNavbar from './components/Clarity/clarity-navbar';
 import ClarityFooter from './components/Clarity/clarity-footer';
 import Clarity from './components/Clarity/clarity-view';
 import ClarityExamples from './components/Clarity/example-view';
+import ClarityFeatures from './components/Clarity/feature-view';
 import ClarityFAQ from './components/Clarity/faq-view';
 
 
@@ -69,7 +70,7 @@ function App() {
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
         <Route path="/resume" element={show(Resume)} />
         <Route path="/clarity" element={clarityTab(<Clarity/>)}/>
-          <Route path="/clarity" element={clarityTab(<Clarity/>)}/>
+          <Route path="/clarity/features" element={clarityTab(<ClarityFeatures />)} />
           <Route path="/clarity/examples" element={clarityTab(<ClarityExamples />)} />
           <Route path="clarity/faq" element={clarityTab(<ClarityFAQ />)} />
         <Route path="/contact" element={show(Contact)} />

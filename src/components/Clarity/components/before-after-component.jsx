@@ -79,6 +79,7 @@ export function BeforeAfterSlider({ firstImage, secondImage, header, theme = 'li
     >
       <Box sx={{ position: 'relative', width: '100%'}}>
         <ReactCompareSlider
+          aria-label={`${header}-before-after-slider`}
           handle={theme === 'light' ? <LightCustomHandle/> : <DarkCustomHandle/>}
           onPositionChange={handleSliderChange}
           itemOne={<ReactCompareSliderImage src={firstImage} srcSet={firstImage} alt="before" />}

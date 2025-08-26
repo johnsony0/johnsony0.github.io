@@ -37,14 +37,13 @@ function RadioForm({ selectedValue, handleChange, data, title }) {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
   return (
-    <Box>
-      <Typography variant={isSm ? 'h5' : 'h3'} sx={{ mb: 2, textAlign: {xs: 'center', md: 'left'} }}>
+    <Box aria-label={`${title}-selection-form`}>
+      <Typography component="h3" variant={isSm ? 'h5' : 'h3'} sx={{ mb: 2, textAlign: {xs: 'center', md: 'left'} }}>
         {title}
       </Typography>
       <FormControl component="fieldset">
         <RadioGroup
-          aria-label="options"
-          name="custom-radio-group"
+          name={`custom-radio-group-${title}`}
           value={selectedValue}
           onChange={handleChange}
           sx={{

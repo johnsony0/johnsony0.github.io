@@ -33,6 +33,7 @@ function ClarityNavBar() {
 
   const navLinks = [
     { label: 'Home', path: '/clarity' },
+    //{ label: 'Features', path: '/clarity/features' },
     { label: 'Examples', path: '/clarity/examples' },
     { label: 'Help', path: '/clarity/faq' }
   ];
@@ -54,10 +55,11 @@ function ClarityNavBar() {
           component={Link}
           to='/clarity'
           sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', mr: isMd ? 2 : 10 }}
+          aria-label="Clarity homepage"
         >
           <Box
             component="img"
-            alt="Clarity Logo"
+            alt="Clarity Extension Logo"
             src={bogo}
             sx={{
               height: '35px',
@@ -67,7 +69,7 @@ function ClarityNavBar() {
         </Box>
         {isMobile ? (
           <>
-            <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+            <IconButton edge="start" color="inherit" aria-label="open navigation menu" onClick={toggleDrawer(true)}>
               <MenuIcon />
             </IconButton>
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)} 
@@ -93,6 +95,7 @@ function ClarityNavBar() {
                     value={link.path}
                     component={Link}
                     to={link.path}
+                    aria-label={`${link.label} page`}
                     sx={{
                       color: theme.palette.text.primary,
                       textTransform: 'none',
@@ -118,6 +121,7 @@ function ClarityNavBar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="contained"
+                  disableElevation
                   sx={{
                     width: '90%',
                     padding: '10px',
@@ -126,6 +130,7 @@ function ClarityNavBar() {
                     backgroundColor: theme.clarity.secondary,
                   }}
                   startIcon={<GetAppIcon />}
+                  aria-label="Get Clarity browser extension from the Chrome Web Store"
                 >
                   Get Clarity
                 </Button>
@@ -150,6 +155,7 @@ function ClarityNavBar() {
                   value={link.path}
                   component={Link}
                   to={link.path}
+                  aria-label={`${link.label} page`}
                   sx={{
                     color: theme.palette.text.primary,
                     textTransform: 'none',
@@ -173,6 +179,8 @@ function ClarityNavBar() {
               target="_blank"
               rel="noopener noreferrer"
               variant="contained"
+              aria-label="Get Clarity browser extension from the Chrome Web Store"
+              disableElevation
               sx={{
                 padding: '10px',
                 ml: 'auto',

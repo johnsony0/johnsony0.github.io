@@ -242,10 +242,10 @@ function ClarityExamples(){
 			}}
 		>
 			<ButtonGroup variant="contained" aria-label="outlined primary button group" size="large" sx={{ width: '100%' }}>
-				<Button startIcon={<FacebookIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(fbRef)}>{isMd ? 'FB' : 'Facebook'}</Button>
-				<Button startIcon={<TwitterIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(xRef)}>{isMd ? 'X' : 'X/Twitter'}</Button>
-				<Button startIcon={<YouTubeIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(ytRef)}>{isMd ? 'YT' : 'YouTube'}</Button>
-				<Button startIcon={<MoreHorizIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(othersRef)}>Others</Button>
+				<Button aria-label="Scroll to Facebook examples" startIcon={<FacebookIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(fbRef)}>{isMd ? 'FB' : 'Facebook'}</Button>
+				<Button aria-label="Scroll to X/Twitter examples" startIcon={<TwitterIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(xRef)}>{isMd ? 'X' : 'X/Twitter'}</Button>
+				<Button aria-label="Scroll to YouTube examples" startIcon={<YouTubeIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(ytRef)}>{isMd ? 'YT' : 'YouTube'}</Button>
+				<Button aria-label="Scroll to other features examples" startIcon={<MoreHorizIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(othersRef)}>Others</Button>
 			</ButtonGroup>
 		</Box>
 	</Box>
