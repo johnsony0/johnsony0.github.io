@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { Grid, Typography, Paper, useMediaQuery, Button } from '@mui/material'
 import { useTheme } from '@mui/material/styles';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import intromov from '../../assets/clarity/intro.mov';
 import intromp4 from '../../assets/clarity/intro.mp4';
@@ -64,6 +65,33 @@ function Clarity() {
 
   return (
     <Box>
+      <HelmetProvider>
+        <Helmet>
+          <title>
+            {"Clarity | Home"}
+          </title>
+          <meta
+            name="image"
+            content={`${process.env.PUBLIC_URL}/clarity-icon.png`}
+          />
+          <meta
+            name="description"
+            content={"A web extension to block distractions from Facebook, Twitter, and YouTube."}
+          />
+          <meta
+            property="og:title"
+            content={ "Clarity Extension"}
+          />
+          <meta
+            property="og:description"
+            content={"A web extension to block distractions from Facebook, Twitter, and YouTube."}
+          />
+          <meta
+            property="og:image"
+            content={`${process.env.PUBLIC_URL}/clarity-icon.png`}
+          />
+        </Helmet>
+      </HelmetProvider>
       <Box container sx={{ p: 2, display: 'flex', justifyContent: 'center', alignItems:'center',  flexDirection: {xs: 'column', md:'row'}, height: '80vh', backgroundImage: 'linear-gradient(to bottom, #f5f5dc, #f5f5f5)'}}>
           <VideoPlayer
             srcMov={intromov}
