@@ -14,11 +14,15 @@ import fb_before from '../../assets/clarity/clean_fb_before.png';
 import fb_after from '../../assets/clarity/clean_fb_after.png';
 import filter_before from '../../assets/clarity/clean_filter_before.png';
 import filter_after from '../../assets/clarity/clean_filter_after.png';
+import fb_search_before from '../../assets/clarity/clean_fb_search_before.png';
+import fb_search_after from '../../assets/clarity/clean_fb_search_after.png';
 
 import x_before from '../../assets/clarity/clean_x_before.png';
 import x_after from '../../assets/clarity/clean_x_after.png';
 import x_profile_before from '../../assets/clarity/clean_x_profile_before.png';
-import x_profile_after from '../../assets/clarity/clean_x_profile_after.png';  
+import x_profile_after from '../../assets/clarity/clean_x_profile_after.png'; 
+import x_search_before from '../../assets/clarity/clean_x_search_before.png';
+import x_search_after from '../../assets/clarity/clean_x_search_after.png';   
 
 import yt_before from '../../assets/clarity/clean_yt_before.png';
 import yt_after from '../../assets/clarity/clean_yt_after.png';
@@ -26,6 +30,8 @@ import video_before from '../../assets/clarity/clean_video_before.png';
 import video_after from '../../assets/clarity/clean_video_after.png';  
 import yt_profile_before from '../../assets/clarity/clean_yt_profile_before.png';
 import yt_profile_after from '../../assets/clarity/clean_yt_profile_after.png';
+import yt_search_before from '../../assets/clarity/clean_yt_search_before.png';
+import yt_search_after from '../../assets/clarity/clean_yt_search_after.png';
 
 import grayscale_before from '../../assets/clarity/clean_grayscale_before.png';
 import grayscale_after from '../../assets/clarity/clean_grayscale_after.png';
@@ -44,7 +50,13 @@ const fb_data = [
 		secondImage: filter_after,
 		header: 'Profile + Posts',
 		theme: 'dark'
-	}
+	},
+	{
+		firstImage: fb_search_before,
+		secondImage: fb_search_after,
+		header: 'Search',
+		theme: 'dark'
+	},
 ]
 
 const x_data = [
@@ -57,9 +69,15 @@ const x_data = [
 	{
 		firstImage: x_profile_before,
 		secondImage: x_profile_after,
-		header: 'Profile + Posts',
+		header: 'Profile + Tweets',
 		theme: 'light'
-	}
+	},
+	{
+		firstImage: x_search_before,
+		secondImage: x_search_after,
+		header: 'Search',
+		theme: 'light'
+	},
 ]
 
 const yt_data = [
@@ -80,6 +98,12 @@ const yt_data = [
 		secondImage: yt_profile_after,
 		header: 'Profile',
 		theme: 'dark'
+	},
+	{
+		firstImage: yt_search_before,
+		secondImage: yt_search_after,
+		header: 'Search',
+		theme: 'dark'
 	}
 ]
 
@@ -98,15 +122,15 @@ const shared_data = [
   }
 ]
 
-function SliderSelectorComponent(selectedValue, handleChange, data, position, title) {
+function SliderSelectorComponent(selectedValue, handleChange, data, position, title, icon) {
 	const theme = useTheme();
 	const isMd = useMediaQuery(theme.breakpoints.up('md'));
 	return (
-		<Box sx={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex' }}>
+		<Box sx={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center', display: 'flex', mb:{xs: 2, md: 0} }}>
 			<Grid container spacing={0} sx={{ mb: 2, width: '100%', height: '100%' }}>
 				{(position === 'left' && isMd) && (
 					<Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: {xs: 'start', md: 'center'}}}>
-						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title}/>
+						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title} IconComponent={icon}/>
 					</Grid>
 				)}
 				<Grid item xs={12} md={9} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
@@ -119,7 +143,7 @@ function SliderSelectorComponent(selectedValue, handleChange, data, position, ti
 				</Grid>
 				{(position === 'right' || !isMd) && (
 					<Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: {xs: 'start', md: 'center'}}}>
-						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title} />
+						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title} IconComponent={icon}/>
 					</Grid>
 				)}
 			</Grid>
@@ -225,17 +249,17 @@ function ClarityExamples(){
 				backgroundImage: 'linear-gradient(to bottom left, #f5f5dc, #f5f5f5)',
 			}}
 		>
-			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-				{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook')}
+			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+				{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook', FacebookIcon)}
 			</Box>
-			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-				{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'X/Twitter')}
+			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+				{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'Twitter', TwitterIcon)}
 			</Box>
-			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-				{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube')}
+			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+				{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube', YouTubeIcon)}
 			</Box>
-			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-				{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features')}
+			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+				{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features', MoreHorizIcon)}
 			</Box>
 		</Box>
 		<Box
@@ -252,7 +276,7 @@ function ClarityExamples(){
 		>
 			<ButtonGroup variant="contained" aria-label="outlined primary button group" size="large" sx={{ width: '100%' }}>
 				<Button aria-label="Scroll to Facebook examples" startIcon={<FacebookIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(fbRef)}>{isMd ? 'FB' : 'Facebook'}</Button>
-				<Button aria-label="Scroll to X/Twitter examples" startIcon={<TwitterIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(xRef)}>{isMd ? 'X' : 'X/Twitter'}</Button>
+				<Button aria-label="Scroll to Twitter examples" startIcon={<TwitterIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(xRef)}>{isMd ? 'TWT' : 'Twitter'}</Button>
 				<Button aria-label="Scroll to YouTube examples" startIcon={<YouTubeIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(ytRef)}>{isMd ? 'YT' : 'YouTube'}</Button>
 				<Button aria-label="Scroll to other features examples" startIcon={<MoreHorizIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(othersRef)}>Others</Button>
 			</ButtonGroup>

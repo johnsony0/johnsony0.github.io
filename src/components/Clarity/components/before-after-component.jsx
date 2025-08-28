@@ -92,30 +92,72 @@ export function BeforeAfterSlider({ firstImage, secondImage, header, theme = 'li
           <Box
             sx={{
               position: 'absolute',
-              top: '80%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              bgcolor: 'rgba(0,0,0,0.7)',
-              color: 'white',
-              px: 1,
-              py: 1,
-              borderRadius: 2,
-              zIndex: 2,
-              textAlign: 'center',
-              fontSize: { xs: 16, sm: 18 },
-              pointerEvents: 'none',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
               display: 'flex',
-              flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center', 
+              pointerEvents: 'none',
             }}
           >
-            <ArrowBackIosNewIcon/>
-            <Typography sx={{ mr: 1, ml: 1 }}>
-              {'Slide to see changes!'}
+            <Typography
+              variant="h6"
+              sx={{
+                position: 'absolute',
+                left: '25%', 
+                transform: 'translateX(-50%)', 
+                color: 'white',
+                bgcolor: 'rgba(0,0,0,0.5)',
+                p: 1,
+                borderRadius: 1,
+              }}
+            >
+              Before
             </Typography>
-            <ArrowForwardIosIcon/>
-          </Box>)}
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '80%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                bgcolor: 'rgba(0,0,0,0.7)',
+                color: 'white',
+                px: 1,
+                py: 1,
+                borderRadius: 2,
+                zIndex: 2,
+                textAlign: 'center',
+                fontSize: { xs: 16, sm: 18 },
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <ArrowBackIosNewIcon/>
+              <Typography sx={{ mr: 1, ml: 1 }}>
+                {'Slide to see changes!'}
+              </Typography>
+              <ArrowForwardIosIcon/>
+            </Box>
+            <Typography
+              variant="h6"
+              sx={{
+                position: 'absolute',
+                left: '75%',
+                transform: 'translateX(-50%)', 
+                color: 'white',
+                bgcolor: 'rgba(0,0,0,0.5)',
+                p: 1,
+                borderRadius: 1,
+              }}
+            >
+              After
+            </Typography>
+          </Box>
+        )}
         </Box>
     </Box>
   );

@@ -33,22 +33,34 @@ const CheckedRectangle = () => {
   );
 };
 
-function RadioForm({ selectedValue, handleChange, data, title }) {
+function RadioForm({ selectedValue, handleChange, data, title, IconComponent }) {
   const theme = useTheme();
   const isSm = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
-    <Box aria-label={`${title}-selection-form`}>
-      <Typography component="h3" variant={isSm ? 'h5' : 'h3'} sx={{ mb: 2, textAlign: {xs: 'center', md: 'left'} }}>
-        {title}
-      </Typography>
+    <Box aria-label={`${title}-selection-form`} sx={{ width: '100%', maxWidth: 300 }}> 
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: { xs: 'center', md: 'flex-start' }, 
+          gap: 1, 
+        }}
+      >
+        {IconComponent && <IconComponent sx={{ fontSize: isSm ? 32 : 40, color: theme.palette.text.secondary }} />}
+      </Box>
+
       <FormControl component="fieldset">
         <RadioGroup
+          aria-label={`Select options for ${title}`} 
           name={`custom-radio-group-${title}`}
           value={selectedValue}
           onChange={handleChange}
           sx={{
             display: 'flex',
-            flexDirection: {xs:'row', md:'column'}
+            flexDirection: { xs: 'row', md: 'column' }, 
+            justifyContent: { xs: 'center', md: 'flex-start' }, 
+            flexWrap: 'wrap', 
           }}
         >
           {data.map((item, index) => (
@@ -62,6 +74,7 @@ function RadioForm({ selectedValue, handleChange, data, title }) {
                 />
               }
               label={item.header}
+              sx={{ minWidth: { xs: '45%', md: 'auto' } }}
             />
           ))}
         </RadioGroup>

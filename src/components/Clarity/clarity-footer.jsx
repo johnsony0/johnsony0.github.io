@@ -3,7 +3,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import XIcon from '@mui/icons-material/X';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import FolderZipIcon from '@mui/icons-material/FolderZip';
@@ -59,7 +59,7 @@ function ClarityFooter(){
             </Stack>
             <Stack direction="column" spacing={0}>
               {footerButton(<YouTubeIcon />, 'temp', 'YouTube')}
-              {footerButton(<XIcon />, 'temp', 'X/Twitter')}
+              {footerButton(<TwitterIcon />, 'temp', 'Twitter')}
             </Stack>
           </Stack>
         </Grid>
