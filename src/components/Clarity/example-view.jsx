@@ -122,7 +122,7 @@ const shared_data = [
   }
 ]
 
-function SliderSelectorComponent(selectedValue, handleChange, data, position, title, icon) {
+function SliderSelectorComponent(selectedValue, handleChange, data, position, title) {
 	const theme = useTheme();
 	const isMd = useMediaQuery(theme.breakpoints.up('md'));
 	return (
@@ -130,7 +130,7 @@ function SliderSelectorComponent(selectedValue, handleChange, data, position, ti
 			<Grid container spacing={0} sx={{ mb: 2, width: '100%', height: '100%' }}>
 				{(position === 'left' && isMd) && (
 					<Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: {xs: 'start', md: 'center'}}}>
-						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title} IconComponent={icon}/>
+						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title}/>
 					</Grid>
 				)}
 				<Grid item xs={12} md={9} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
@@ -143,7 +143,7 @@ function SliderSelectorComponent(selectedValue, handleChange, data, position, ti
 				</Grid>
 				{(position === 'right' || !isMd) && (
 					<Grid item xs={12} md={3} sx={{ display: 'flex', justifyContent: 'center', alignItems: {xs: 'start', md: 'center'}}}>
-						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title} IconComponent={icon}/>
+						<RadioForm selectedValue={selectedValue} handleChange={handleChange} data={data} title={title}/>
 					</Grid>
 				)}
 			</Grid>
@@ -170,13 +170,99 @@ function ClarityExamples(){
 	const [SharedValue, setSharedValue] = useState(0);
 
 	const fbRef = useRef(null);
-  const xRef = useRef(null);
-  const ytRef = useRef(null);
-  const othersRef = useRef(null);
+	const xRef = useRef(null);
+	const ytRef = useRef(null);
+	const othersRef = useRef(null);
 
 	const theme = useTheme();
 	const isBottom = useScrolledNearBottom(107);
 	const isMd = useMediaQuery(theme.breakpoints.down('md'));
+	const [currentSection, setCurrentSection] = useState(0); 
+
+	useEffect(() => {
+		const refs = [fbRef, xRef, ytRef, othersRef];
+		let snapping = false;
+		let touchStartY = null;
+		let touchStartTime = null;
+
+			const snapTo = (idx) => {
+				if (idx < 0 || idx >= refs.length) return;
+				snapping = true;
+				refs[idx].current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				// After animation, gently correct if needed
+				setTimeout(() => {
+					const navHeight = 64;
+					const section = refs[idx].current;
+					const rect = section.getBoundingClientRect();
+					const offset = Math.abs(rect.top - navHeight);
+					if (offset > 2) {
+						// Gently nudge into place
+						const top = window.pageYOffset + rect.top - navHeight;
+						window.scrollTo({ top, behavior: 'smooth' });
+					}
+					setTimeout(() => { snapping = false; }, 200);
+				}, 700);
+			};
+
+		const onWheel = (e) => {
+			if (snapping) return;
+			if (Math.abs(e.deltaY) < 30) return;
+			e.preventDefault();
+			if (e.deltaY > 0 && currentSection < refs.length - 1) {
+				snapTo(currentSection + 1);
+			} else if (e.deltaY < 0 && currentSection > 0) {
+				snapTo(currentSection - 1);
+			}
+		};
+
+		const onTouchStart = (e) => {
+			if (e.touches.length === 1) {
+				touchStartY = e.touches[0].clientY;
+				touchStartTime = Date.now();
+			}
+		};
+		const onTouchEnd = (e) => {
+			if (snapping || touchStartY === null) return;
+			const touchEndY = e.changedTouches[0].clientY;
+			const deltaY = touchStartY - touchEndY;
+			const dt = Date.now() - touchStartTime;
+			if (Math.abs(deltaY) > 40 && dt < 700) {
+				if (deltaY > 0 && currentSection < refs.length - 1) {
+					snapTo(currentSection + 1);
+				} else if (deltaY < 0 && currentSection > 0) {
+					snapTo(currentSection - 1);
+				}
+			}
+			touchStartY = null;
+			touchStartTime = null;
+		};
+
+		window.addEventListener('wheel', onWheel, { passive: false });
+		window.addEventListener('touchstart', onTouchStart, { passive: true });
+		window.addEventListener('touchend', onTouchEnd, { passive: false });
+		return () => {
+			window.removeEventListener('wheel', onWheel);
+			window.removeEventListener('touchstart', onTouchStart);
+			window.removeEventListener('touchend', onTouchEnd);
+		};
+	}, [currentSection]);
+
+	useEffect(() => {
+		const refs = [fbRef, xRef, ytRef, othersRef];
+		const handleScroll = () => {
+			const navHeight = 64;
+			const offsets = refs.map(ref => {
+				if (!ref.current) return Infinity;
+				const rect = ref.current.getBoundingClientRect();
+				return Math.abs(rect.top - navHeight);
+			});
+			const minIdx = offsets.indexOf(Math.min(...offsets));
+			setCurrentSection(minIdx);
+		};
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		handleScroll();
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
 
 	const handleFBChange = (event) => {
 		setFBvalue(event.target.value);
@@ -193,11 +279,11 @@ function ClarityExamples(){
 	}
 
 	const scrollToSection = (ref) => {
-    ref.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    });
-  };
+		ref.current.scrollIntoView({
+			behavior: 'smooth',
+			block: 'center',
+		});
+	};
 
 
   useEffect(() => {
@@ -249,38 +335,67 @@ function ClarityExamples(){
 				backgroundImage: 'linear-gradient(to bottom left, #f5f5dc, #f5f5f5)',
 			}}
 		>
-			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-				{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook', FacebookIcon)}
+			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '100vw', scrollSnapAlign: 'start' }}>
+				{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook')}
 			</Box>
-			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-				{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'Twitter', TwitterIcon)}
+			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '100vw', scrollSnapAlign: 'start' }}>
+				{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'Twitter')}
 			</Box>
-			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-				{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube', YouTubeIcon)}
+			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '100vw', scrollSnapAlign: 'start' }}>
+				{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube')}
 			</Box>
-			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-				{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features', MoreHorizIcon)}
+			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px - 200px)', width: '100vw', scrollSnapAlign: 'start' }}>
+				{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features')}
 			</Box>
 		</Box>
-		<Box
-			sx={{
-				position: 'sticky',
-				bottom: {xs: 20, md: 30},
-				zIndex: 1000,
-				borderRadius: isBottom ? 0 : 50,
-				overflow: 'hidden',
-				display: 'flex',
-				justifyContent: 'center',
-				width: {xs: isBottom ? '100vw' : '90vw', md: isBottom ? '100vw' : '60vw'},
-			}}
-		>
-			<ButtonGroup variant="contained" aria-label="outlined primary button group" size="large" sx={{ width: '100%' }}>
-				<Button aria-label="Scroll to Facebook examples" startIcon={<FacebookIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(fbRef)}>{isMd ? 'FB' : 'Facebook'}</Button>
-				<Button aria-label="Scroll to Twitter examples" startIcon={<TwitterIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(xRef)}>{isMd ? 'TWT' : 'Twitter'}</Button>
-				<Button aria-label="Scroll to YouTube examples" startIcon={<YouTubeIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(ytRef)}>{isMd ? 'YT' : 'YouTube'}</Button>
-				<Button aria-label="Scroll to other features examples" startIcon={<MoreHorizIcon />} sx={{ flexGrow: 1 }} onClick={() => scrollToSection(othersRef)}>Others</Button>
-			</ButtonGroup>
-		</Box>
+			<Box
+				sx={{
+					position: 'sticky',
+					bottom: { xs: 20, md: 30 },
+					zIndex: 1000,
+					borderRadius: isBottom ? 0 : 50,
+					overflow: 'hidden',
+					display: 'flex',
+					justifyContent: 'center',
+					width: { xs: isBottom ? '100vw' : '90vw', md: isBottom ? '100vw' : '60vw' },
+				}}
+			>
+				<ButtonGroup variant="contained" aria-label="outlined primary button group" size="large" sx={{ width: '100%' }}>
+					<Button
+						aria-label="Scroll to Facebook examples"
+						startIcon={<FacebookIcon />}
+						sx={{ flexGrow: 1, backgroundColor: (currentSection === 0 ? theme.clarity.secondary : 'white') }}
+						color={currentSection === 0 ? 'primary' : 'inherit'}
+						onClick={() => scrollToSection(fbRef)}
+					>
+						{isMd ? 'FB' : 'Facebook'}
+					</Button>
+					<Button
+						aria-label="Scroll to Twitter examples"
+						startIcon={<TwitterIcon />}
+						sx={{ flexGrow: 1, backgroundColor: (currentSection === 1 ? theme.clarity.secondary : 'white') }}
+						onClick={() => scrollToSection(xRef)}
+					>
+						{isMd ? 'TWT' : 'Twitter'}
+					</Button>
+					<Button
+						aria-label="Scroll to YouTube examples"
+						startIcon={<YouTubeIcon />}
+						sx={{ flexGrow: 1, backgroundColor: (currentSection === 2 ? theme.clarity.secondary : 'white')}}
+						onClick={() => scrollToSection(ytRef)}
+					>
+						{isMd ? 'YT' : 'YouTube'}
+					</Button>
+					<Button
+						aria-label="Scroll to other features examples"
+						startIcon={<MoreHorizIcon />}
+						sx={{ flexGrow: 1 , backgroundColor: (currentSection === 3 ? theme.clarity.secondary : 'white')}}
+						onClick={() => scrollToSection(othersRef)}
+					>
+						Others
+					</Button>
+				</ButtonGroup>
+			</Box>
 	</Box>
 );
 }

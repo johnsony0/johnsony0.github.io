@@ -1,4 +1,4 @@
-import { Box, useTheme, Typography, useMediaQuery } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { Radio, RadioGroup, FormControlLabel, FormControl} from '@mui/material';
 
 
@@ -33,23 +33,11 @@ const CheckedRectangle = () => {
   );
 };
 
-function RadioForm({ selectedValue, handleChange, data, title, IconComponent }) {
+function RadioForm({ selectedValue, handleChange, data, title }) {
   const theme = useTheme();
-  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <Box aria-label={`${title}-selection-form`} sx={{ width: '100%', maxWidth: 300 }}> 
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: { xs: 'center', md: 'flex-start' }, 
-          gap: 1, 
-        }}
-      >
-        {IconComponent && <IconComponent sx={{ fontSize: isSm ? 32 : 40, color: theme.palette.text.secondary }} />}
-      </Box>
-
+    <Box aria-label={`${title}-selection-form`} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
       <FormControl component="fieldset">
         <RadioGroup
           aria-label={`Select options for ${title}`} 
@@ -74,7 +62,6 @@ function RadioForm({ selectedValue, handleChange, data, title, IconComponent }) 
                 />
               }
               label={item.header}
-              sx={{ minWidth: { xs: '45%', md: 'auto' } }}
             />
           ))}
         </RadioGroup>
