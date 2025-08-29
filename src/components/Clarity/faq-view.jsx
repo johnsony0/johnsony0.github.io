@@ -14,7 +14,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const faqData = [
   {
     question: "Where can I visualize changes that Clarity makes?",
-    answer: "Resources linked below provide sliders and images to visualize changes made on their respective platforms",
+    answer: "Visualize changes made on their respective platforms with the links below.",
     links: [{link: 'http://localhost:3000/clarity/examples#fb', text: 'Facebook'},
       {link: 'http://localhost:3000/clarity/examples#x', text: 'X/TWitter'},
       {link: 'http://localhost:3000/clarity/examples#yt', text: 'YouTube'},
@@ -78,12 +78,11 @@ function ClarityFAQ() {
                 aria-controls={`panel${index}-content`}
                 id={`panel${index}-header`}
                 sx={{
-                  padding: 1, 
                   '&.Mui-expanded': {
                     minHeight: 2, 
                   },
                   '.MuiAccordionSummary-content': {
-                    margin: 2, 
+                    margin: 3, 
                   },
                 }}
               >
@@ -91,7 +90,7 @@ function ClarityFAQ() {
                   {faq.question}
                 </Typography>
               </AccordionSummary>
-              <AccordionDetails sx={{ pl: 3, pr: 3}}
+              <AccordionDetails sx={{ pl: 5, pr: 5}}
                 id={`panel${index}-content`}
                 aria-labelledby={`panel${index}-header`}
               >

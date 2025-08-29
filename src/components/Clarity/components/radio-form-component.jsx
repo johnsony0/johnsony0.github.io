@@ -34,8 +34,6 @@ const CheckedRectangle = () => {
 };
 
 function RadioForm({ selectedValue, handleChange, data, title }) {
-  const theme = useTheme();
-
   return (
     <Box aria-label={`${title}-selection-form`} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}> 
       <FormControl component="fieldset">

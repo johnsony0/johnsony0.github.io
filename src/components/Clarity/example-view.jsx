@@ -111,7 +111,7 @@ const shared_data = [
   {
     firstImage: grayscale_before,
     secondImage: grayscale_after,
-    header: 'Grayscale Mode',
+    header: 'Grayscale',
     theme: 'light' 
   },
   {
@@ -179,112 +179,12 @@ function ClarityExamples(){
 	const isMd = useMediaQuery(theme.breakpoints.down('md'));
 	const [currentSection, setCurrentSection] = useState(0); 
 
-	useEffect(() => {
-		const refs = [fbRef, xRef, ytRef, othersRef];
-		let snapping = false;
-		let touchStartY = null;
-		let touchStartTime = null;
-
-			const snapTo = (idx) => {
-				if (idx < 0 || idx >= refs.length) return;
-				snapping = true;
-				refs[idx].current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				// After animation, gently correct if needed
-				setTimeout(() => {
-					const navHeight = 64;
-					const section = refs[idx].current;
-					const rect = section.getBoundingClientRect();
-					const offset = Math.abs(rect.top - navHeight);
-					if (offset > 2) {
-						// Gently nudge into place
-						const top = window.pageYOffset + rect.top - navHeight;
-						window.scrollTo({ top, behavior: 'smooth' });
-					}
-					setTimeout(() => { snapping = false; }, 200);
-				}, 700);
-			};
-
-		const onWheel = (e) => {
-			if (snapping) return;
-			if (Math.abs(e.deltaY) < 30) return;
-			e.preventDefault();
-			if (e.deltaY > 0 && currentSection < refs.length - 1) {
-				snapTo(currentSection + 1);
-			} else if (e.deltaY < 0 && currentSection > 0) {
-				snapTo(currentSection - 1);
-			}
-		};
-
-		const onTouchStart = (e) => {
-			if (e.touches.length === 1) {
-				touchStartY = e.touches[0].clientY;
-				touchStartTime = Date.now();
-			}
-		};
-		const onTouchEnd = (e) => {
-			if (snapping || touchStartY === null) return;
-			const touchEndY = e.changedTouches[0].clientY;
-			const deltaY = touchStartY - touchEndY;
-			const dt = Date.now() - touchStartTime;
-			if (Math.abs(deltaY) > 40 && dt < 700) {
-				if (deltaY > 0 && currentSection < refs.length - 1) {
-					snapTo(currentSection + 1);
-				} else if (deltaY < 0 && currentSection > 0) {
-					snapTo(currentSection - 1);
-				}
-			}
-			touchStartY = null;
-			touchStartTime = null;
-		};
-
-		window.addEventListener('wheel', onWheel, { passive: false });
-		window.addEventListener('touchstart', onTouchStart, { passive: true });
-		window.addEventListener('touchend', onTouchEnd, { passive: false });
-		return () => {
-			window.removeEventListener('wheel', onWheel);
-			window.removeEventListener('touchstart', onTouchStart);
-			window.removeEventListener('touchend', onTouchEnd);
-		};
-	}, [currentSection]);
-
-	useEffect(() => {
-		const refs = [fbRef, xRef, ytRef, othersRef];
-		const handleScroll = () => {
-			const navHeight = 64;
-			const offsets = refs.map(ref => {
-				if (!ref.current) return Infinity;
-				const rect = ref.current.getBoundingClientRect();
-				return Math.abs(rect.top - navHeight);
-			});
-			const minIdx = offsets.indexOf(Math.min(...offsets));
-			setCurrentSection(minIdx);
-		};
-		window.addEventListener('scroll', handleScroll, { passive: true });
-		handleScroll();
-		return () => window.removeEventListener('scroll', handleScroll);
-	}, []);
-
-	const handleFBChange = (event) => {
-		setFBvalue(event.target.value);
-	};
-	const handleXChange = (event) => {
-		setXvalue(event.target.value);
-	};
-	const handleYTChange = (event) => {
-		setYTvalue(event.target.value);
-	};
-
-	const handleSharedChange = (event) => {
-		setSharedValue(event.target.value);
-	}
-
 	const scrollToSection = (ref) => {
 		ref.current.scrollIntoView({
 			behavior: 'smooth',
 			block: 'center',
 		});
 	};
-
 
   useEffect(() => {
 		const hashRefMap = {
@@ -301,6 +201,38 @@ function ClarityExamples(){
       }, 100);
     }
   }, []);
+
+	useEffect(() => {
+		const refs = [fbRef, xRef, ytRef, othersRef];
+		const handleScroll = () => {
+			const navHeight = 64;
+			const offsets = refs.map(ref => {
+				if (!ref.current) return Infinity;
+				const rect = ref.current.getBoundingClientRect();
+				return Math.abs(rect.top - navHeight);
+			});
+			const minIdx = offsets.indexOf(Math.min(...offsets));
+			setCurrentSection(minIdx);
+		};
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		handleScroll();
+		scrollToSection(fbRef)
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
+	const handleFBChange = (event) => {
+		setFBvalue(event.target.value);
+	};
+	const handleXChange = (event) => {
+		setXvalue(event.target.value);
+	};
+	const handleYTChange = (event) => {
+		setYTvalue(event.target.value);
+	};
+
+	const handleSharedChange = (event) => {
+		setSharedValue(event.target.value);
+	}
 
 	const allImages = [
 		...fb_data.map(item => item.firstImage),
@@ -335,16 +267,16 @@ function ClarityExamples(){
 				backgroundImage: 'linear-gradient(to bottom left, #f5f5dc, #f5f5f5)',
 			}}
 		>
-			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '100vw', scrollSnapAlign: 'start' }}>
+			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
 				{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook')}
 			</Box>
-			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '100vw', scrollSnapAlign: 'start' }}>
+			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
 				{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'Twitter')}
 			</Box>
-			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '100vw', scrollSnapAlign: 'start' }}>
+			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
 				{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube')}
 			</Box>
-			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px - 200px)', width: '100vw', scrollSnapAlign: 'start' }}>
+			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px - 200px)', width: '95vw', scrollSnapAlign: 'start' }}>
 				{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features')}
 			</Box>
 		</Box>
