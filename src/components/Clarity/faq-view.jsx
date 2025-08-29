@@ -56,6 +56,7 @@ function ClarityFAQ() {
           <title>Clarity | Help</title>
           <meta name="description" content="Help for Clarity extension" />
           <link rel="canonical" href="https://johnsony0.github.io/clarity/faq" />
+          <link rel="icon" href={`${process.env.PUBLIC_URL}/clarity-icon.png`} />
         </Helmet>
       </HelmetProvider>
       <Box sx={{ width: {lg: '50%', md: '70%', sm: '90%'}, margin: 'auto', padding: 3 }}>

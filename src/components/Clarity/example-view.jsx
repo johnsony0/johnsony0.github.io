@@ -254,6 +254,7 @@ function ClarityExamples(){
 				<title>Clarity | Examples</title>
 				<meta name="description" content="Examples of how Clarity blocks distractions on Facebook, Twitter, or YouTube." />
 				<link rel="canonical" href="https://johnsony0.github.io/clarity/examples" />
+				<link rel="icon" href={`${process.env.PUBLIC_URL}/clarity-icon.png`} />
 			</Helmet>
 		</HelmetProvider>
 		<Box

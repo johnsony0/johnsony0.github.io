@@ -45,7 +45,7 @@ function ClarityFooter(){
           </Typography>
           <Stack direction="column" spacing={0}>
             {footerButton(<GitHubIcon />, 'https://github.com/johnsony0/clarity', 'Source Code')}
-            {footerButton(<EmailIcon />, 'mailto:theclarityextension.com', 'Email')}
+            {footerButton(<EmailIcon />, 'mailto:theclarityextension@gmail.com', 'Email')}
           </Stack>
         </Grid>
         <Grid item xs={6} sm={6} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
