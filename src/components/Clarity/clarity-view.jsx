@@ -70,6 +70,34 @@ function Clarity() {
           <title>Clarity | Home</title>
           <meta name="description" content="Boost your productivity by removing distractive elements from social media sites such as Facebook, Twitter, or YouTube." />
           <link rel="canonical" href="https://johnsony0.github.io/clarity" />
+          <meta
+          property="og:title"
+          content={ "Clarity | Home"}
+          />
+          <meta
+            property="og:description"
+            content={"Boost your productivity by removing distractive elements from social media sites such as Facebook, Twitter, or YouTube."}
+          />
+          <meta
+            property="og:url"
+            content="https://johnsony0.github.io/clarity"
+          />
+          <meta
+            property="og:image"
+            content={`${process.env.PUBLIC_URL}/clarity-icon.png`}
+          />
+          <meta
+          property="twitter:title"
+          content={ "Clarity | Home"}
+          />
+          <meta
+            property="twitter:description"
+            content={"Boost your productivity by removing distractive elements from social media sites such as Facebook, Twitter, or YouTube."}
+          />
+          <meta
+            property="twitter:image"
+            content={`${process.env.PUBLIC_URL}/clarity-icon.png`}
+          />
         </Helmet>
       </HelmetProvider>
       <Box container sx={{ display: 'flex', minHeight: '77vh', justifyContent: 'center', alignItems:'center',  flexDirection: {xs: 'column', md:'row'}, backgroundImage: 'linear-gradient(to bottom, #f5f5dc, #f5f5f5)'}}>
