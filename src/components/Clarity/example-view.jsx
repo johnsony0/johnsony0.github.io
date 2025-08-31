@@ -9,118 +9,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import useScrolledNearBottom from './components/scroll-near-bottom';
 import RadioForm from './components/radio-form-component';
-
-import fb_before from '../../assets/clarity/clean_fb_before.png';
-import fb_after from '../../assets/clarity/clean_fb_after.png';
-import filter_before from '../../assets/clarity/clean_filter_before.png';
-import filter_after from '../../assets/clarity/clean_filter_after.png';
-import fb_search_before from '../../assets/clarity/clean_fb_search_before.png';
-import fb_search_after from '../../assets/clarity/clean_fb_search_after.png';
-
-import x_before from '../../assets/clarity/clean_x_before.png';
-import x_after from '../../assets/clarity/clean_x_after.png';
-import x_profile_before from '../../assets/clarity/clean_x_profile_before.png';
-import x_profile_after from '../../assets/clarity/clean_x_profile_after.png'; 
-import x_search_before from '../../assets/clarity/clean_x_search_before.png';
-import x_search_after from '../../assets/clarity/clean_x_search_after.png';   
-
-import yt_before from '../../assets/clarity/clean_yt_before.png';
-import yt_after from '../../assets/clarity/clean_yt_after.png';
-import video_before from '../../assets/clarity/clean_video_before.png';
-import video_after from '../../assets/clarity/clean_video_after.png';  
-import yt_profile_before from '../../assets/clarity/clean_yt_profile_before.png';
-import yt_profile_after from '../../assets/clarity/clean_yt_profile_after.png';
-import yt_search_before from '../../assets/clarity/clean_yt_search_before.png';
-import yt_search_after from '../../assets/clarity/clean_yt_search_after.png';
-
-import grayscale_before from '../../assets/clarity/clean_grayscale_before.png';
-import grayscale_after from '../../assets/clarity/clean_grayscale_after.png';
-import timer from '../../assets/clarity/clean_timer.png';
-import limit from '../../assets/clarity/clean_limit.png';
-
-const fb_data = [
-	{
-		firstImage: fb_before,
-		secondImage: fb_after,
-		header: 'Home',
-		theme: 'dark' 
-	},
-	{
-		firstImage: filter_before,
-		secondImage: filter_after,
-		header: 'Profile + Posts',
-		theme: 'dark'
-	},
-	{
-		firstImage: fb_search_before,
-		secondImage: fb_search_after,
-		header: 'Search',
-		theme: 'dark'
-	},
-]
-
-const x_data = [
-	{
-		firstImage: x_before,
-		secondImage: x_after,
-		header: 'Home',
-		theme: 'light' 
-	},
-	{
-		firstImage: x_profile_before,
-		secondImage: x_profile_after,
-		header: 'Profile + Tweets',
-		theme: 'light'
-	},
-	{
-		firstImage: x_search_before,
-		secondImage: x_search_after,
-		header: 'Search',
-		theme: 'light'
-	},
-]
-
-const yt_data = [
-	{
-		firstImage: video_before,
-		secondImage: video_after,
-		header: 'Video',
-		theme: 'dark'
-	},
-	{
-		firstImage: yt_before,
-		secondImage: yt_after,
-		header: 'Home',
-		theme: 'dark' 
-	},
-	{
-		firstImage: yt_profile_before,
-		secondImage: yt_profile_after,
-		header: 'Profile',
-		theme: 'dark'
-	},
-	{
-		firstImage: yt_search_before,
-		secondImage: yt_search_after,
-		header: 'Search',
-		theme: 'dark'
-	}
-]
-
-const shared_data = [
-  {
-    firstImage: grayscale_before,
-    secondImage: grayscale_after,
-    header: 'Grayscale',
-    theme: 'light' 
-  },
-  {
-    firstImage: timer,
-    secondImage: limit,
-    header: 'Timer vs Limit',
-    theme: 'light'
-  }
-]
+import { fb_data, x_data, yt_data, shared_data } from './components/example-data';
 
 function SliderSelectorComponent(selectedValue, handleChange, data, position, title) {
 	const theme = useTheme();
@@ -152,14 +41,36 @@ function SliderSelectorComponent(selectedValue, handleChange, data, position, ti
 }
 
 const useImagePreloader = (imageUrls) => {
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const preloadedImages = [];
+    if (!imageUrls || imageUrls.length === 0) {
+      setIsLoading(false);
+      return;
+    }
+    let loadedCount = 0;
+    const totalImages = imageUrls.length;
+    const imgLoadHandler = () => {
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        setIsLoading(false);
+      }
+    };
     imageUrls.forEach((url) => {
       const img = new Image();
+      img.onload = imgLoadHandler;
+      img.onerror = imgLoadHandler; 
       img.src = url;
-      preloadedImages.push(img);
     });
+    return () => {
+      imageUrls.forEach((url) => {
+        const img = new Image();
+        img.onload = null;
+        img.onerror = null;
+      });
+    };
   }, [imageUrls]);
+
+  return isLoading;
 };
 
 
@@ -193,14 +104,19 @@ function ClarityExamples(){
 			'#yt': ytRef,
 			'#others': othersRef,
 		};
-    const hash = window.location.hash;
-    const refToScroll = hashRefMap[hash];
-    if (refToScroll) {
-      setTimeout(() => {
-        scrollToSection(refToScroll);
-      }, 100);
-    }
-  }, []);
+		const hash = window.location.hash;
+		const refToScroll = hashRefMap[hash];
+		
+		if (refToScroll) {
+			setTimeout(() => {
+				scrollToSection(refToScroll);
+			}, 100);
+		} else {
+			setTimeout(() => {
+				scrollToSection(fbRef);
+			}, 100);
+		}
+	}, [fbRef, xRef, ytRef, othersRef]);
 
 	useEffect(() => {
 		const refs = [fbRef, xRef, ytRef, othersRef];
@@ -245,92 +161,105 @@ function ClarityExamples(){
 		...shared_data.map(item => item.firstImage),
 		...shared_data.map(item => item.secondImage),
 	];
-	useImagePreloader(allImages);
-
+  useImagePreloader(allImages);
 	return (
-	<Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-		<HelmetProvider>
-			<Helmet>
-				<title>Clarity | Examples</title>
-				<meta name="description" content="Examples of how Clarity blocks distractions on Facebook, Twitter, or YouTube." />
-				<link rel="canonical" href="https://johnsony0.github.io/clarity/examples" />
-				<link rel="icon" href={`${process.env.PUBLIC_URL}/clarity-icon.png`} />
-			</Helmet>
-		</HelmetProvider>
-		<Box
-			sx={{
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'center',
-				alignItems: 'center',
-				width: '100%',
-				height: 'auto',
-				backgroundImage: 'linear-gradient(to bottom left, #f5f5dc, #f5f5f5)',
-			}}
-		>
-			<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
-				{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook')}
-			</Box>
-			<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
-				{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'Twitter')}
-			</Box>
-			<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
-				{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube')}
-			</Box>
-			<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px - 200px)', width: '95vw', scrollSnapAlign: 'start' }}>
-				{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features')}
+		<Box>
+			<HelmetProvider>
+				<Helmet>
+					<title>Clarity | Examples </title>
+					<meta name="title" content="Clarity | less distractions - more clarity" />
+					<meta name="description" content="Boost your productivity by removing distractive elements from social media sites which are built to be addictive and time-wasting." />
+					<link rel="icon" href={`${process.env.PUBLIC_URL}/clarity-icon.png`} />
+
+					<meta property="og:type" content="website" />
+					<meta property="og:url" content="johnsony0.github.io/clarity" />
+					<meta property="og:title" content="Clarity | less distractions - more clarity" />
+					<meta property="og:description" content="Boost your productivity by removing distractive elements from social media sites which are built to be addictive and time-wasting." />
+					<meta property="og:image" content={`${process.env.PUBLIC_URL}/clarity-banner.png`} />
+
+					<meta property="twitter:card" content="summary_large_image" />
+					<meta property="twitter:url" content="johnsony0.github.io/clarity" />
+					<meta property="twitter:title" content="Clarity | less distractions - more clarity" />
+					<meta property="twitter:description" content="Boost your productivity by removing distractive elements from social media sites which are built to be addictive and time-wasting." />
+					<meta property="twitter:image" content={`${process.env.PUBLIC_URL}/clarity-banner.png`} />
+				</Helmet>
+			</HelmetProvider>
+			<Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							justifyContent: 'center',
+							alignItems: 'center',
+							width: '100%',
+							height: 'auto',
+							backgroundImage: 'linear-gradient(to bottom left, #f5f5dc, #f5f5f5)',
+						}}
+					>
+						<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
+							{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook')}
+						</Box>
+						<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
+							{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'Twitter')}
+						</Box>
+						<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
+							{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube')}
+						</Box>
+						<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px - 200px)', width: '95vw', scrollSnapAlign: 'start' }}>
+							{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features')}
+						</Box>
+					</Box>
+					<Box
+						sx={{
+							position: 'sticky',
+							bottom: { xs: 20, md: 30 },
+							zIndex: 1000,
+							borderRadius: isBottom ? 0 : 50,
+							overflow: 'hidden',
+							display: 'flex',
+							justifyContent: 'center',
+							width: { xs: isBottom ? '100vw' : '90vw', md: isBottom ? '100vw' : '60vw' },
+						}}
+					>
+						<ButtonGroup variant="contained" aria-label="outlined primary button group" size="large" sx={{ width: '100%' }}>
+							<Button
+								aria-label="Scroll to Facebook examples"
+								startIcon={<FacebookIcon />}
+								sx={{ flexGrow: 1, backgroundColor: (currentSection === 0 ? theme.clarity.secondary : 'white') }}
+								color={currentSection === 0 ? 'primary' : 'inherit'}
+								onClick={() => scrollToSection(fbRef)}
+							>
+								{isMd ? 'FB' : 'Facebook'}
+							</Button>
+							<Button
+								aria-label="Scroll to Twitter examples"
+								startIcon={<TwitterIcon />}
+								sx={{ flexGrow: 1, backgroundColor: (currentSection === 1 ? theme.clarity.secondary : 'white') }}
+								onClick={() => scrollToSection(xRef)}
+							>
+								{isMd ? 'TWT' : 'Twitter'}
+							</Button>
+							<Button
+								aria-label="Scroll to YouTube examples"
+								startIcon={<YouTubeIcon />}
+								sx={{ flexGrow: 1, backgroundColor: (currentSection === 2 ? theme.clarity.secondary : 'white')}}
+								onClick={() => scrollToSection(ytRef)}
+							>
+								{isMd ? 'YT' : 'YouTube'}
+							</Button>
+							<Button
+								aria-label="Scroll to other features examples"
+								startIcon={<MoreHorizIcon />}
+								sx={{ flexGrow: 1 , backgroundColor: (currentSection === 3 ? theme.clarity.secondary : 'white')}}
+								onClick={() => scrollToSection(othersRef)}
+							>
+								Others
+							</Button>
+						</ButtonGroup>
+					</Box>
 			</Box>
 		</Box>
-			<Box
-				sx={{
-					position: 'sticky',
-					bottom: { xs: 20, md: 30 },
-					zIndex: 1000,
-					borderRadius: isBottom ? 0 : 50,
-					overflow: 'hidden',
-					display: 'flex',
-					justifyContent: 'center',
-					width: { xs: isBottom ? '100vw' : '90vw', md: isBottom ? '100vw' : '60vw' },
-				}}
-			>
-				<ButtonGroup variant="contained" aria-label="outlined primary button group" size="large" sx={{ width: '100%' }}>
-					<Button
-						aria-label="Scroll to Facebook examples"
-						startIcon={<FacebookIcon />}
-						sx={{ flexGrow: 1, backgroundColor: (currentSection === 0 ? theme.clarity.secondary : 'white') }}
-						color={currentSection === 0 ? 'primary' : 'inherit'}
-						onClick={() => scrollToSection(fbRef)}
-					>
-						{isMd ? 'FB' : 'Facebook'}
-					</Button>
-					<Button
-						aria-label="Scroll to Twitter examples"
-						startIcon={<TwitterIcon />}
-						sx={{ flexGrow: 1, backgroundColor: (currentSection === 1 ? theme.clarity.secondary : 'white') }}
-						onClick={() => scrollToSection(xRef)}
-					>
-						{isMd ? 'TWT' : 'Twitter'}
-					</Button>
-					<Button
-						aria-label="Scroll to YouTube examples"
-						startIcon={<YouTubeIcon />}
-						sx={{ flexGrow: 1, backgroundColor: (currentSection === 2 ? theme.clarity.secondary : 'white')}}
-						onClick={() => scrollToSection(ytRef)}
-					>
-						{isMd ? 'YT' : 'YouTube'}
-					</Button>
-					<Button
-						aria-label="Scroll to other features examples"
-						startIcon={<MoreHorizIcon />}
-						sx={{ flexGrow: 1 , backgroundColor: (currentSection === 3 ? theme.clarity.secondary : 'white')}}
-						onClick={() => scrollToSection(othersRef)}
-					>
-						Others
-					</Button>
-				</ButtonGroup>
-			</Box>
-	</Box>
-);
+	);
 }
 
 export default ClarityExamples;

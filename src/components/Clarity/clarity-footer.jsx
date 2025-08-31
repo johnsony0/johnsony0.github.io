@@ -48,7 +48,7 @@ function ClarityFooter(){
             {footerButton(<EmailIcon />, 'mailto:theclarityextension@gmail.com', 'Email')}
           </Stack>
         </Grid>
-        <Grid item xs={6} sm={6} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+        <Grid item xs={6} sm={6} display="flex" flexDirection="column" justifyContent="gcenter" alignItems="center">
           <Typography sx={{ color: theme.palette.text.secondary, fontWeight: 600, fontSize: 14 }}>
             Socials
           </Typography>

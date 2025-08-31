@@ -53,10 +53,22 @@ function ClarityFAQ() {
     >
       <HelmetProvider>
         <Helmet>
-          <title>Clarity | Help</title>
-          <meta name="description" content="Help for Clarity extension" />
-          <link rel="canonical" href="https://johnsony0.github.io/clarity/faq" />
+          <title>Clarity | Help </title>
+          <meta name="title" content="Clarity | less distractions - more clarity" />
+          <meta name="description" content="Boost your productivity by removing distractive elements from social media sites which are built to be addictive and time-wasting." />
           <link rel="icon" href={`${process.env.PUBLIC_URL}/clarity-icon.png`} />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="johnsony0.github.io/clarity" />
+          <meta property="og:title" content="Clarity | less distractions - more clarity" />
+          <meta property="og:description" content="Boost your productivity by removing distractive elements from social media sites which are built to be addictive and time-wasting." />
+          <meta property="og:image" content={`${process.env.PUBLIC_URL}/clarity-banner.png`} />
+
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta property="twitter:url" content="johnsony0.github.io/clarity" />
+          <meta property="twitter:title" content="Clarity | less distractions - more clarity" />
+          <meta property="twitter:description" content="Boost your productivity by removing distractive elements from social media sites which are built to be addictive and time-wasting." />
+          <meta property="twitter:image" content={`${process.env.PUBLIC_URL}/clarity-banner.png`} />
         </Helmet>
       </HelmetProvider>
       <Box sx={{ width: {lg: '50%', md: '70%', sm: '90%'}, margin: 'auto', padding: 3 }}>
