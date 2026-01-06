@@ -18,8 +18,8 @@ export const themeOptions = {
     },
   },
   clarity: {
-    primary: '#f5f5dc',
-    secondary: '#d2bd96',
+    primary: '#fdfaf1',
+    secondary: '#e8dec9',
     bg: '#F8F8F8',
     heading: '#292922'
   },

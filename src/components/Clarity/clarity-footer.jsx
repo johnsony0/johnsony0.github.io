@@ -74,7 +74,7 @@ function ClarityFooter(){
         </Grid>
         <Grid item xs={12}>
           <Typography align="center" variant="body2" sx={{ color: theme.palette.text.disabled, fontSize: 12 }}>
-            Clarity is not affiliated with Facebook, Twitter/X, or YouTube
+            Clarity is not affiliated with Facebook, Twitch, Twitter/X, or YouTube
           </Typography>
         </Grid>
       </Grid>

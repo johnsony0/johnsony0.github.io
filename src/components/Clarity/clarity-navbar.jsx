@@ -103,7 +103,7 @@ function ClarityNavBar() {
                       mb: 2,
                       mt: 1,
                       '&.Mui-selected': {
-                        backgroundColor: theme.clarity.primary,
+                        backgroundColor: theme.clarity.secondary,
                         color: theme.palette.text.secondary,
                         borderRadius: '50px',
                       },
@@ -126,7 +126,7 @@ function ClarityNavBar() {
                     width: '90%',
                     padding: '10px',
                     textTransform: 'none',
-                    color: 'whitesmoke',
+                    color: theme.clarity.primary,
                     backgroundColor: theme.clarity.secondary,
                   }}
                   startIcon={<GetAppIcon />}
@@ -162,7 +162,7 @@ function ClarityNavBar() {
                     padding: '0px',
                     m: isMd? '5px' : '5px 10px 5px 10px',
                     '&.Mui-selected': {
-                      backgroundColor: theme.clarity.primary,
+                      backgroundColor: theme.clarity.secondary,
                       color: theme.palette.text.secondary,
                       borderRadius: '50px',
                     },
@@ -185,7 +185,7 @@ function ClarityNavBar() {
                 padding: '10px',
                 ml: 'auto',
                 textTransform: 'none',
-                color: 'whitesmoke',
+                color: theme.clarity.primary,
                 backgroundColor: theme.clarity.secondary,
               }}
               startIcon={<GetAppIcon />}

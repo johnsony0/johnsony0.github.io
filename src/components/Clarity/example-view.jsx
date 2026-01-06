@@ -9,7 +9,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import useScrolledNearBottom from './components/scroll-near-bottom';
 import RadioForm from './components/radio-form-component';
-import { fb_data, x_data, yt_data, shared_data } from './components/example-data';
+import { fb_data, twitch_data, x_data, yt_data, shared_data } from './components/example-data';
 
 function SliderSelectorComponent(selectedValue, handleChange, data, position, title) {
 	const theme = useTheme();
@@ -76,11 +76,13 @@ const useImagePreloader = (imageUrls) => {
 
 function ClarityExamples(){
 	const [FBValue, setFBvalue] = useState(0);
+	const [TwitchValue, setTwitchValue] = useState(0);
 	const [XValue, setXvalue] = useState(0);
 	const [YTValue, setYTvalue] = useState(0);
 	const [SharedValue, setSharedValue] = useState(0);
 
 	const fbRef = useRef(null);
+	const twitchRef = useRef(null);
 	const xRef = useRef(null);
 	const ytRef = useRef(null);
 	const othersRef = useRef(null);
@@ -100,6 +102,7 @@ function ClarityExamples(){
   useEffect(() => {
 		const hashRefMap = {
 			'#fb': fbRef,
+			'#twitch': twitchRef,
 			'#x': xRef,
 			'#yt': ytRef,
 			'#others': othersRef,
@@ -116,10 +119,10 @@ function ClarityExamples(){
 				scrollToSection(fbRef);
 			}, 100);
 		}
-	}, [fbRef, xRef, ytRef, othersRef]);
+	}, [fbRef, twitchRef, xRef, ytRef, othersRef]);
 
 	useEffect(() => {
-		const refs = [fbRef, xRef, ytRef, othersRef];
+		const refs = [fbRef, twitchRef, xRef, ytRef, othersRef];
 		const handleScroll = () => {
 			const navHeight = 64;
 			const offsets = refs.map(ref => {
@@ -139,6 +142,9 @@ function ClarityExamples(){
 	const handleFBChange = (event) => {
 		setFBvalue(event.target.value);
 	};
+	const handleTwitchChange = (event) => {
+		setTwitchValue(event.target.value);
+	};
 	const handleXChange = (event) => {
 		setXvalue(event.target.value);
 	};
@@ -153,10 +159,11 @@ function ClarityExamples(){
 	const allImages = [
 		...fb_data.map(item => item.firstImage),
 		...fb_data.map(item => item.secondImage),
+		...twitch_data.map(item => item.firstImage),
+		...twitch_data.map(item => item.secondImage),
 		...x_data.map(item => item.firstImage),
 		...x_data.map(item => item.secondImage),
 		...yt_data.map(item => item.firstImage),
-		...yt_data.map(item => item.secondImage),
 		...yt_data.map(item => item.secondImage),
 		...shared_data.map(item => item.firstImage),
 		...shared_data.map(item => item.secondImage),
@@ -196,16 +203,19 @@ function ClarityExamples(){
 							backgroundImage: 'linear-gradient(to bottom left, #f5f5dc, #f5f5f5)',
 						}}
 					>
-						<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
+						<Box ref={fbRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 60px)', width: '95vw', scrollSnapAlign: 'start' }}>
 							{SliderSelectorComponent(FBValue, handleFBChange, fb_data, 'right', 'Facebook')}
 						</Box>
-						<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
+						<Box ref={twitchRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 60px)', width: '95vw', scrollSnapAlign: 'start' }}>
+							{SliderSelectorComponent(TwitchValue, handleTwitchChange, twitch_data, 'left', 'Twitch')}
+						</Box>
+						<Box ref={xRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 60px)', width: '95vw', scrollSnapAlign: 'start' }}>
 							{SliderSelectorComponent(XValue, handleXChange, x_data, 'left', 'Twitter')}
 						</Box>
-						<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px)', width: '95vw', scrollSnapAlign: 'start' }}>
+						<Box ref={ytRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 60px)', width: '95vw', scrollSnapAlign: 'start' }}>
 							{SliderSelectorComponent(YTValue, handleYTChange, yt_data, 'right', 'YouTube')}
 						</Box>
-						<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 64px - 200px)', width: '95vw', scrollSnapAlign: 'start' }}>
+						<Box ref={othersRef} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 60px)', width: '95vw', scrollSnapAlign: 'start' }}>
 							{SliderSelectorComponent(SharedValue, handleSharedChange, shared_data, 'left', 'Other Features')}
 						</Box>
 					</Box>
@@ -226,23 +236,33 @@ function ClarityExamples(){
 								aria-label="Scroll to Facebook examples"
 								startIcon={<FacebookIcon />}
 								sx={{ flexGrow: 1, backgroundColor: (currentSection === 0 ? theme.clarity.secondary : 'white') }}
-								color={currentSection === 0 ? 'primary' : 'inherit'}
 								onClick={() => scrollToSection(fbRef)}
 							>
 								{isMd ? 'FB' : 'Facebook'}
 							</Button>
 							<Button
 								aria-label="Scroll to Twitter examples"
-								startIcon={<TwitterIcon />}
+								startIcon={<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitch" viewBox="0 0 16 16">
+									<path d="M3.857 0 1 2.857v10.286h3.429V16l2.857-2.857H9.57L14.714 8V0zm9.714 7.429-2.285 2.285H9l-2 2v-2H4.429V1.143h9.142z"/>
+									<path d="M11.857 3.143h-1.143V6.57h1.143zm-3.143 0H7.571V6.57h1.143z"/>
+								</svg>}
 								sx={{ flexGrow: 1, backgroundColor: (currentSection === 1 ? theme.clarity.secondary : 'white') }}
+								onClick={() => scrollToSection(twitchRef)}
+							>
+								{isMd ? 'TW' : 'Twitch'}
+							</Button>
+							<Button
+								aria-label="Scroll to Twitter examples"
+								startIcon={<TwitterIcon />}
+								sx={{ flexGrow: 1, backgroundColor: (currentSection === 2 ? theme.clarity.secondary : 'white') }}
 								onClick={() => scrollToSection(xRef)}
 							>
-								{isMd ? 'TWT' : 'Twitter'}
+								{isMd ? 'X' : 'Twitter'}
 							</Button>
 							<Button
 								aria-label="Scroll to YouTube examples"
 								startIcon={<YouTubeIcon />}
-								sx={{ flexGrow: 1, backgroundColor: (currentSection === 2 ? theme.clarity.secondary : 'white')}}
+								sx={{ flexGrow: 1, backgroundColor: (currentSection === 3 ? theme.clarity.secondary : 'white')}}
 								onClick={() => scrollToSection(ytRef)}
 							>
 								{isMd ? 'YT' : 'YouTube'}
@@ -250,7 +270,7 @@ function ClarityExamples(){
 							<Button
 								aria-label="Scroll to other features examples"
 								startIcon={<MoreHorizIcon />}
-								sx={{ flexGrow: 1 , backgroundColor: (currentSection === 3 ? theme.clarity.secondary : 'white')}}
+								sx={{ flexGrow: 1 , backgroundColor: (currentSection === 4 ? theme.clarity.secondary : 'white')}}
 								onClick={() => scrollToSection(othersRef)}
 							>
 								Others
