@@ -1,10 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.2d4d5c00.css",
-    "main.js": "/static/js/main.2c76d618.js",
+    "main.css": "/static/css/main.4f482dec.css",
+    "main.js": "/static/js/main.f12f9272.js",
     "static/js/453.ace21015.chunk.js": "/static/js/453.ace21015.chunk.js",
-    "static/media/intro.mov": "/static/media/intro.bbf2c798304afd5d08f3.mov",
-    "static/media/intro.mp4": "/static/media/intro.fa86f2503076ab69d077.mp4",
     "static/media/me-with-fish.jpg": "/static/media/me-with-fish.c029da80368bdd337b81.jpg",
     "static/media/extra_channel_filter_before.png": "/static/media/extra_channel_filter_before.9578867742c83adfb448.png",
     "static/media/twitch_search_after.png": "/static/media/twitch_search_after.3d8ff33afce04a7d14ca.png",
@@ -30,6 +28,7 @@
     "static/media/clean_filter_before.png": "/static/media/clean_filter_before.d78c53183beaeefe5300.png",
     "static/media/clean_fb_after.png": "/static/media/clean_fb_after.44deb3320652b615dcd5.png",
     "static/media/clean_x_profile_before.png": "/static/media/clean_x_profile_before.1b950f57c42519591af6.png",
+    "static/media/screenshot-5.png": "/static/media/screenshot-5.0f937652d395d6233f1d.png",
     "static/media/clean_fb_search_after.png": "/static/media/clean_fb_search_after.a87af767ee92f946ef9b.png",
     "static/media/clean_grayscale_before.png": "/static/media/clean_grayscale_before.965d1ec55f3d29d73524.png",
     "static/media/clean_x_profile_after.png": "/static/media/clean_x_profile_after.5daaabcb8d1f245b9527.png",
@@ -45,9 +44,13 @@
     "static/media/clean_grayscale_after.png": "/static/media/clean_grayscale_after.2f453eba39fe8f0a0955.png",
     "static/media/clean_timer.png": "/static/media/clean_timer.1a1a5a013db40999fc16.png",
     "static/media/clean_video_after.png": "/static/media/clean_video_after.a907cbf5d7ba812de40f.png",
+    "static/media/screenshot-4.png": "/static/media/screenshot-4.da97719462d537a5b23c.png",
+    "static/media/screenshot-3.png": "/static/media/screenshot-3.04b39f53939cdcc569e7.png",
+    "static/media/screenshot-2.png": "/static/media/screenshot-2.7acfe5eaa3f1321b4ad3.png",
     "static/media/extra_bias_filter_after.png": "/static/media/extra_bias_filter_after.f91beb9c9aa94ae0b298.png",
     "static/media/clean_fb_search_before.png": "/static/media/clean_fb_search_before.70bad4f3c7264738c0e7.png",
     "static/media/Resume.pdf": "/static/media/Resume.fd09d4cbf28a08cf2f62.pdf",
+    "static/media/screenshot-1.png": "/static/media/screenshot-1.33388272f78c86f97e90.png",
     "static/media/me.png": "/static/media/me.84100affcb23940449f2.png",
     "static/media/Temp_Sensor.png": "/static/media/Temp_Sensor.0564c4bbe9389eb335cb.png",
     "static/media/Wheelchair_Lights.png": "/static/media/Wheelchair_Lights.d0c08c126812a7a26d81.png",
@@ -65,12 +68,12 @@
     "static/media/Boston_Crime_Data.png": "/static/media/Boston_Crime_Data.8d5f441bc4b3bec1f6ac.png",
     "static/media/icon.png": "/static/media/icon.6a07b85dc2fc60f34174.png",
     "index.html": "/index.html",
-    "main.2d4d5c00.css.map": "/static/css/main.2d4d5c00.css.map",
-    "main.2c76d618.js.map": "/static/js/main.2c76d618.js.map",
+    "main.4f482dec.css.map": "/static/css/main.4f482dec.css.map",
+    "main.f12f9272.js.map": "/static/js/main.f12f9272.js.map",
     "453.ace21015.chunk.js.map": "/static/js/453.ace21015.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d4d5c00.css",
-    "static/js/main.2c76d618.js"
+    "static/css/main.4f482dec.css",
+    "static/js/main.f12f9272.js"
   ]
 }
