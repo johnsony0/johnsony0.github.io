@@ -1,221 +1,229 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
-  Box, Button, Paper, Typography, 
-  Dialog, DialogTitle, DialogContent, DialogActions,
-  Stack
+  Box, Button, Paper, Typography, Dialog, DialogTitle, 
+  DialogContent, DialogActions, Stack, Divider, Tooltip, Chip, IconButton
 } from '@mui/material';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import FlagIcon from '@mui/icons-material/Flag';
 
 const HexGridVisualizer = () => {
   const [nodes, setNodes] = useState([]);
   const [gridN, setGridN] = useState(0);
-  const [startNode, setStartNode] = useState(null); // ID of start
-  const [goalNode, setGoalNode] = useState(null);   // ID of goal
+  const [startNode, setStartNode] = useState(null);
+  const [goalNode, setGoalNode] = useState(null);
+  const [isRunning, setIsRunning] = useState(false);
   
   const [errorOpen, setErrorOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const handleCloseError = () => setErrorOpen(false);
 
   const parseHexFile = (text) => {
     const lines = text.trim().split('\n').filter(l => l.length > 0);
-    const count = lines.length;
-    const sqrt = Math.sqrt(count);
-
+    const sqrt = Math.sqrt(lines.length);
     if (!Number.isInteger(sqrt)) {
-      setErrorMessage(`Invalid length: ${count}. Needs perfect square.`);
+      setErrorMessage(`Invalid memory depth (${lines.length}). Grid must be square.`);
       setErrorOpen(true);
       return;
     }
-
-    const N = sqrt;
-    setGridN(N);
-
-    const parsed = lines.map((hex, index) => {
+    setGridN(sqrt);
+    setNodes(lines.map((hex, index) => {
       const val = parseInt(hex, 16);
       return {
         id: index,
-        i: Math.floor(index / N),
-        j: index % N,
+        i: Math.floor(index / sqrt),
+        j: index % sqrt,
         isObstacle: (val & 0x1) === 1,
-        inClosed: false, 
-        inOpen: false,  
-        parentRef: null,
-        g: Infinity,
-        f: Infinity,
+        inClosed: false, inOpen: false, isPath: false,
+        parentRef: null, g: Infinity, f: Infinity,
       };
-    });
-    setNodes(parsed);
+    }));
+    setStartNode(null);
+    setGoalNode(null);
   };
 
   const handleCellClick = (id) => {
-    if (nodes[id].isObstacle) return;
+    if (isRunning || nodes[id].isObstacle) return;
     if (startNode === null) setStartNode(id);
     else if (goalNode === null && id !== startNode) setGoalNode(id);
-    else {
-      setStartNode(id);
-      setGoalNode(null);
-    }
-  };
-
-  const clearSearch = () => {
-    setStartNode(null);
-    setGoalNode(null);
-    setNodes(nodes.map(node => ({
-      ...node,
-      inClosed: false,
-      inOpen: false,
-      g: Infinity,
-      f: Infinity,
-      parentRef: null
-    })));
-  };
-
-  const fullReset = () => {
-    setNodes([]);
-    setGridN(0);
-    setStartNode(null);
-    setGoalNode(null);
+    else { setStartNode(id); setGoalNode(null); }
   };
 
   const runAStar = async () => {
     if (startNode === null || goalNode === null) return;
-
-    let grid = [...nodes];
+    setIsRunning(true);
+    let grid = nodes.map(n => ({ ...n, inOpen: false, inClosed: false, isPath: false, g: Infinity, f: Infinity }));
     let openList = [startNode];
-    
     grid[startNode].g = 0;
-    grid[startNode].f = calculateH(startNode, goalNode);
+    grid[startNode].f = calculateH(startNode, gridN, goalNode);
     grid[startNode].inOpen = true;
 
     while (openList.length > 0) {
-      // Sort to get lowest F
       openList.sort((a, b) => grid[a].f - grid[b].f);
       let currentIdx = openList.shift();
-      let current = grid[currentIdx];
-
       if (currentIdx === goalNode) break;
 
-      current.inOpen = false;
-      current.inClosed = true;
+      grid[currentIdx].inOpen = false;
+      grid[currentIdx].inClosed = true;
 
-      // Neighbors (8-way)
-      const neighbors = getNeighbors(currentIdx, gridN);
-      for (let neighborIdx of neighbors) {
+      for (let neighborIdx of getNeighbors(currentIdx, gridN)) {
         let neighbor = grid[neighborIdx];
         if (neighbor.isObstacle || neighbor.inClosed) continue;
-
-        let tentG = current.g + 1; 
+        let tentG = grid[currentIdx].g + 1;
         if (tentG < neighbor.g) {
           neighbor.parentRef = currentIdx;
           neighbor.g = tentG;
-          neighbor.f = tentG + calculateH(neighborIdx, goalNode);
-          if (!neighbor.inOpen) {
-            neighbor.inOpen = true;
-            openList.push(neighborIdx);
-          }
+          neighbor.f = tentG + calculateH(neighborIdx, gridN, goalNode);
+          if (!neighbor.inOpen) { neighbor.inOpen = true; openList.push(neighborIdx); }
         }
       }
       setNodes([...grid]);
-      await new Promise(r => setTimeout(r, 100)); 
+      await new Promise(r => setTimeout(r, 50)); 
     }
+    
+    let curr = goalNode;
+    while (curr !== null && grid[curr].parentRef !== null) {
+        grid[curr].isPath = true;
+        curr = grid[curr].parentRef;
+        if (curr === startNode) { grid[curr].isPath = true; break; }
+    }
+    setNodes([...grid]);
+    setIsRunning(false);
   };
 
-  const calculateH = (a, b) => {
-    const nodeA = { i: Math.floor(a / gridN), j: a % gridN };
-    const nodeB = { i: Math.floor(b / gridN), j: b % gridN };
-    return Math.abs(nodeA.i - nodeB.i) + Math.abs(nodeA.j - nodeB.j);
-  };
-
+  const calculateH = (a, N, b) => Math.abs(Math.floor(a/N) - Math.floor(b/N)) + Math.abs((a%N) - (b%N));
   const getNeighbors = (idx, N) => {
-    const i = Math.floor(idx / N);
-    const j = idx % N;
-    let res = [];
-    for (let di = -1; di <= 1; di++) {
-      for (let dj = -1; dj <= 1; dj++) {
-        if (di === 0 && dj === 0) continue;
-        let ni = i + di, nj = j + dj;
-        if (ni >= 0 && ni < N && nj >= 0 && nj < N) res.push(ni * N + nj);
-      }
+    const i = Math.floor(idx / N), j = idx % N, res = [];
+    for (let di = -1; di <= 1; di++) for (let dj = -1; dj <= 1; dj++) {
+      if (di === 0 && dj === 0) continue;
+      let ni = i + di, nj = j + dj;
+      if (ni >= 0 && ni < N && nj >= 0 && nj < N) res.push(ni * N + nj);
     }
     return res;
   };
 
   return (
-    <Box sx={{ p: 4 }}>
-      <Typography variant="h4" gutterBottom>A* Hardware Simulation</Typography>
+    <Box sx={{ minHeight: '100vh', bgcolor: '#0a0a0a', color: '#fff', display: 'flex', flexDirection: 'column' }}>
       
-      <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-        <Button variant="contained" component="label">
-          Upload Hex
-          <input type="file" hidden onChange={(e) => {
-            const reader = new FileReader();
-            reader.onload = (ev) => parseHexFile(ev.target.result);
-            reader.readAsText(e.target.files[0]);
-          }} />
-        </Button>
-        <Button variant="outlined" color="success" onClick={runAStar} disabled={goalNode === null}>
-          Run A* Search
-        </Button>
-        <Button variant="outlined" color="warning" onClick={clearSearch}>
-          Clear Search
-        </Button>
-
-        <Button variant="outlined" color="error" onClick={fullReset}>
-          Full Reset
-        </Button>
-
-        <Box sx={{ display: 'flex', alignItems: 'center', ml: 2 }}>
-          <Typography variant="body2" color="text.secondary">
-            {startNode === null ? "📍 Set Start" : 
-             goalNode === null ? "🏁 Set Goal" : "🚀 Ready to Search"}
-          </Typography>
-        </Box>
-      </Stack>
-
-      <Box sx={{ 
-        display: 'grid', 
-        gridTemplateColumns: `repeat(${gridN}, 70px)`, 
-        gap: '4px',
-        bgcolor: '#f0f0f0', p: 2, borderRadius: 2, width: 'fit-content'
-      }}>
-        {nodes.map((node) => {
-          const isStart = node.id === startNode;
-          const isGoal = node.id === goalNode;
+      {/* Top Professional Toolbar */}
+      <Paper elevation={4} sx={{ p: 2, bgcolor: '#1a1a1a', borderRadius: 0, borderBottom: '1px solid #333' }}>
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
           
-          return (
-            <Paper
-              key={node.id}
-              onClick={() => handleCellClick(node.id)}
-              elevation={isStart || isGoal ? 8 : 1}
-              sx={{
-                width: 70, height: 70,
-                display: 'flex', flexDirection: 'column',
-                alignItems: 'center', justifyContent: 'center',
-                cursor: 'pointer',
-                bgcolor: node.isObstacle ? '#333' : 
-                         isStart ? '#4caf50' : 
-                         isGoal ? '#f44336' : 
-                         node.inClosed ? '#bdbdbd' :
-                         node.inOpen ? '#90caf9' : 'white',
-                color: (node.isObstacle || isStart || isGoal) ? 'white' : 'black',
-                border: isStart || isGoal ? '2px solid black' : '1px solid #ccc',
-                transition: 'all 0.2s'
-              }}
-            >
-              <Typography sx={{ fontSize: '0.65rem', fontWeight: 'bold' }}>
-                {node.f === Infinity ? '∞' : `F:${node.f}`}
-              </Typography>
-              <Typography sx={{ fontSize: '0.55rem' }}>G:{node.g === Infinity ? '∞' : node.g}</Typography>
-              <Box sx={{ mt: 0.5, px: 0.5, bgcolor: 'rgba(0,0,0,0.1)', borderRadius: 1 }}>
-                <Typography sx={{ fontSize: '0.5rem' }}>[{node.i},{node.j}]</Typography>
-              </Box>
-            </Paper>
-          );
-        })}
+          <Stack direction="row" spacing={2} alignItems="center">
+            <Typography variant="h6" sx={{ fontWeight: 'bold', letterSpacing: 1, color: '#90caf9', mr: 2 }}>
+              A* Simulation
+            </Typography>
+            
+            <Button variant="contained" size="small" startIcon={<UploadFileIcon />} component="label">
+              Load Map
+              <input type="file" hidden onChange={(e) => {
+                const reader = new FileReader();
+                reader.onload = (ev) => parseHexFile(ev.target.result);
+                reader.readAsText(e.target.files[0]);
+              }} />
+            </Button>
+
+            <Divider orientation="vertical" flexItem sx={{ bgcolor: '#444' }} />
+
+            <Button variant="contained" color="success" size="small" startIcon={<PlayArrowIcon />} 
+              onClick={runAStar} disabled={goalNode === null || isRunning}>
+              Execute
+            </Button>
+
+            <Button variant="outlined" color="warning" size="small" startIcon={<RestartAltIcon />} 
+              onClick={() => {setStartNode(null); setGoalNode(null); setNodes(nodes.map(n => ({...n, inOpen: false, inClosed: false, isPath: false, g: Infinity, f: Infinity})))}}>
+              Reset
+            </Button>
+
+            <IconButton color="error" size="small" onClick={() => {setNodes([]); setGridN(0); setStartNode(null); setGoalNode(null);}}>
+              <DeleteSweepIcon />
+            </IconButton>
+          </Stack>
+
+          <Stack direction="row" spacing={1}>
+            <Chip 
+              icon={<LocationOnIcon style={{ color: '#4caf50' }} />} 
+              label={startNode !== null ? `Start: [${nodes[startNode].i},${nodes[startNode].j}]` : "Start: Not Set"} 
+              variant="outlined" size="small" sx={{ color: '#fff', borderColor: '#333' }} 
+            />
+            <Chip 
+              icon={<FlagIcon style={{ color: '#f44336' }} />} 
+              label={goalNode !== null ? `Goal: [${nodes[goalNode].i},${nodes[goalNode].j}]` : "Goal: Not Set"} 
+              variant="outlined" size="small" sx={{ color: '#fff', borderColor: '#333' }} 
+            />
+          </Stack>
+
+        </Stack>
+      </Paper>
+
+      {/* Centered Grid Viewport */}
+      <Box sx={{ flexGrow: 1, p: 4, display: 'flex', justifyContent: 'center', alignItems: 'flex-start', overflow: 'auto' }}>
+        {nodes.length > 0 ? (
+          <Box sx={{ 
+            display: 'grid', 
+            gridTemplateColumns: `repeat(${gridN}, 60px)`, 
+            gap: '2px', 
+            p: 1.5, bgcolor: '#222', borderRadius: '8px', border: '1px solid #444',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.8)'
+          }}>
+            {nodes.map((node) => {
+              const isStart = node.id === startNode;
+              const isGoal = node.id === goalNode;
+              let bg = '#333';
+              if (node.isObstacle) bg = '#000';
+              else if (isStart) bg = '#1b5e20';
+              else if (isGoal) bg = '#b71c1c';
+              else if (node.isPath) bg = '#ff8f00';
+              else if (node.inClosed) bg = '#37474f';
+              else if (node.inOpen) bg = '#0d47a1';
+
+              return (
+                <Tooltip key={node.id} title={`Coord: (${node.i}, ${node.j}) | F: ${node.f === Infinity ? 'INF' : node.f} | G: ${node.g === Infinity ? 'INF' : node.g}`} disableInteractive>
+                  <Box
+                    onClick={() => handleCellClick(node.id)}
+                    sx={{
+                      width: 60, height: 60, bgcolor: bg,
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                      cursor: node.isObstacle ? 'not-allowed' : 'pointer',
+                      border: '1px solid rgba(255,255,255,0.05)',
+                      outline: isStart || isGoal ? '2px solid #fff' : 'none',
+                      outlineOffset: '-2px',
+                      boxShadow: isStart || isGoal ? 'inset 0 0 0 2px #fff' : 'none',
+                      transition: 'all 0.15s ease-in-out',
+                      '&:hover': { 
+                        filter: 'brightness(1.4)', 
+                        zIndex: 2, 
+                        transform: 'scale(1.1)',
+                        boxShadow: '0 0 10px rgba(255,255,255,0.2)'
+                      }
+                    }}
+                  >
+                    <Typography sx={{ fontSize: '0.65rem', fontWeight: 'bold', color: '#fff', pointerEvents: 'none' }}>
+                      {node.f === Infinity ? '' : `F:${node.f}`}
+                    </Typography>
+                    <Typography sx={{ fontSize: '0.45rem', opacity: 0.5, color: '#fff', pointerEvents: 'none' }}>
+                        {node.isObstacle ? 'WALL' : `[${node.i},${node.j}]`}
+                    </Typography>
+                  </Box>
+                </Tooltip>
+              );
+            })}
+          </Box>
+        ) : (
+          <Stack alignItems="center" sx={{ mt: 10 }}>
+             <Typography variant="h5" sx={{ color: '#444', fontWeight: 'bold' }}>Awaiting Memory Initialization...</Typography>
+             <Typography variant="caption" sx={{ color: '#333' }}>Upload .HEX to map grid coordinates</Typography>
+          </Stack>
+        )}
       </Box>
-      <Dialog open={errorOpen} onClose={handleCloseError}>
-        <DialogTitle>Error</DialogTitle>
+
+      {/* Error Handling */}
+      <Dialog open={errorOpen} onClose={() => setErrorOpen(false)} PaperProps={{ sx: { bgcolor: '#1a1a1a', color: '#fff', border: '1px solid #d32f2f' } }}>
+        <DialogTitle color="error">Format Violation</DialogTitle>
         <DialogContent>{errorMessage}</DialogContent>
-        <DialogActions><Button onClick={handleCloseError}>OK</Button></DialogActions>
+        <DialogActions><Button onClick={() => setErrorOpen(false)} sx={{ color: '#90caf9' }}>Acknowledge</Button></DialogActions>
       </Dialog>
     </Box>
   );
