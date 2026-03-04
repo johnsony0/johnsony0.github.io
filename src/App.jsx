@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import NavBar from './components/navbar';
 import Footer from './components/footer';
@@ -15,6 +15,7 @@ import MediaBias from './components/Projects/Media-Bias/media-bias-view';
 import ToDo from './components/Projects/To-Do/to-do-view';
 import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
 import MTAOpenData from './components/Projects/MTA-Open-Data/mta-open-data-view'
+import AStar from './components/Projects/A-Star/a-star-view'
 
 import ClarityNavbar from './components/Clarity/clarity-navbar';
 import ClarityFooter from './components/Clarity/clarity-footer';
@@ -60,13 +61,14 @@ function App() {
     <Router>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={show(Home)} />
+        <Route path="/" element={<Navigate to="/clarity" replace />} />
         <Route path="/home" element={show(Home)} />
         <Route path="/about" element={show(About)} />
         <Route path="/projects" element={show(Projects)} />
           <Route path="/projects/media-bias" element={show(MediaBias)} />
           <Route path="/projects/todo" element={<ToDo/>}/>
           <Route path="/projects/mta-open-data" element={<MTAOpenData/>}/>
+          <Route path="/projects/a-star" element={<AStar/>}/>
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
         <Route path="/resume" element={show(Resume)} />
         <Route path="/clarity" element={clarityTab(<Clarity/>)}/>

@@ -3,10 +3,11 @@ import { Grid, Typography, Paper, useMediaQuery, Button } from '@mui/material'
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useTheme } from '@mui/material/styles';
 import GetAppIcon from '@mui/icons-material/GetApp';
-import intromov from '../../assets/clarity/intro.mov';
-import intromp4 from '../../assets/clarity/intro.mp4';
+//import intromov from '../../assets/clarity/intro.mov';
+//import intromp4 from '../../assets/clarity/intro.mp4';
+import ImageCarousel from './components/carousel';
 
-const VideoPlayer = ({ srcMov, srcMp4, title, autoPlay = false, loop = false, muted = true }) => {
+/*const VideoPlayer = ({ srcMov, srcMp4, title, autoPlay = false, loop = false, muted = true }) => {
   return (
     <Box
       sx={{
@@ -39,7 +40,7 @@ const VideoPlayer = ({ srcMov, srcMp4, title, autoPlay = false, loop = false, mu
       </Box>
     </Box>
   );
-};
+};*/
 
 function WhyItem({ svg, header, text, theme }) {
   return (
@@ -86,14 +87,15 @@ function Clarity() {
         </Helmet>
       </HelmetProvider>
       <Box container sx={{ display: 'flex', minHeight: '77vh', justifyContent: 'center', alignItems:'center',  flexDirection: {xs: 'column', md:'row'}, backgroundImage: 'linear-gradient(to bottom, #f5f5dc, #f5f5f5)'}}>
-        <VideoPlayer
+        {/*<VideoPlayer
           srcMov={intromov}
           srcMp4={intromp4} 
           title="Demo Video"
           autoPlay={true}
           loop={true}
           muted={true}
-        />
+        />*/}
+        <ImageCarousel />
         <Box sx={{ display: 'flex',  flexDirection:'column', textAlign: {xs: 'center', md:'start'} }}>
           <Typography component="h1" variant={isMd ? 'h3' : 'h4'} sx={{ fontWeight: 700, color: theme.palette.text.secondary }}>
             Less Distractions,

@@ -80,7 +80,7 @@ function ClarityNavBar() {
               }}>
               <Tabs
                 orientation="vertical"
-                value={location.pathname}
+                value={location.pathname === '/' ? '/clarity' : location.pathname}
                 textColor="primary"
                 sx={{
                   '& .MuiTabs-indicator': {
@@ -140,7 +140,7 @@ function ClarityNavBar() {
         ) : (
           <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Tabs
-              value={location.pathname}
+              value={location.pathname === '/' ? '/clarity' : location.pathname}
               textColor="primary"
               sx={{
                 '& .MuiTabs-indicator': {
