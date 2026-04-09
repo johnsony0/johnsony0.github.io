@@ -10,7 +10,7 @@ import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import FlagIcon from '@mui/icons-material/Flag';
 
-const HexGridVisualizer = () => {
+const AltGridVisualizer = () => {
   const [nodes, setNodes] = useState([]);
   const [gridN, setGridN] = useState(0);
   const [startNode, setStartNode] = useState(null);
@@ -114,17 +114,26 @@ const HexGridVisualizer = () => {
     grid[startNode].inOpen = true;
 
     while (openList.length > 0) {
+      console.table(
+        openList.map(idx => ({
+          node: idx,
+          coord: `(${Math.floor(idx / gridN)}, ${idx % gridN})`, // Row, Col
+          f: grid[idx].f,
+          g: grid[idx].g,
+          weight: grid[idx].weight
+        }))
+      );
       openList.sort((a, b) => grid[a].f - grid[b].f);
       let currentIdx = openList.shift();
       if (currentIdx === goalNode) break;
-
+      console.log(`(${Math.floor(currentIdx / gridN)}, ${currentIdx % gridN})`)
       grid[currentIdx].inOpen = false;
       grid[currentIdx].inClosed = true;
 
       for (let neighborIdx of getNeighbors(currentIdx, gridN)) {
         let neighbor = grid[neighborIdx];
         if (neighbor.isObstacle || neighbor.inClosed) continue;
-        let tentG = grid[currentIdx].g + 1 + neighbor.weight;
+        let tentG = grid[currentIdx].g + 1 + grid[currentIdx].weight;
         if (tentG < neighbor.g) {
           neighbor.parentRef = currentIdx;
           neighbor.g = tentG;
@@ -146,8 +155,8 @@ const HexGridVisualizer = () => {
       curr = grid[curr].parentRef;
       if (curr === startNode) { grid[curr].isPath = true; break; }
     }
-    setWeightCount(weightTotal)
-    setCount(node_length-1)
+    setWeightCount(weightTotal);
+    setCount(node_length-1);
     setNodes([...grid]);
     setIsRunning(false);
   };
@@ -302,4 +311,4 @@ const HexGridVisualizer = () => {
   );
 };
 
-export default HexGridVisualizer;
+export default AltGridVisualizer;

@@ -17,6 +17,8 @@ import StardewQuiz from './components/Projects/Stardew-Quiz/stardew-quiz-view';
 import MTAOpenData from './components/Projects/MTA-Open-Data/mta-open-data-view'
 import AStar from './components/Projects/A-Star/a-star-view'
 
+import Timer from './components/Projects/Timer/timer-view'
+
 import ClarityNavbar from './components/Clarity/clarity-navbar';
 import ClarityFooter from './components/Clarity/clarity-footer';
 import Clarity from './components/Clarity/clarity-view';
@@ -69,6 +71,7 @@ function App() {
           <Route path="/projects/todo" element={<ToDo/>}/>
           <Route path="/projects/mta-open-data" element={<MTAOpenData/>}/>
           <Route path="/projects/a-star" element={<AStar/>}/>
+          <Route path="/projects/timer" element={<Timer/>}/>
         <Route path="/personality-quiz/stardew" element={<StardewQuiz />} />
         <Route path="/resume" element={show(Resume)} />
         <Route path="/clarity" element={clarityTab(<Clarity/>)}/>
