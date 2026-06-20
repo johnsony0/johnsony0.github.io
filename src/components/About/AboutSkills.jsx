@@ -6,6 +6,8 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { FaReact, FaPython, FaGitAlt, FaLinux } from 'react-icons/fa';
 import { SiCplusplus, SiPytorch, SiMongodb } from 'react-icons/si';
+import { CiMicrochip } from "react-icons/ci";
+import { GiLogicGateAnd, GiLogicGateOr, GiLogicGateNot } from "react-icons/gi";
 import { IoLogoJavascript } from "react-icons/io";
 import { DiPostgresql } from "react-icons/di";
 
@@ -13,8 +15,12 @@ const itemData = [
     { icon: SiCplusplus, title: 'C++', category: 'Languages' },
     { icon: IoLogoJavascript, title: 'Javascript', category: 'Languages' },
     { icon: FaPython, title: 'Python', category: 'Languages' },
+    { icon: CiMicrochip, title: 'Verilog', category: 'Languages'},
     { icon: SiPytorch, title: 'Pytorch', category: 'Framework' },
     { icon: FaReact, title: 'React', category: 'Framework' },
+    { icon: GiLogicGateAnd, title: 'Genus', category: 'EDA'},
+    { icon: GiLogicGateOr, title: 'Innovus', category: 'EDA'},
+    { icon: GiLogicGateNot, title: 'Calibre', category: 'EDA'},
     { icon: SiMongodb, title: 'MongoDB', category: 'Database' },
     { icon: DiPostgresql, title: 'PostgreSQL', category: 'Database' },
     { icon: FaGitAlt, title: 'Git', category: 'Etc' },
@@ -70,6 +76,9 @@ function AboutTools() {
                 </ToggleButton>
                 <ToggleButton value="Framework" aria-label="Framework">
                     Frameworks
+                </ToggleButton>
+                <ToggleButton value="EDA" aria-label="EDA Tools">
+                    EDA Tools
                 </ToggleButton>
                 <ToggleButton value="Database" aria-label="Database">
                     Databases

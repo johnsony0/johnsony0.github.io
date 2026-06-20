@@ -13,10 +13,9 @@ function AboutMe(){
     <Container sx={{ textAlign: 'center' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: { sm:'row', xs:'column' }, }}>
         <Typography variant='body2' sx={{ color: theme.palette.text.secondary, width: isMobile ? '90%' : '50%'}}>
-          Born and raised by immigrant parents in NYC
-          along with two siblings was not easy, but it
-          developed many of the strengths I carry with me today,
-          such as creative thinking and perseverance.
+          I am currently attending an M.S. in Computer 
+          Engineering at New York University, following my graduation from Boston University 
+          with a B.S. in Computer Engineering and concentration in Machine Learning in 2024.
         </Typography>
         <Box
           component="img"
@@ -31,9 +30,12 @@ function AboutMe(){
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         <Typography variant='body2' sx={{ color: theme.palette.text.secondary, width: '90%'}}>
-        I graduated from Boston University with a B.S in 
-        Computer Engineering and concentration in Machine Learning in 2024, 
-        and I am looking forward to creating my mark on the industry. 
+          I enjoy working on engineering problems regardless of what layer of the stack they exist. From 
+          data driven applications (e.g. Looking into the history of vulnerabilities in Kubernetes), 
+          to machine-learning workloads (e.g. Developing a model which classifies political bias, such as left or right leaning,
+          and integrating it within a Chrome extension to automatically filter posts on Facebook or Twitter.), 
+          or embedded systems (e.g. A device using gyroscopes and accelerometers to detect tremors or dyskinesia).
+          My diverse experiences give me a breadth of knowledge on which to draw on for future solutions.
         </Typography>
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center',justifyContent: 'center', flexDirection: { sm:'row', xs:'column' }, marginBottom: '20px' }}>
@@ -48,9 +50,8 @@ function AboutMe(){
           }}
         />
         <Typography variant='body2' sx={{ color: theme.palette.text.secondary,  width: isMobile ? '90%' : '50%'}}>
-        I am a software engineer, with years of study in ML
-        and also experience in creating APIs, CLIs, websites, and UIs. 
-        I also have a hardware background to excel in integrated circuits. 
+          Currently, my work revolves around computer architecture and VLSI, specifically in
+          developing hardware accelerators. 
         </Typography>
       </Box>
     </Container>

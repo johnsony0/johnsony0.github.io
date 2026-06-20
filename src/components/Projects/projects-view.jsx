@@ -7,6 +7,7 @@ import { projectData } from './ProjectData.jsx';
 import { useTheme } from '@mui/material/styles';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { BrowserView, MobileView } from 'react-device-detect';
 
@@ -202,6 +203,17 @@ function Projects() {
                     sx={{ margin: '5px', '&:hover': { color: 'text.secondary' } }}
                   >
                     <DescriptionIcon />
+                  </Link>
+                )}
+                {selectedProject.slides && (
+                  <Link
+                    href={selectedProject.slides} 
+                    target="_blank" 
+                    rel="noopener" 
+                    color="text.primary" 
+                    sx={{ margin: '5px', '&:hover': { color: 'text.secondary' } }}
+                  >
+                    <CoPresentIcon />
                   </Link>
                 )}
               </Box>
